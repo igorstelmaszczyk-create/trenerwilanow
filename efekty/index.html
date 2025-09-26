@@ -1,0 +1,470 @@
+<!-- ================== SITE HEADER (compact + mobile hamburger, CSS-only) ================== -->
+<header id="site-header" role="banner">
+  <div class="nav-wrap">
+    <!-- Brand -->
+    <a class="brand" href="/" aria-label="Strona główna – Igor Stelmaszczyk">
+      <span class="brand-mark" aria-hidden="true">IS</span>
+      <span class="brand-text">
+        <strong>Igor Stelmaszczyk</strong>
+        <em>Trener personalny</em>
+      </span>
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="nav" aria-label="Główne">
+      <ul>
+        <li><a href="/o-mnie">O mnie</a></li>
+        <li><a href="/uslugi">Usługi</a></li>
+        <li><a href="/cennik">Cennik</a></li>
+        <li><a href="/efekty" aria-current="page">Efekty</a></li>
+        <li><a href="/umow-konsultacje">Kontakt</a></li>
+      </ul>
+    </nav>
+
+    <!-- CTA (desktop -> formularz, mobile -> WhatsApp) -->
+    <div class="cta">
+      <a class="hero-button btn-primary cta-desktop"
+         href="/umow-konsultacje">Umów konsultację</a>
+
+      <a class="hero-button btn-wa cta-mobile"
+         href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87%20Igor%2C%20chc%C4%99%20kr%C3%B3tkiej%20konsultacji%20na%20WhatsApp.%20Imi%C4%99%3A%20__%2C%20cel%3A%20__"
+         target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+
+    <!-- Hamburger (otwiera #site-menu przez :target) -->
+    <a href="#site-menu" class="nav-toggle" aria-label="Otwórz menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </a>
+  </div>
+</header>
+
+<!-- ===== Overlay menu (CSS :target) ===== -->
+<nav id="site-menu" class="mobile-menu" aria-label="Menu mobilne">
+  <a href="#" class="close" aria-label="Zamknij menu">✕</a>
+
+  <a href="/o-mnie">O mnie</a>
+  <a href="/uslugi">Usługi</a>
+  <a href="/cennik">Cennik</a>
+  <a href="/efekty" aria-current="page">Efekty</a>
+  <a href="/umow-konsultacje">Kontakt</a>
+
+  <a class="wa-link"
+     href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87%20Igor%2C%20chc%C4%99%20kr%C3%B3tkiej%20konsultacji%20na%20WhatsApp.%20Imi%C4%99%3A%20__%2C%20cel%3A%20__"
+     target="_blank" rel="noopener">
+     Napisz na WhatsApp
+  </a>
+</nav>
+<a href="#" class="menu-backdrop" aria-hidden="true"></a>
+
+<style>
+  /* ================== Header ================== */
+  #site-header{
+    position:sticky; top:0; z-index:9999;
+    min-height:56px; background:#fff;
+    border-bottom:1px solid rgba(0,0,0,.06);
+    -webkit-font-smoothing:antialiased;
+    transition:box-shadow .2s, border-color .2s, background .2s;
+  }
+  @supports (backdrop-filter: blur(4px)){
+    #site-header{ background:#ffffffcc; backdrop-filter:saturate(1.2) blur(4px); }
+  }
+  @media (max-width:900px){
+    #site-header{ background:#fff; backdrop-filter:none; -webkit-backdrop-filter:none; }
+  }
+  #site-header .nav-wrap{
+    max-width:1100px; margin:0 auto; padding:8px 16px;
+    display:flex; align-items:center; gap:14px;
+  }
+  #site-header .brand{ display:flex; align-items:center; gap:8px; text-decoration:none; color:#1a1a1a; }
+  #site-header .brand-mark{
+    width:28px; height:28px; border-radius:50%;
+    background:#2e9b2f; color:#fff; display:inline-flex; align-items:center; justify-content:center;
+    font-family:'Poppins',system-ui,sans-serif; font-weight:700; font-size:.85rem;
+  }
+  #site-header .brand-text{ display:flex; flex-direction:column; line-height:1.05; }
+  #site-header .brand-text strong{ font-family:'Poppins',system-ui,sans-serif; font-size:.98rem; }
+  #site-header .brand-text em{ font-style:normal; color:#555; font-size:.78rem; }
+
+  #site-header .nav{ margin-left:auto; }
+  #site-header .nav ul{ display:flex; gap:14px; list-style:none; margin:0; padding:0; }
+  #site-header .nav a{
+    text-decoration:none; color:#1a1a1a; font-weight:700; font-size:.95rem;
+    padding:6px 4px; border-radius:8px; position:relative;
+  }
+  #site-header .nav a:hover{ color:#2e9b2f; }
+  #site-header .nav a[aria-current="page"]{ color:#2e9b2f; }
+  #site-header .nav a[aria-current="page"]::after{
+    content:""; position:absolute; left:6px; right:6px; bottom:0;
+    height:2px; background:#2e9b2f; border-radius:2px;
+  }
+
+  #site-header .hero-button{
+    display:inline-flex; align-items:center; justify-content:center;
+    font-family:'Open Sans',system-ui,sans-serif; font-weight:700; font-size:.95rem; line-height:1;
+    padding:10px 14px; min-height:40px; border-radius:10px; border:2px solid;
+    text-decoration:none; white-space:nowrap; box-sizing:border-box;
+    transition:background-color .25s, border-color .25s, color .25s;
+  }
+  #site-header .btn-primary{ background:#2e9b2f; color:#fff; border-color:#2e9b2f; }
+  #site-header .btn-primary:hover{ background:#1f7e21; border-color:#1f7e21; }
+  #site-header .btn-wa{ background:transparent; color:#2e9b2f; border-color:#2e9b2f; }
+  #site-header .btn-wa:hover{ background:#2e9b2f; color:#fff; }
+
+  #site-header .cta{ display:flex; gap:8px; margin-left:6px; }
+  #site-header .cta-desktop{ display:inline-flex; }
+  #site-header .cta-mobile{ display:none; }
+
+  #site-header .nav-toggle{ margin-left:6px; padding:6px; border-radius:8px; display:none; cursor:pointer; }
+  #site-header .nav-toggle .bar{ display:block; width:20px; height:2px; background:#1a1a1a; margin:3px 0; }
+
+  .mobile-menu{
+    position:fixed; left:12px; right:12px; top:52px; z-index:10000;
+    background:#fff; border:1px solid #eee; border-radius:14px;
+    box-shadow:0 14px 34px rgba(0,0,0,.12);
+    padding:12px; display:block; opacity:0; transform:translateY(-6px);
+    pointer-events:none; visibility:hidden;
+    transition:opacity .18s ease, transform .18s ease, visibility 0s linear .18s;
+    contain:layout paint style;
+  }
+  .mobile-menu a{ display:block; padding:12px; border-radius:10px; text-decoration:none; color:#1a1a1a; font-weight:700; }
+  .mobile-menu a:hover{ background:#f6fbf6; color:#2e9b2f; }
+  .mobile-menu .close{ text-align:right; font-size:1.1rem; padding:8px 10px; }
+  .mobile-menu .wa-link{ margin-top:4px; border:2px solid #2e9b2f; color:#2e9b2f; text-align:center; }
+  .mobile-menu .wa-link:hover{ background:#2e9b2f; color:#fff; }
+  .menu-backdrop{ position:fixed; inset:0; z-index:9998; display:none; background:transparent; }
+  .mobile-menu:target{ opacity:1; transform:translateY(0); pointer-events:auto; visibility:visible; transition-delay:0s; }
+  #site-menu:target + .menu-backdrop{ display:block; }
+  html:has(#site-menu:target){ overflow:hidden; }
+
+  @media (max-width:900px){
+    #site-header .nav{ display:none !important; }
+    #site-header .nav-toggle{ display:inline-block !important; }
+    #site-header .cta-desktop{ display:none !important; }
+    #site-header .cta-mobile{ display:inline-flex !important; }
+  }
+  @media (max-width:360px){
+    #site-header .brand-text strong{ font-size:.95rem; }
+    #site-header .brand-text em{ font-size:.76rem; }
+    #site-header .hero-button{ padding:9px 12px; min-height:38px; font-size:.92rem; }
+  }
+  #site-header a:focus-visible, .mobile-menu a:focus-visible{ outline:3px solid #2e9b2f; outline-offset:2px; }
+  @media (prefers-reduced-motion: reduce){ *{ transition:none !important; } }
+</style>
+
+<!-- === WhatsApp (floating FAB) === -->
+<style>
+@keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.08)} }
+#whatsapp-fixed{
+  position:fixed; bottom:20px; right:20px; z-index:9999;
+  width:58px; height:58px; border-radius:50%;
+  background:#25D366; color:#fff; display:flex; align-items:center; justify-content:center;
+  text-decoration:none; box-shadow:0 8px 20px rgba(0,0,0,.25);
+  animation:pulse 2s infinite; line-height:0;
+}
+#whatsapp-fixed svg{ width:28px; height:28px; fill:#fff; display:inline-block; }
+#whatsapp-fixed:focus-visible{ outline:3px solid #1f7e21; outline-offset:2px; }
+@media (min-width:769px){ #whatsapp-fixed{ display:none; } }
+@media (prefers-reduced-motion: reduce){ #whatsapp-fixed{ animation:none; } }
+</style>
+
+<a id="whatsapp-fixed"
+   href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87!%20Chc%C4%99%20um%C3%B3wi%C4%87%20bezp%C5%82atn%C4%85%20konsultacj%C4%99%20treningow%C4%85"
+   target="_blank" rel="noopener"
+   title="Napisz na WhatsApp" aria-label="Napisz na WhatsApp">
+  <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+    <path d="M19.1 17.4c-.2-.1-1.3-.6-1.5-.7-.2-.1-.4-.1-.6.1-.2.2-.6.7-.7.8-.1.1-.3.2-.6.1-.2-.1-.9-.3-1.7-1-.6-.5-1-1.1-1.1-1.3-.1-.2 0-.4.1-.5s.5-.6.6-.8c.1-.2.1-.4 0-.5s-.6-1.4-.8-1.9-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.2-.9.8-.9 2s1 2.4 1.1 2.6c.1.2 1.9 3 4.5 4.1.6.3 1.1.5 1.5.6.6.2 1.1.2 1.5.1.5-.1 1.3-.5 1.5-1.1.2-.6.2-1.1.1-1.2 0-.1-.2-.1-.4-.2z"/>
+    <path d="M16 3C9.9 3 5 7.9 5 14c0 2.5.9 4.8 2.4 6.6L6 29l8.6-1.4c1.4.4 2.9.6 4.4.6 6.1 0 11-4.9 11-11S22.1 3 16 3zm0 20.9c-1.5 0-2.9-.4-4.1-1l-.3-.2-5 .8.9-4.8-.2-.3C6.4 17.1 6 15.6 6 14c0-5.5 4.5-10 10-10s10 4.5 10 10-4.5 9.9-10 9.9z"/>
+  </svg>
+</a>
+
+<!-- ================== OPINIE / EFEKTY ================== -->
+<section id="results-sec" style="padding:56px 20px; font-family:'Open Sans',system-ui,sans-serif;">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@600;700&display=swap');
+
+    #results-sec{-webkit-font-smoothing:antialiased;}
+    #results-sec .grid{
+      max-width:1100px;margin:0 auto;
+      display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;
+    }
+    #results-sec .case{
+      background:#fff;border:1px solid #e6efe6;border-radius:16px;
+      box-shadow:0 8px 20px rgba(0,0,0,.06);padding:18px;
+    }
+    #results-sec .case header{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+    #results-sec .case header .avatar{
+      width:40px;height:40px;border-radius:50%;background:#2e9b2f;color:#fff;
+      display:inline-flex;align-items:center;justify-content:center;font-weight:700;flex:0 0 40px;
+    }
+    #results-sec .chips{
+      margin:0 0 10px;padding:0;list-style:none;display:flex;gap:8px;flex-wrap:wrap;
+    }
+    #results-sec .chips li{
+      padding:6px 10px;border-radius:999px;background:#f0f7f0;border:1px solid #d9ead9;
+      font-weight:700;color:#1c371d;
+    }
+    #results-sec .kpi{display:grid;gap:8px;}
+    #results-sec .kpi small{display:flex;justify-content:space-between;color:#666;}
+    #results-sec .bar{height:8px;background:#f2f2f2;border-radius:6px;overflow:hidden;}
+    #results-sec .bar > span{display:block;height:100%;background:#2e9b2f;}
+
+    /* CTA spójne z resztą serwisu */
+    #results-sec .hero-button{
+      display:inline-flex;align-items:center;justify-content:center;
+      font-family:'Open Sans',system-ui,sans-serif;font-weight:700;font-size:1rem;line-height:1;
+      padding:14px 20px;min-height:48px;border-radius:10px;border:2px solid;
+      text-decoration:none;box-sizing:border-box;white-space:normal;text-align:center;
+      transition:background-color .25s,border-color .25s,color .25s;
+    }
+    #results-sec .btn-primary{background:#2e9b2f;color:#fff;border-color:#2e9b2f;}
+    #results-sec .btn-primary:hover{background:#1f7e21;border-color:#1f7e21;}
+    #results-sec .btn-wa{background:transparent;color:#2e9b2f;border-color:#2e9b2f;}
+    #results-sec .btn-wa:hover{background:#2e9b2f;color:#fff;}
+
+    /* ====== MOBILE ====== */
+    @media (max-width:768px){
+      #results-sec{padding:44px 16px;}
+      #results-sec .grid{grid-template-columns:1fr;gap:12px;}
+      #results-sec .case{padding:16px;border-radius:14px;}
+      #results-sec .case header{align-items:flex-start;gap:12px;}
+      #results-sec .case header .avatar{width:36px;height:36px;font-size:.95rem;}
+      #results-sec .case strong{font-size:1.05rem;}
+      #results-sec .case p{font-size:.98rem;line-height:1.5;}
+      #results-sec .chips{display:grid;grid-template-columns:1fr;gap:6px;}
+      #results-sec .chips li{padding:10px 12px;border-radius:10px;font-weight:700;}
+      #results-sec .bar{height:10px;}
+      #results-sec .cta-desktop{display:none!important;}
+      #results-sec .cta-mobile{display:inline-flex!important;}
+    }
+    @media (min-width:480px) and (max-width:768px){
+      #results-sec .chips{grid-template-columns:1fr 1fr;}
+    }
+  </style>
+
+  <header style="max-width:1100px;margin:0 auto 18px;text-align:center;">
+    <h1 style="margin:0 0 8px;font-family:'Poppins',system-ui,sans-serif;font-weight:700;font-size:2.1rem;">
+      Opinie i efekty
+    </h1>
+    <p style="margin:0;color:#444;font-size:1.05rem;">
+      Prawdziwe historie klientów i mierzalne zmiany — bez photoshopa, za to z konkretem.
+    </p>
+  </header>
+
+  <div class="grid" role="list" aria-label="Historie klientów">
+    <!-- CASE 1 -->
+    <article class="case" role="listitem" itemscope itemtype="https://schema.org/Review">
+      <meta itemprop="name" content="Michał — redukcja masy ciała i zdrowe plecy">
+      <header>
+        <span class="avatar" aria-hidden="true">M</span>
+        <div>
+          <strong itemprop="author" itemscope itemtype="https://schema.org/Person">
+            <span itemprop="name">Michał</span>, 34
+          </strong>
+          <span style="color:#666;font-size:.95rem;display:block;">cel: redukcja + „zdrowe plecy”</span>
+        </div>
+      </header>
+      <ul class="chips">
+        <li>–7 kg / 10 tyg.</li>
+        <li>przysiad +35 kg</li>
+        <li>ból pleców 0/10</li>
+      </ul>
+      <p itemprop="reviewBody">2–3 treningi/tydz., korekcja techniki i proste nawyki (sen, kroki).</p>
+      <div class="kpi" aria-label="Wskaźniki postępów">
+        <div>
+          <small><span>Masa ciała</span><span>–7 kg</span></small>
+          <div class="bar" aria-hidden="true"><span style="width:70%"></span></div>
+        </div>
+        <div>
+          <small><span>Siła (przysiad)</span><span>+35 kg</span></small>
+          <div class="bar" aria-hidden="true"><span style="width:60%"></span></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- CASE 2 -->
+    <article class="case" role="listitem" itemscope itemtype="https://schema.org/Review">
+      <meta itemprop="name" content="Ania — forma i energia">
+      <header>
+        <span class="avatar" aria-hidden="true">A</span>
+        <div>
+          <strong itemprop="author" itemscope itemtype="https://schema.org/Person">
+            <span itemprop="name">Ania</span>, 28
+          </strong>
+          <span style="color:#666;font-size:.95rem;display:block;">forma i energia</span>
+        </div>
+      </header>
+      <ul class="chips">
+        <li>–4 cm w pasie</li>
+        <li>deska 40s → 90s</li>
+        <li>regularnie 2×/tydz.</li>
+      </ul>
+      <p itemprop="reviewBody">Prosty plan, technika, ruch pod biurko. 10 tygodni.</p>
+      <div class="kpi" aria-label="Wskaźniki postępów">
+        <div>
+          <small><span>Wytrzymałość (plank)</span><span>40s → 90s</span></small>
+          <div class="bar" aria-hidden="true"><span style="width:70%"></span></div>
+        </div>
+        <div>
+          <small><span>Regularność</span><span>2×/tydz.</span></small>
+          <div class="bar" aria-hidden="true"><span style="width:100%"></span></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- CASE 3 -->
+    <article class="case" role="listitem" itemscope itemtype="https://schema.org/Review">
+      <meta itemprop="name" content="Bartek — siła i sylwetka">
+      <header>
+        <span class="avatar" aria-hidden="true">B</span>
+        <div>
+          <strong itemprop="author" itemscope itemtype="https://schema.org/Person">
+            <span itemprop="name">Bartek</span>, 41
+          </strong>
+          <span style="color:#666;font-size:.95rem;display:block;">siła + sylwetka</span>
+        </div>
+      </header>
+      <ul class="chips">
+        <li>wyciskanie +20 kg</li>
+        <li>–8 cm w pasie</li>
+      </ul>
+      <p itemprop="reviewBody">Trening siłowy 3×/tydz. + 2 krótkie spacery dziennie. 14 tygodni.</p>
+      <div class="kpi" aria-label="Wskaźniki postępów">
+        <div>
+          <small><span>Obwód pasa</span><span>–8 cm</span></small>
+          <div class="bar" aria-hidden="true"><span style="width:80%"></span></div>
+        </div>
+        <div>
+          <small><span>Siła (wyciskanie)</span><span>+20 kg</span></small>
+          <div class="bar" aria-hidden="true"><span style="width:55%"></span></div>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-row" style="max-width:1100px;margin:18px auto 0;display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
+    <a class="hero-button btn-primary cta-desktop" href="/umow-konsultacje">Umów konsultację</a>
+    <a class="hero-button btn-wa cta-mobile" href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87%20Igor%2C%20chc%C4%99%20konsultacji%20w%20Zdrofit%20Wilan%C3%B3w." target="_blank" rel="noopener">Napisz na WhatsApp</a>
+  </div>
+
+  <p style="max-width:1100px;margin:10px auto 0;color:#777;font-size:.9rem;text-align:center;">
+    Uwaga: wyniki są indywidualne i zależą m.in. od zdrowia, regularności i diety.
+  </p>
+
+  <!-- JSON-LD: lista recenzji (SEO) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"CollectionPage",
+    "name":"Opinie i efekty – Igor Stelmaszczyk",
+    "mainEntity":{
+      "@type":"ItemList",
+      "itemListElement":[
+        {
+          "@type":"Review",
+          "name":"Michał — redukcja i zdrowe plecy",
+          "reviewBody":"2–3 treningi/tydz., korekcja techniki i proste nawyki (sen, kroki).",
+          "author":{"@type":"Person","name":"Michał"}
+        },
+        {
+          "@type":"Review",
+          "name":"Ania — forma i energia",
+          "reviewBody":"Prosty plan, technika, ruch pod biurko. 10 tygodni.",
+          "author":{"@type":"Person","name":"Ania"}
+        },
+        {
+          "@type":"Review",
+          "name":"Bartek — siła i sylwetka",
+          "reviewBody":"Trening siłowy 3×/tydz. + 2 krótkie spacery dziennie. 14 tygodni.",
+          "author":{"@type":"Person","name":"Bartek"}
+        }
+      ]
+    }
+  }
+  </script>
+</section>
+
+<!-- ================== STOPKA ================== -->
+<footer id="ig-footer" role="contentinfo" aria-label="Stopka strony">
+  <div class="wrap">
+    <div class="col about">
+      <h3>Igor Stelmaszczyk</h3>
+      <p>Trener personalny w Wilanowie. Bez zadęcia, bez stresu — z planem, który działa.</p>
+      <div class="cta-row">
+        <a class="btn btn-call" href="tel:+48537918161">Zadzwoń</a>
+        <a class="btn btn-wa" href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87%2C%20chc%C4%99%20um%C3%B3wi%C4%87%20bezp%C5%82atn%C4%85%20konsultacj%C4%99.%20Termin%3A%20__%2C%20godz.%3A%20__"
+           target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+
+    <div class="col contact">
+      <h4>Kontakt</h4>
+      <address>
+        <a href="mailto:treningi.wilanow@gmail.com">treningi.wilanow@gmail.com</a><br>
+        <a href="tel:+48537918161">+48&nbsp;537&nbsp;918&nbsp;161</a>
+      </address>
+
+      <h4>Lokalizacja</h4>
+      <p>
+        Trenuję w: <strong>Zdrofit Wilanów</strong><br>
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Zdrofit%20Wilan%C3%B3w%20Warszawa" target="_blank" rel="noopener">Pokaż na mapie →</a>
+      </p>
+    </div>
+
+    <nav class="col links" aria-label="Szybkie linki">
+      <h4>Na skróty</h4>
+      <ul class="list">
+        <li><a href="/cennik">Cennik</a></li>
+        <li><a href="/o-mnie">O mnie</a></li>
+        <li><a href="/uslugi#coop-sec">Jak wygląda współpraca</a></li>
+        <li><a href="/umow-konsultacje">Kontakt</a></li>
+      </ul>
+    </nav>
+
+    <div class="col policies">
+      <h4>Informacje</h4>
+      <ul class="list">
+        <li><a href="/polityka-prywatnosci">Polityka prywatności</a></li>
+        <li><a href="/regulamin">Regulamin</a></li>
+      </ul>
+      <p class="note">Odpowiadam tego samego dnia.</p>
+    </div>
+  </div>
+
+  <div class="bar">
+    <p>© 2025 Igor Stelmaszczyk • Wszystkie prawa zastrzeżone</p>
+  </div>
+
+  <style>
+    #ig-footer{ background:#0f1111; color:#e9ecef; font-family:'Open Sans',system-ui,sans-serif; }
+    #ig-footer .wrap{
+      max-width:1100px; margin:0 auto; padding:32px 20px;
+      display:grid; gap:24px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+    #ig-footer h3, #ig-footer h4{
+      font-family:'Poppins',system-ui,sans-serif; letter-spacing:-.2px; margin:0 0 10px; line-height:1.2; color:#fff;
+    }
+    #ig-footer h3{ font-size:1.22rem; }
+    #ig-footer h4{ font-size:1rem; }
+    #ig-footer p{ margin:0 0 10px; color:#cfd6dc; }
+    #ig-footer address{ font-style:normal; color:#cfd6dc; line-height:1.7; margin-bottom:6px; }
+    #ig-footer .note{ font-size:.9rem; opacity:.9; }
+    #ig-footer .list{ list-style:none; margin:0; padding:0; }
+    #ig-footer .list li + li{ margin-top:6px; }
+    #ig-footer a{ color:#d9fff0; text-decoration:none; }
+    #ig-footer a:hover, #ig-footer a:focus{ text-decoration:underline; outline:none; }
+    #ig-footer .map-link{ color:#b9f6ca; }
+    #ig-footer .cta-row{ display:flex; gap:10px; margin-top:12px; flex-wrap:wrap; }
+    #ig-footer .btn{
+      display:inline-block; padding:10px 14px; border-radius:10px; font-weight:700; text-decoration:none; line-height:1;
+      border:2px solid transparent; transition:background-color .2s ease, border-color .2s ease, color .2s ease;
+    }
+    #ig-footer .btn-call{ background:#1a1a1a; color:#fff; border-color:#1a1a1a; }
+    #ig-footer .btn-call:hover{ background:#101010; }
+    #ig-footer .btn-wa{ background:#2e9b2f; color:#fff; border-color:#2e9b2f; }
+    #ig-footer .btn-wa:hover{ background:#1f7e21; }
+    #ig-footer .bar{ border-top:1px solid rgba(255,255,255,.08); margin-top:6px; padding:14px 20px; text-align:center; font-size:.95rem; color:#cfd6dc; }
+    @media (max-width:480px){ #ig-footer .wrap{ padding:24px 16px; } #ig-footer .cta-row a{ flex:1; text-align:center; } }
+    @media (prefers-reduced-motion: reduce){ #ig-footer *{ transition:none !important; } }
+  </style>
+</footer>
