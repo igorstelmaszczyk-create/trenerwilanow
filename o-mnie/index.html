@@ -2,13 +2,13 @@
 <html lang="pl">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>O mnie — Igor Stelmaszczyk | Trener personalny Wilanów</title>
   <meta name="description" content="Kim jestem i jak pracuję z podopiecznymi w Zdrofit Wilanów. Prosty plan, mierzalna progresja i wsparcie poza salą.">
   <link rel="canonical" href="https://trenerwilanow.pl/o-mnie/">
 
-  <!-- Open Graph / Twitter -->
+  <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="O mnie — Igor Stelmaszczyk">
   <meta property="og:description" content="8 lat doświadczenia, 180+ klientów. Jak pracuję i dla kogo?">
@@ -22,275 +22,64 @@
   <meta name="theme-color" content="#2e9b2f">
   <meta name="color-scheme" content="light">
 
-  <!-- Fonty -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
 
-  <!-- Preload kluczowego zdjęcia (jak na stronie głównej) -->
-  <link rel="preload" as="image"
-        href="/lib/IMG_4377-1-mf2g7usc.webp"
-        imagesrcset="/lib/IMG_4377-1-mf2g7usc.webp"
-        imagesizes="300px"
-        fetchpriority="high">
+  <!-- Preload zdjęcia -->
+  <link rel="preload" as="image" href="/lib/IMG_4377-1-mf2g7usc.webp" imagesrcset="/lib/IMG_4377-1-mf2g7usc.webp" imagesizes="300px" fetchpriority="high">
 
-  <!-- Reset + drobne fixy -->
   <style>
+    :root{
+      --ff-sans:'Open Sans',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+      --ff-head:'Poppins',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+      --green:#2e9b2f; --green-700:#1f7e21;
+    }
     html{scroll-behavior:smooth}
     html,body{background:#fff;color:#1a1a1a}
     .visually-hidden{position:absolute!important;width:1px;height:1px;margin:-1px;border:0;padding:0;white-space:nowrap;clip-path:inset(50%);clip:rect(0 0 0 0);overflow:hidden}
-    #site-header.is-scrolled{ box-shadow:0 8px 16px rgba(0,0,0,.06); border-color:rgba(0,0,0,.03); }
+
+    /* ABOUT PAGE */
+    #about-page{padding:56px 20px;font-family:var(--ff-sans);scroll-margin-top:90px;-webkit-font-smoothing:antialiased}
+    #about-page .about-hero{max-width:1100px;margin:0 auto 26px;display:grid;grid-template-columns:0.8fr 1.2fr;gap:28px;align-items:center}
+
+    #about-page .about-hero .photo{
+      max-width:min(88vw,360px);
+      aspect-ratio:2120/3622;
+      border-radius:20px;
+      overflow:hidden;
+      box-shadow:0 10px 20px rgba(0,0,0,.12);
+      margin-inline:auto;
+    }
+    #about-page .about-hero .photo img{
+      display:block;
+      width:100%;
+      height:auto;
+      object-fit:cover;
+      border-radius:20px;
+    }
+
+    #about-page .about-hero h1{font-family:var(--ff-head);font-size:2.2rem;line-height:1.2;margin:0 0 10px;font-weight:700}
+    #about-page .lead{margin:0 0 14px;color:#444;font-size:1.05rem}
+    #about-page .usp-chips{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 18px;padding:0;list-style:none}
+    #about-page .usp-chips li{padding:6px 10px;border-radius:999px;background:#f0f7f0;color:#1c371d;font-weight:700;font-size:.88rem;border:1px solid #d9ead9}
+
+    @media (max-width:900px){#about-page .about-hero{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
-
 <a class="visually-hidden" href="#about-page">Przejdź do treści</a>
 
-<!-- ===== Sprite SVG (WA) ===== -->
-<svg xmlns="http://www.w3.org/2000/svg" style="display:none;">
-  <symbol id="ico-wa" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
-    <path d="M19.1 17.4c-.2-.1-1.3-.6-1.5-.7-.2-.1-.4-.1-.6.1-.2.2-.6.7-.7.8-.1.1-.3.2-.6.1-.2-.1-.9-.3-1.7-1-.6-.5-1-1.1-1.1-1.3-.1-.2 0-.4.1-.5s.5-.6.6-.8c.1-.2.1-.4 0-.5s-.6-1.4-.8-1.9-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.2-.9.8-.9 2s1 2.4 1.1 2.6c.1.2 1.9 3 4.5 4.1.6.3 1.1.5 1.5.6.6.2 1.1.2 1.5.1.5-.1 1.3-.5 1.5-1.1.2-.6.2-1.1.1-1.2 0-.1-.2-.1-.4-.2z"/>
-    <path d="M16 3C9.9 3 5 7.9 5 14c0 2.5.9 4.8 2.4 6.6L6 29l8.6-1.4c1.4.4 2.9.6 4.4.6 6.1 0 11-4.9 11-11S22.1 3 16 3zm0 20.9c-1.5 0-2.9-.4-4.1-1l-.3-.2-5 .8.9-4.8-.2-.3C6.4 17.1 6 15.6 6 14c0-5.5 4.5-10 10-10s10 4.5 10 10-4.5 9.9-10 9.9z"/>
-  </symbol>
-</svg>
-
-<!-- ================== SITE HEADER (jak na głównej) ================== -->
-<header id="site-header" role="banner">
-  <div class="nav-wrap">
-    <!-- Brand -->
-    <a class="brand" href="/" aria-label="Strona główna – Igor Stelmaszczyk">
-      <span class="brand-mark" aria-hidden="true">IS</span>
-      <span class="brand-text">
-        <strong>Igor Stelmaszczyk</strong>
-        <em>Trener personalny</em>
-      </span>
-    </a>
-
-    <!-- Desktop nav -->
-    <nav class="nav" role="navigation" aria-label="Główne">
-      <ul>
-        <li><a href="/o-mnie">O mnie</a></li>
-        <li><a href="/uslugi">Usługi</a></li>
-        <li><a href="/cennik">Cennik</a></li>
-        <li><a href="/efekty">Efekty</a></li>
-        <li><a href="/umow-konsultacje">Kontakt</a></li>
-      </ul>
-    </nav>
-
-    <!-- CTA -->
-    <div class="cta">
-      <a class="hero-button btn-primary cta-desktop"
-         href="/umow-konsultacje"
-         aria-label="Umów konsultację – formularz">
-        Umów konsultację
-      </a>
-
-      <a class="hero-button btn-wa cta-mobile"
-         href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87%20Igor%2C%20chc%C4%99%20kr%C3%B3tkiej%20konsultacji%20na%20WhatsApp.%20Imi%C4%99%3A%20__%2C%20cel%3A%20__"
-         target="_blank" rel="noopener noreferrer"
-         aria-label="Napisz na WhatsApp – nowa karta">
-        <span class="wa-ico" aria-hidden="true">
-          <svg width="16" height="16" focusable="false" aria-hidden="true"><use href="#ico-wa"/></svg>
-        </span>
-        WhatsApp
-      </a>
-    </div>
-
-    <!-- Hamburger -->
-    <a href="#site-menu" class="nav-toggle" aria-label="Otwórz menu">
-      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-    </a>
-  </div>
-</header>
-
-<!-- ===== Overlay menu (CSS :target) ===== -->
-<nav id="site-menu" class="mobile-menu" aria-label="Menu mobilne">
-  <a href="#" class="close" aria-label="Zamknij menu">✕</a>
-  <a href="/o-mnie">O mnie</a>
-  <a href="/uslugi">Usługi</a>
-  <a href="/cennik">Cennik</a>
-  <a href="/efekty">Efekty</a>
-  <a href="/umow-konsultacje">Kontakt</a>
-  <a class="wa-link"
-     href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87%20Igor%2C%20chc%C4%99%20kr%C3%B3tkiej%20konsultacji%20na%20WhatsApp.%20Imi%C4%99%3A%20__%2C%20cel%3A%20__"
-     target="_blank" rel="noopener noreferrer">
-     <span class="wa-ico" aria-hidden="true">
-       <svg width="16" height="16" focusable="false" aria-hidden="true"><use href="#ico-wa"/></svg>
-     </span>
-     Napisz na WhatsApp
-  </a>
-</nav>
-<a href="#" class="menu-backdrop" aria-hidden="true"></a>
-
-<!-- ===== STYLE nagłówka i menu ===== -->
-<style>
-  :root{
-    --ff-sans:'Open Sans',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
-    --ff-head:'Poppins',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
-    --green:#2e9b2f; --green-700:#1f7e21;
-  }
-
-  #site-header{
-    position:sticky; top:0; z-index:9999;
-    min-height:56px; background:#fff;
-    border-bottom:1px solid rgba(0,0,0,.06);
-    -webkit-font-smoothing:antialiased;
-    transition:box-shadow .2s, border-color .2s, background .2s;
-  }
-  @supports (backdrop-filter: blur(4px)){
-    #site-header{ background:#ffffffcc; backdrop-filter:saturate(1.2) blur(4px); }
-  }
-  @media (max-width:900px){
-    #site-header{ background:#fff; backdrop-filter:none; -webkit-backdrop-filter:none; }
-  }
-
-  #site-header .nav-wrap{
-    max-width:1100px; margin:0 auto; padding:8px 16px;
-    display:flex; align-items:center; gap:14px;
-  }
-
-  /* Brand */
-  #site-header .brand{ display:flex; align-items:center; gap:8px; text-decoration:none; color:#1a1a1a; }
-  #site-header .brand-mark{
-    width:28px; height:28px; border-radius:50%;
-    background:var(--green); color:#fff; display:inline-flex; align-items:center; justify-content:center;
-    font-family:var(--ff-head); font-weight:700; font-size:.85rem;
-  }
-  #site-header .brand-text{ display:flex; flex-direction:column; line-height:1.05; }
-  #site-header .brand-text strong{ font-family:var(--ff-head); font-size:.98rem; }
-  #site-header .brand-text em{ font-style:normal; color:#555; font-size:.78rem; }
-
-  /* Desktop nav */
-  #site-header .nav{ margin-left:auto; }
-  #site-header .nav ul{ display:flex; gap:14px; list-style:none; margin:0; padding:0; }
-  #site-header .nav a{
-    text-decoration:none; color:#1a1a1a; font-weight:700; font-size:.95rem;
-    padding:6px 4px; border-radius:8px; position:relative;
-  }
-  #site-header .nav a:hover{ color:var(--green); }
-  #site-header .nav a[aria-current="page"],
-  #site-header .nav a.active{ color:var(--green); }
-  #site-header .nav a[aria-current="page"]::after,
-  #site-header .nav a.active::after{
-    content:""; position:absolute; left:6px; right:6px; bottom:0;
-    height:2px; background:var(--green); border-radius:2px;
-  }
-
-  /* CTA */
-  #site-header .hero-button{
-    display:inline-flex; align-items:center; justify-content:center;
-    font-family:var(--ff-sans); font-weight:700; font-size:.95rem; line-height:1;
-    padding:10px 14px; min-height:40px; border-radius:10px; border:2px solid;
-    text-decoration:none; white-space:nowrap; box-sizing:border-box;
-    transition:background-color .25s, border-color .25s, color .25s;
-  }
-  #site-header .btn-primary{ background:var(--green); color:#fff; border-color:var(--green); }
-  #site-header .btn-primary:hover{ background:var(--green-700); border-color:var(--green-700); }
-  #site-header .btn-wa{ background:transparent; color:var(--green); border-color:var(--green); }
-  #site-header .btn-wa:hover{ background:var(--green); color:#fff; }
-  #site-header .wa-ico{ display:inline-flex; margin-right:6px; }
-
-  #site-header .cta{ display:flex; gap:8px; margin-left:6px; }
-  #site-header .cta-desktop{ display:inline-flex; }
-  #site-header .cta-mobile{ display:none; }
-
-  /* Hamburger */
-  #site-header .nav-toggle{ margin-left:6px; padding:6px; border-radius:8px; display:none; cursor:pointer; }
-  #site-header .nav-toggle .bar{ display:block; width:20px; height:2px; background:#1a1a1a; margin:3px 0; }
-
-  /* Mobile menu */
-  .mobile-menu{
-    position:fixed; left:12px; right:12px; top:52px; z-index:10000;
-    background:#fff; border:1px solid #eee; border-radius:14px;
-    box-shadow:0 14px 34px rgba(0,0,0,.12);
-    padding:12px; opacity:0; transform:translateY(-6px);
-    pointer-events:none; visibility:hidden;
-    transition:opacity .18s ease, transform .18s ease, visibility 0s linear .18s;
-    contain: layout paint style;
-  }
-  .mobile-menu a{ display:block; padding:12px; border-radius:10px; text-decoration:none; color:#1a1a1a; font-weight:700; }
-  .mobile-menu a:hover{ background:#f6fbf6; color:var(--green); }
-  .mobile-menu .close{ text-align:right; font-size:1.1rem; padding:8px 10px; }
-  .mobile-menu .wa-link{ margin-top:4px; border:2px solid var(--green); color:var(--green); text-align:center; }
-  .mobile-menu .wa-link:hover{ background:var(--green); color:#fff; }
-
-  .menu-backdrop{ position:fixed; inset:0; z-index:9998; display:none; background:transparent; }
-  .mobile-menu:target{ opacity:1; transform:translateY(0); pointer-events:auto; visibility:visible; transition-delay:0s; }
-  #site-menu:target + .menu-backdrop{ display:block; }
-  html:has(#site-menu:target){ overflow:hidden; }
-
-  /* Responsywność */
-  @media (max-width:900px){
-    #site-header .nav{ display:none !important; }
-    #site-header .nav-toggle{ display:inline-block !important; }
-    #site-header .cta-desktop{ display:none !important; }
-    #site-header .cta-mobile{ display:inline-flex !important; }
-  }
-  @media (max-width:360px){
-    #site-header .brand-text strong{ font-size:.95rem; }
-    #site-header .brand-text em{ font-size:.76rem; }
-    #site-header .hero-button{ padding:9px 12px; min-height:38px; font-size:.92rem; }
-  }
-
-  /* A11y */
-  #site-header a:focus-visible, .mobile-menu a:focus-visible{ outline:3px solid var(--green); outline-offset:2px; }
-
-  /* Redukcja animacji */
-  @media (prefers-reduced-motion: reduce){
-    *{ transition:none !important; }
-  }
-</style>
-
-<script>
-  // Cień nagłówka i aria-current
-  document.addEventListener('DOMContentLoaded', function(){
-    var h=document.getElementById('site-header');
-    function s(){ h.classList.toggle('is-scrolled', window.scrollY>4); }
-    s(); window.addEventListener('scroll', s, {passive:true});
-
-    var here = location.pathname.replace(/\/+$/,'');
-    document.querySelectorAll('#site-header .nav a').forEach(function(a){
-      var path = a.getAttribute('href').replace(/\/+$/,'');
-      if(path && path === here){ a.setAttribute('aria-current','page'); }
-    });
-  });
-</script>
-
-<!-- === WhatsApp FAB (mobile) === -->
-<style>
-  @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.08)} }
-  #whatsapp-fixed{
-    position:fixed; bottom:20px; right:20px; z-index:9999;
-    width:58px; height:58px; border-radius:50%;
-    background:#25D366; color:#fff;
-    display:flex; align-items:center; justify-content:center;
-    text-decoration:none; box-shadow:0 8px 20px rgba(0,0,0,.25);
-    animation:pulse 2s infinite; line-height:0;
-  }
-  #whatsapp-fixed svg{ width:28px; height:28px; fill:#fff; display:inline-block; }
-  #whatsapp-fixed:focus-visible{ outline:3px solid #1f7e21; outline-offset:2px; }
-  @media (min-width:769px){ #whatsapp-fixed{ display:none; } }
-  @media (prefers-reduced-motion: reduce){ #whatsapp-fixed{ animation:none; } }
-</style>
-
-<a id="whatsapp-fixed"
-   href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87!%20Chc%C4%99%20um%C3%B3wi%C4%87%20bezp%C5%82atn%C4%85%20konsultacj%C4%99%20treningow%C4%85"
-   target="_blank" rel="noopener noreferrer"
-   title="Napisz na WhatsApp" aria-label="Napisz na WhatsApp">
-  <svg aria-hidden="true" focusable="false"><use href="#ico-wa"/></svg>
-</a>
-
-<!-- =============== O MNIE – CONTENT =============== -->
 <section id="about-page">
   <div class="about-hero">
     <figure class="photo">
       <picture>
         <source type="image/webp" srcset="/lib/IMG_4377-1-mf2g7usc.webp">
-        <img
-          src="/lib/IMG_4377-1-mf2g7usc.jpg"
-          alt="Igor Stelmaszczyk – trener personalny w Zdrofit Wilanów"
-          width="2120" height="3622"
-          decoding="async" fetchpriority="high">
+        <img src="/lib/IMG_4377-1-mf2g7usc.jpg"
+             alt="Igor Stelmaszczyk – trener personalny w Zdrofit Wilanów"
+             width="2120" height="3622"
+             decoding="async" fetchpriority="high">
       </picture>
     </figure>
 
@@ -300,196 +89,8 @@
       <ul class="usp-chips" aria-label="Najważniejsze informacje">
         <li>8 lat doświadczenia</li><li>180+ klientów</li><li>Zdrofit Wilanów</li>
       </ul>
-
-      <div class="cta-row" style="display:flex;gap:12px;flex-wrap:wrap">
-        <a class="hero-button" href="/umow-konsultacje" style="background:#2e9b2f;color:#fff;border:2px solid #2e9b2f;min-height:48px;padding:14px 20px;border-radius:10px;font-weight:700;">Umów konsultację</a>
-        <a class="hero-button" href="/cennik" style="background:transparent;color:#2e9b2f;border:2px solid #2e9b2f;min-height:48px;padding:14px 20px;border-radius:10px;font-weight:700;">Zobacz cennik</a>
-      </div>
     </div>
   </div>
-
-  <div class="grid" style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:22px">
-    <section class="card" style="background:#fff;border:1px solid #eee;border-radius:16px;padding:18px;box-shadow:0 6px 18px rgba(0,0,0,.06)">
-      <h2 style="font-family:'Poppins',sans-serif;font-size:1.4rem;font-weight:700;margin:0 0 10px">Jak pracuję</h2>
-      <p style="margin:0 0 10px;color:#333">Bez zbędnych komplikacji: prosty plan, stała progresja i regularność. Zaczynamy od krótkiej rozmowy i treningu próbnego, żeby zobaczyć, jak reagujesz na bodźce. Potem dobieramy objętość i ćwiczenia pod Twój cel.</p>
-      <ul class="list-check" style="list-style:none;padding:0;margin:10px 0 0;display:grid;gap:8px">
-        <li style="display:flex;gap:10px"><span style="margin-top:4px;width:10px;height:10px;border-radius:50%;background:#2e9b2f;flex:0 0 10px"></span><span>Fundamenty: wzorce ruchowe, technika, bezpieczeństwo.</span></li>
-        <li style="display:flex;gap:10px"><span style="margin-top:4px;width:10px;height:10px;border-radius:50%;background:#2e9b2f;flex:0 0 10px"></span><span>Prosta progresja tygodniowa w dzienniku treningowym.</span></li>
-        <li style="display:flex;gap:10px"><span style="margin-top:4px;width:10px;height:10px;border-radius:50%;background:#2e9b2f;flex:0 0 10px"></span><span>Mobilność i stabilizacja dla „zdrowych pleców”.</span></li>
-        <li style="display:flex;gap:10px"><span style="margin-top:4px;width:10px;height:10px;border-radius:50%;background:#2e9b2f;flex:0 0 10px"></span><span>Wsparcie poza salą: krótkie zadania i nawyki.</span></li>
-      </ul>
-    </section>
-
-    <section class="card" style="background:#fff;border:1px solid #eee;border-radius:16px;padding:18px;box-shadow:0 6px 18px rgba(0,0,0,.06)">
-      <h2 style="font-family:'Poppins',sans-serif;font-size:1.4rem;font-weight:700;margin:0 0 10px">Dla kogo?</h2>
-      <p style="margin:0 0 10px;color:#333">Najczęściej pracuję z osobami, które wracają po przerwie lub chcą wreszcie zobaczyć realne zmiany w sylwetce i samopoczuciu — bez ekstremów.</p>
-      <ul class="list-check" style="list-style:none;padding:0;margin:10px 0 0;display:grid;gap:8px">
-        <li style="display:flex;gap:10px"><span style="margin-top:4px;width:10px;height:10px;border-radius:50%;background:#2e9b2f;flex:0 0 10px"></span><span>Start „od zera” lub po kontuzji.</span></li>
-        <li style="display:flex;gap:10px"><span style="margin-top:4px;width:10px;height:10px;border-radius:50%;background:#2e9b2f;flex:0 0 10px"></span><span>Redukcja bez katowania kardio.</span></li>
-        <li style="display:flex;gap:10px"><span style="margin-top:4px;width:10px;height:10px;border-radius:50%;background:#2e9b2f;flex:0 0 10px"></span><span>Siła i masa — spokojnie, z techniką.</span></li>
-        <li style="display:flex;gap:10px"><span style="margin-top:4px;width:10px;height:10px;border-radius:50%;background:#2e9b2f;flex:0 0 10px"></span><span>Biuro/plecy: mniej bólu, więcej energii.</span></li>
-      </ul>
-    </section>
-  </div>
-
-  <div class="trust" aria-label="Zaufanie i certyfikaty" style="max-width:1100px;margin:8px auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:18px">
-    <div class="tcard" style="text-align:center;background:#fff;border:1px solid #eee;border-radius:16px;padding:16px;box-shadow:0 4px 12px rgba(0,0,0,.05)">
-      <div class="iconwrap" style="width:80px;height:80px;border-radius:50%;margin:0 auto 10px;background:#4CAF50;display:flex;align-items:center;justify-content:center">
-        <img src="/lib/7-md6ahbnn.svg" alt="Certyfikaty trenerskie" loading="lazy" decoding="async" width="40" height="40" style="width:40px;height:40px;object-fit:contain">
-      </div>
-      <h3 style="font-family:'Poppins',sans-serif;font-size:1.05rem;margin:6px 0 4px;font-weight:700">20+ szkoleń</h3><p style="margin:0;color:#555;font-size:.95rem">Aktualna wiedza i praktyka</p>
-    </div>
-    <div class="tcard" style="text-align:center;background:#fff;border:1px solid #eee;border-radius:16px;padding:16px;box-shadow:0 4px 12px rgba(0,0,0,.05)">
-      <div class="iconwrap" style="width:80px;height:80px;border-radius:50%;margin:0 auto 10px;background:#4CAF50;display:flex;align-items:center;justify-content:center">
-        <img src="/lib/6-md6a1v5m.svg" alt="Zadowoleni klienci" loading="lazy" decoding="async" width="40" height="40" style="width:40px;height:40px;object-fit:contain">
-      </div>
-      <h3 style="font-family:'Poppins',sans-serif;font-size:1.05rem;margin:6px 0 4px;font-weight:700">180+ klientów</h3><p style="margin:0;color:#555;font-size:.95rem">Realne wyniki i rekomendacje</p>
-    </div>
-    <div class="tcard" style="text-align:center;background:#fff;border:1px solid #eee;border-radius:16px;padding:16px;box-shadow:0 4px 12px rgba(0,0,0,.05)">
-      <div class="iconwrap" style="width:80px;height:80px;border-radius:50%;margin:0 auto 10px;background:#4CAF50;display:flex;align-items:center;justify-content:center">
-        <img src="/lib/5-md69zcjz.svg" alt="Lata doświadczenia" loading="lazy" decoding="async" width="40" height="40" style="width:40px;height:40px;object-fit:contain">
-      </div>
-      <h3 style="font-family:'Poppins',sans-serif;font-size:1.05rem;margin:6px 0 4px;font-weight:700">8 lat</h3><p style="margin:0;color:#555;font-size:.95rem">Na sali treningowej</p>
-    </div>
-  </div>
-
-  <div class="final-cta" style="max-width:1100px;margin:26px auto 0;text-align:center;background:linear-gradient(180deg,#f6fbf6,#eaf4ea);border:1px solid #d9ead9;border-radius:16px;padding:18px">
-    <h2 style="font-family:'Poppins',sans-serif;font-size:1.4rem;margin:0 0 6px">Zaczynamy od krótkiej konsultacji</h2>
-    <p style="margin:0 0 12px;color:#444">Wybierz termin — <strong>odpisuję tego samego dnia</strong>.</p>
-    <div class="cta-row" style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
-      <a class="hero-button" href="/umow-konsultacje" style="background:#2e9b2f;color:#fff;border:2px solid #2e9b2f;min-height:48px;padding:14px 20px;border-radius:10px;font-weight:700;">Umów konsultację</a>
-      <a class="hero-button" href="/cennik" style="background:transparent;color:#2e9b2f;border:2px solid #2e9b2f;min-height:48px;padding:14px 20px;border-radius:10px;font-weight:700;">Zobacz cennik</a>
-    </div>
-  </div>
-
-  <!-- ===== JSON-LD ===== -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "AboutPage",
-    "name": "O mnie – Igor Stelmaszczyk",
-    "url": "https://trenerwilanow.pl/o-mnie/",
-    "primaryImageOfPage": {
-      "@type": "ImageObject",
-      "url": "https://trenerwilanow.pl/lib/IMG_4377-1-mf2g7usc.webp",
-      "width": 2120,
-      "height": 3622
-    },
-    "about": {
-      "@type": "Person",
-      "name": "Igor Stelmaszczyk",
-      "jobTitle": "Trener personalny",
-      "image": "https://trenerwilanow.pl/lib/IMG_4377-1-mf2g7usc.webp",
-      "areaServed": "Warszawa, Wilanów",
-      "worksFor": { "@type": "HealthClub", "name": "Zdrofit Wilanów" }
-    }
-  }
-  </script>
 </section>
-
-<!-- ====== STYLE sekcji ABOUT (wspólne) ====== -->
-<style>
-  /* bazowe czcionki */
-  :root{ --ff-sans:'Open Sans',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif; --ff-head:'Poppins',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif; --green:#2e9b2f; --green-700:#1f7e21; }
-  #about-page{font-family:var(--ff-sans);-webkit-font-smoothing:antialiased;scroll-margin-top:90px;padding:56px 20px}
-  #about-page .about-hero{max-width:1100px;margin:0 auto 26px;display:grid;grid-template-columns:0.8fr 1.2fr;gap:28px;align-items:center}
-  /* ✅ ramka zdjęcia — 1:1 z główną (stałe wymiary i proporcja) */
-  #about-page .about-hero .photo{max-width:min(88vw,360px);aspect-ratio:2120/3622;border-radius:20px;overflow:hidden;box-shadow:0 10px 20px rgba(0,0,0,.12);margin-inline:auto}
-  #about-page .about-hero .photo img{display:block;width:100%;height:auto;object-fit:cover;border-radius:20px}
-  #about-page .about-hero h1{font-family:var(--ff-head);font-size:2.2rem;line-height:1.2;margin:0 0 10px;font-weight:700}
-  #about-page .lead{margin:0 0 14px;color:#444;font-size:1.05rem}
-  #about-page .usp-chips{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 18px;padding:0;list-style:none}
-  #about-page .usp-chips li{padding:6px 10px;border-radius:999px;background:#f0f7f0;color:#1c371d;font-weight:700;font-size:.88rem;border:1px solid #d9ead9}
-  @media (max-width:900px){
-    #about-page .about-hero{grid-template-columns:1fr}
-  }
-  @media (min-width:901px){
-    #about-page .about-hero{grid-template-columns:380px 1fr}
-  }
-</style>
-
-<!-- ================== FOOTER ================== -->
-<footer id="ig-footer" role="contentinfo" aria-label="Stopka strony">
-  <div class="wrap">
-    <div class="col about">
-      <h3>Igor Stelmaszczyk</h3>
-      <p>Trener personalny w Wilanowie. Bez zadęcia, bez stresu — z planem, który działa.</p>
-
-      <div class="cta-row">
-        <a class="btn btn-call" href="tel:+48537918161" aria-label="Zadzwoń do mnie: +48 537 918 161">Zadzwoń</a>
-        <a class="btn btn-wa" href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87%2C%20chc%C4%99%20um%C3%B3wi%C4%87%20bezp%C5%82atn%C4%85%20konsultacj%C4%99.%20Termin%3A%20__%2C%20godz.%3A%20__"
-           aria-label="Napisz na WhatsApp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-      </div>
-    </div>
-
-    <div class="col contact">
-      <h4>Kontakt</h4>
-      <address>
-        <a href="mailto:treningi.wilanow@gmail.com">treningi.wilanow@gmail.com</a><br>
-        <a href="tel:+48537918161">+48&nbsp;537&nbsp;918&nbsp;161</a>
-      </address>
-      <h4>Lokalizacja</h4>
-      <p>
-        Trenuję w: <strong>Zdrofit Wilanów</strong><br>
-        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Zdrofit%20Wilan%C3%B3w%20Warszawa" target="_blank" rel="noopener noreferrer">Pokaż na mapie →</a>
-      </p>
-    </div>
-
-    <nav class="col links" aria-label="Szybkie linki">
-      <h4>Na skróty</h4>
-      <ul class="list">
-        <li><a href="/cennik">Cennik</a></li>
-        <li><a href="/o-mnie">O mnie</a></li>
-        <li><a href="/#coop-sec">Jak wygląda współpraca</a></li>
-        <li><a href="/umow-konsultacje">Kontakt</a></li>
-      </ul>
-    </nav>
-
-    <div class="col policies">
-      <h4>Informacje</h4>
-      <ul class="list">
-        <li><a href="/polityka-prywatnosci">Polityka prywatności</a></li>
-        <li><a href="/regulamin">Regulamin</a></li>
-      </ul>
-      <p class="note">Odpowiadam tego samego dnia.</p>
-    </div>
-  </div>
-
-  <div class="bar">
-    <p>© 2025 Igor Stelmaszczyk • Wszystkie prawa zastrzeżone</p>
-  </div>
-
-  <style>
-    #ig-footer{ background:#0f1111; color:#e9ecef; font-family:'Open Sans',sans-serif; }
-    #ig-footer .wrap{
-      max-width:1100px; margin:0 auto; padding:32px 20px;
-      display:grid; gap:24px;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    }
-    #ig-footer h3, #ig-footer h4{ font-family:'Poppins',sans-serif; margin:0 0 10px; line-height:1.2; color:#fff; }
-    #ig-footer h3{ font-size:1.22rem; }
-    #ig-footer h4{ font-size:1rem; }
-    #ig-footer p{ margin:0 0 10px; color:#cfd6dc; }
-    #ig-footer address{ font-style:normal; color:#cfd6dc; line-height:1.7; margin-bottom:6px; }
-    #ig-footer .note{ font-size:.9rem; opacity:.9; }
-    #ig-footer .list{ list-style:none; margin:0; padding:0; }
-    #ig-footer .list li + li{ margin-top:6px; }
-    #ig-footer a{ color:#d9fff0; text-decoration:none; }
-    #ig-footer a:hover{ text-decoration:underline; }
-    #ig-footer .map-link{ color:#b9f6ca; }
-    #ig-footer .cta-row{ display:flex; gap:10px; margin-top:12px; flex-wrap:wrap; }
-    #ig-footer .btn{ padding:10px 14px; border-radius:10px; font-weight:700; text-decoration:none; border:2px solid transparent; }
-    #ig-footer .btn-call{ background:#1a1a1a; color:#fff; border-color:#1a1a1a; }
-    #ig-footer .btn-call:hover{ background:#101010; }
-    #ig-footer .btn-wa{ background:#2e9b2f; color:#fff; border-color:#2e9b2f; }
-    #ig-footer .btn-wa:hover{ background:#1f7e21; }
-    #ig-footer .bar{ border-top:1px solid rgba(255,255,255,.08); padding:14px 20px; text-align:center; font-size:.95rem; color:#cfd6dc; }
-    @media (max-width:480px){
-      #ig-footer .wrap{ padding:24px 16px; }
-      #ig-footer .cta-row a{ flex:1; text-align:center; }
-    }
-  </style>
-</footer>
-
 </body>
 </html>
