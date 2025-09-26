@@ -1,3 +1,42 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <title>Efekty — Igor Stelmaszczyk | Trener personalny Wilanów</title>
+  <meta name="description" content="Opinie i efekty moich podopiecznych. Prawdziwe historie i mierzalne zmiany — bez photoshopa, za to z konkretnym planem.">
+
+  <link rel="canonical" href="https://trenerwilanow.pl/efekty">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Efekty — Igor Stelmaszczyk">
+  <meta property="og:description" content="Prawdziwe historie klientów i mierzalne zmiany.">
+  <meta property="og:url" content="https://trenerwilanow.pl/efekty">
+  <meta property="og:image" content="https://trenerwilanow.pl/lib/IMG_4377-1-mf2g7usc.webp">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Theme -->
+  <meta name="theme-color" content="#2e9b2f">
+  <meta name="color-scheme" content="light">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Base reset / helpers -->
+  <style>
+    html{scroll-behavior:smooth}
+    html,body{background:#fff;color:#1a1a1a}
+    .visually-hidden{position:absolute!important;width:1px;height:1px;margin:-1px;border:0;padding:0;white-space:nowrap;clip-path:inset(50%);clip:rect(0 0 0 0);overflow:hidden}
+  </style>
+</head>
+<body>
+<a class="visually-hidden" href="#results-sec">Przejdź do treści</a>
+
 <!-- ================== SITE HEADER (compact + mobile hamburger, CSS-only) ================== -->
 <header id="site-header" role="banner">
   <div class="nav-wrap">
@@ -23,15 +62,13 @@
 
     <!-- CTA (desktop -> formularz, mobile -> WhatsApp) -->
     <div class="cta">
-      <a class="hero-button btn-primary cta-desktop"
-         href="/umow-konsultacje">Umów konsultację</a>
-
+      <a class="hero-button btn-primary cta-desktop" href="/umow-konsultacje">Umów konsultację</a>
       <a class="hero-button btn-wa cta-mobile"
          href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87%20Igor%2C%20chc%C4%99%20kr%C3%B3tkiej%20konsultacji%20na%20WhatsApp.%20Imi%C4%99%3A%20__%2C%20cel%3A%20__"
          target="_blank" rel="noopener">WhatsApp</a>
     </div>
 
-    <!-- Hamburger (otwiera #site-menu przez :target) -->
+    <!-- Hamburger -->
     <a href="#site-menu" class="nav-toggle" aria-label="Otwórz menu">
       <span class="bar"></span><span class="bar"></span><span class="bar"></span>
     </a>
@@ -41,13 +78,11 @@
 <!-- ===== Overlay menu (CSS :target) ===== -->
 <nav id="site-menu" class="mobile-menu" aria-label="Menu mobilne">
   <a href="#" class="close" aria-label="Zamknij menu">✕</a>
-
   <a href="/o-mnie">O mnie</a>
   <a href="/uslugi">Usługi</a>
   <a href="/cennik">Cennik</a>
   <a href="/efekty" aria-current="page">Efekty</a>
   <a href="/umow-konsultacje">Kontakt</a>
-
   <a class="wa-link"
      href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87%20Igor%2C%20chc%C4%99%20kr%C3%B3tkiej%20konsultacji%20na%20WhatsApp.%20Imi%C4%99%3A%20__%2C%20cel%3A%20__"
      target="_blank" rel="noopener">
@@ -57,6 +92,10 @@
 <a href="#" class="menu-backdrop" aria-hidden="true"></a>
 
 <style>
+  :root{ --ff-sans:'Open Sans',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+         --ff-head:'Poppins',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+         --green:#2e9b2f; --green-700:#1f7e21; }
+
   /* ================== Header ================== */
   #site-header{
     position:sticky; top:0; z-index:9999;
@@ -65,6 +104,7 @@
     -webkit-font-smoothing:antialiased;
     transition:box-shadow .2s, border-color .2s, background .2s;
   }
+  #site-header.is-scrolled{ box-shadow:0 8px 16px rgba(0,0,0,.06); border-color:rgba(0,0,0,.03); }
   @supports (backdrop-filter: blur(4px)){
     #site-header{ background:#ffffffcc; backdrop-filter:saturate(1.2) blur(4px); }
   }
@@ -78,11 +118,11 @@
   #site-header .brand{ display:flex; align-items:center; gap:8px; text-decoration:none; color:#1a1a1a; }
   #site-header .brand-mark{
     width:28px; height:28px; border-radius:50%;
-    background:#2e9b2f; color:#fff; display:inline-flex; align-items:center; justify-content:center;
-    font-family:'Poppins',system-ui,sans-serif; font-weight:700; font-size:.85rem;
+    background:var(--green); color:#fff; display:inline-flex; align-items:center; justify-content:center;
+    font-family:var(--ff-head); font-weight:700; font-size:.85rem;
   }
   #site-header .brand-text{ display:flex; flex-direction:column; line-height:1.05; }
-  #site-header .brand-text strong{ font-family:'Poppins',system-ui,sans-serif; font-size:.98rem; }
+  #site-header .brand-text strong{ font-family:var(--ff-head); font-size:.98rem; }
   #site-header .brand-text em{ font-style:normal; color:#555; font-size:.78rem; }
 
   #site-header .nav{ margin-left:auto; }
@@ -91,24 +131,24 @@
     text-decoration:none; color:#1a1a1a; font-weight:700; font-size:.95rem;
     padding:6px 4px; border-radius:8px; position:relative;
   }
-  #site-header .nav a:hover{ color:#2e9b2f; }
-  #site-header .nav a[aria-current="page"]{ color:#2e9b2f; }
+  #site-header .nav a:hover{ color:var(--green); }
+  #site-header .nav a[aria-current="page"]{ color:var(--green); }
   #site-header .nav a[aria-current="page"]::after{
     content:""; position:absolute; left:6px; right:6px; bottom:0;
-    height:2px; background:#2e9b2f; border-radius:2px;
+    height:2px; background:var(--green); border-radius:2px;
   }
 
   #site-header .hero-button{
     display:inline-flex; align-items:center; justify-content:center;
-    font-family:'Open Sans',system-ui,sans-serif; font-weight:700; font-size:.95rem; line-height:1;
+    font-family:var(--ff-sans); font-weight:700; font-size:.95rem; line-height:1;
     padding:10px 14px; min-height:40px; border-radius:10px; border:2px solid;
     text-decoration:none; white-space:nowrap; box-sizing:border-box;
     transition:background-color .25s, border-color .25s, color .25s;
   }
-  #site-header .btn-primary{ background:#2e9b2f; color:#fff; border-color:#2e9b2f; }
-  #site-header .btn-primary:hover{ background:#1f7e21; border-color:#1f7e21; }
-  #site-header .btn-wa{ background:transparent; color:#2e9b2f; border-color:#2e9b2f; }
-  #site-header .btn-wa:hover{ background:#2e9b2f; color:#fff; }
+  #site-header .btn-primary{ background:var(--green); color:#fff; border-color:var(--green); }
+  #site-header .btn-primary:hover{ background:var(--green-700); border-color:var(--green-700); }
+  #site-header .btn-wa{ background:transparent; color:var(--green); border-color:var(--green); }
+  #site-header .btn-wa:hover{ background:var(--green); color:#fff; }
 
   #site-header .cta{ display:flex; gap:8px; margin-left:6px; }
   #site-header .cta-desktop{ display:inline-flex; }
@@ -127,10 +167,10 @@
     contain:layout paint style;
   }
   .mobile-menu a{ display:block; padding:12px; border-radius:10px; text-decoration:none; color:#1a1a1a; font-weight:700; }
-  .mobile-menu a:hover{ background:#f6fbf6; color:#2e9b2f; }
+  .mobile-menu a:hover{ background:#f6fbf6; color:var(--green); }
   .mobile-menu .close{ text-align:right; font-size:1.1rem; padding:8px 10px; }
-  .mobile-menu .wa-link{ margin-top:4px; border:2px solid #2e9b2f; color:#2e9b2f; text-align:center; }
-  .mobile-menu .wa-link:hover{ background:#2e9b2f; color:#fff; }
+  .mobile-menu .wa-link{ margin-top:4px; border:2px solid var(--green); color:var(--green); text-align:center; }
+  .mobile-menu .wa-link:hover{ background:var(--green); color:#fff; }
   .menu-backdrop{ position:fixed; inset:0; z-index:9998; display:none; background:transparent; }
   .mobile-menu:target{ opacity:1; transform:translateY(0); pointer-events:auto; visibility:visible; transition-delay:0s; }
   #site-menu:target + .menu-backdrop{ display:block; }
@@ -147,24 +187,24 @@
     #site-header .brand-text em{ font-size:.76rem; }
     #site-header .hero-button{ padding:9px 12px; min-height:38px; font-size:.92rem; }
   }
-  #site-header a:focus-visible, .mobile-menu a:focus-visible{ outline:3px solid #2e9b2f; outline-offset:2px; }
+  #site-header a:focus-visible, .mobile-menu a:focus-visible{ outline:3px solid var(--green); outline-offset:2px; }
   @media (prefers-reduced-motion: reduce){ *{ transition:none !important; } }
 </style>
 
 <!-- === WhatsApp (floating FAB) === -->
 <style>
-@keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.08)} }
-#whatsapp-fixed{
-  position:fixed; bottom:20px; right:20px; z-index:9999;
-  width:58px; height:58px; border-radius:50%;
-  background:#25D366; color:#fff; display:flex; align-items:center; justify-content:center;
-  text-decoration:none; box-shadow:0 8px 20px rgba(0,0,0,.25);
-  animation:pulse 2s infinite; line-height:0;
-}
-#whatsapp-fixed svg{ width:28px; height:28px; fill:#fff; display:inline-block; }
-#whatsapp-fixed:focus-visible{ outline:3px solid #1f7e21; outline-offset:2px; }
-@media (min-width:769px){ #whatsapp-fixed{ display:none; } }
-@media (prefers-reduced-motion: reduce){ #whatsapp-fixed{ animation:none; } }
+  @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.08)} }
+  #whatsapp-fixed{
+    position:fixed; bottom:20px; right:20px; z-index:9999;
+    width:58px; height:58px; border-radius:50%;
+    background:#25D366; color:#fff; display:flex; align-items:center; justify-content:center;
+    text-decoration:none; box-shadow:0 8px 20px rgba(0,0,0,.25);
+    animation:pulse 2s infinite; line-height:0;
+  }
+  #whatsapp-fixed svg{ width:28px; height:28px; fill:#fff; display:inline-block; }
+  #whatsapp-fixed:focus-visible{ outline:3px solid var(--green-700); outline-offset:2px; }
+  @media (min-width:769px){ #whatsapp-fixed{ display:none; } }
+  @media (prefers-reduced-motion: reduce){ #whatsapp-fixed{ animation:none; } }
 </style>
 
 <a id="whatsapp-fixed"
@@ -177,19 +217,23 @@
   </svg>
 </a>
 
-<!-- ================== OPINIE / EFEKTY ================== -->
+<!-- ================== OPINIE / EFEKTY (zoptymalizowane na mobile – 1 kolumna) ================== -->
 <section id="results-sec" style="padding:56px 20px; font-family:'Open Sans',system-ui,sans-serif;">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@600;700&display=swap');
     :root{ --green:#2e9b2f; --green-700:#1f7e21; --ink:#1a1a1a; --muted:#666; --card:#fff; --line:#e6efe6; }
 
     #results-sec{-webkit-font-smoothing:antialiased;}
     #results-sec header h1{letter-spacing:-.3px}
 
-    /* GRID */
+    /* GRID — desktop 3 kolumny, mobile 1 kolumna */
     #results-sec .grid{
       max-width:1100px;margin:0 auto;
       display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;
+    }
+    /* Jednokolumnowy widok */
+    @media (max-width:900px){
+      #results-sec{padding:44px 16px;}
+      #results-sec .grid{grid-template-columns:1fr;gap:14px;max-width:720px;}
     }
 
     /* CASE CARD */
@@ -211,7 +255,7 @@
     #results-sec .case strong{font-family:'Poppins',system-ui,sans-serif;font-weight:700;color:var(--ink);}
     #results-sec .case p{margin:.4rem 0 .2rem;color:#333;line-height:1.55;}
 
-    /* Chips – responsywne „pigułki” */
+    /* Chips – wygodne do tapnięcia na mobile */
     #results-sec .chips{
       margin:6px 0 12px;padding:0;list-style:none;display:flex;gap:8px;flex-wrap:wrap;
     }
@@ -219,12 +263,24 @@
       padding:6px 10px;border-radius:999px;background:#f0f7f0;border:1px solid #d9ead9;
       font-weight:700;color:#1c371d;font-size:.92rem;
     }
+    @media (max-width:900px){
+      #results-sec .chips{display:grid;grid-template-columns:1fr;gap:8px;}
+      #results-sec .chips li{padding:10px 12px;border-radius:12px;font-size:1rem;}
+    }
+    @media (min-width:480px) and (max-width:900px){
+      #results-sec .chips{grid-template-columns:1fr 1fr;}
+    }
 
     /* KPI paski */
     #results-sec .kpi{display:grid;gap:10px;}
     #results-sec .kpi small{display:flex;justify-content:space-between;color:var(--muted);font-size:.92rem;}
     #results-sec .bar{height:10px;background:#f2f2f2;border-radius:8px;overflow:hidden;}
     #results-sec .bar > span{display:block;height:100%;background:var(--green);}
+    @media (max-width:900px){
+      #results-sec .kpi{gap:12px;}
+      #results-sec .kpi small{font-size:1rem;}
+      #results-sec .bar{height:12px;border-radius:10px;}
+    }
 
     /* CTA w sekcji */
     #results-sec .hero-button{
@@ -238,32 +294,12 @@
     #results-sec .btn-primary:hover{background:var(--green-700);border-color:var(--green-700);}
     #results-sec .btn-wa{background:transparent;color:var(--green);border-color:var(--green);}
     #results-sec .btn-wa:hover{background:var(--green);color:#fff;}
-
-    /* ====== MOBILE UPGRADE ====== */
+    /* CTA jednokolumnowo na mobile */
     @media (max-width:900px){
-      #results-sec{padding:44px 16px;}
-      #results-sec header h1{font-size:clamp(1.5rem, 4.5vw, 2rem); margin-bottom:6px;}
-      #results-sec header p{font-size:1rem; color:#444; margin:0; padding:0 8px;}
-      #results-sec .grid{grid-template-columns:1fr;gap:14px;max-width:720px;}
-      #results-sec .case{padding:16px;border-radius:16px;}
-      #results-sec .case header .avatar{width:38px;height:38px;font-size:.95rem;}
-      #results-sec .case strong{font-size:1.05rem;}
-      #results-sec .case p{font-size:1rem;}
-      /* chips jako siatka – wygodniejsze tapnięcie */
-      #results-sec .chips{display:grid;grid-template-columns:1fr;gap:8px;}
-      #results-sec .chips li{padding:10px 12px;border-radius:12px;font-size:1rem;}
-      /* KPI czytelniejsze */
-      #results-sec .kpi{gap:12px;}
-      #results-sec .kpi small{font-size:1rem;}
-      #results-sec .bar{height:12px;border-radius:10px;}
-      /* CTA: układ pod kciuk */
-      #results-sec .cta-row{padding:4px 10px;}
+      #results-sec .cta-row{flex-direction:column;padding:4px 10px;}
+      #results-sec .cta-row a{width:100%;}
       #results-sec .cta-desktop{display:none !important;}
       #results-sec .cta-mobile{display:inline-flex !important;}
-    }
-    /* 2 kolumny „chipsów” na większych telefonach */
-    @media (min-width:480px) and (max-width:900px){
-      #results-sec .chips{grid-template-columns:1fr 1fr;}
     }
 
     /* Redukcja animacji */
@@ -499,3 +535,21 @@
     @media (prefers-reduced-motion: reduce){ #ig-footer *{ transition:none !important; } }
   </style>
 </footer>
+
+<script>
+  // Cień nagłówka + aria-current nawigacji
+  document.addEventListener('DOMContentLoaded', function(){
+    var h=document.getElementById('site-header');
+    function s(){ h.classList.toggle('is-scrolled', window.scrollY>4); }
+    s(); window.addEventListener('scroll', s, {passive:true});
+
+    var here = location.pathname.replace(/\/+$/,'');
+    document.querySelectorAll('#site-header .nav a').forEach(function(a){
+      var path = a.getAttribute('href').replace(/\/+$/,'');
+      if(path && path === here){ a.setAttribute('aria-current','page'); }
+    });
+  });
+</script>
+
+</body>
+</html>
