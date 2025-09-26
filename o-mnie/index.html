@@ -7,42 +7,35 @@
   <title>O mnie — Igor Stelmaszczyk | Trener personalny Wilanów</title>
   <meta name="description" content="Kim jestem i jak pracuję z podopiecznymi w Zdrofit Wilanów. Prosty plan, mierzalna progresja i wsparcie poza salą.">
 
-  <!-- Dostosuj: nazwa użytkownika/orga + repo (GitHub Pages – project site) -->
-  <base href="/o-mnie/">
-  <link rel="canonical" href="https://igorstelmaszczyk-create.github.io/trenerwilanow/o-mnie/">
+  <!-- Uwaga: bez <base>. Wszystko linkujemy root-relative "/" -->
+  <link rel="canonical" href="https://trenerwilanow.pl/o-mnie/">
 
   <!-- Open Graph / Twitter -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="O mnie — Igor Stelmaszczyk">
   <meta property="og:description" content="8 lat doświadczenia, 180+ klientów. Jak pracuję i dla kogo?">
-  <meta property="og:url" content="https://igorstelmaszczyk-create.github.io/trenerwilanow/o-mnie/">
-  <meta property="og:image" content="https://igorstelmaszczyk-create.github.io/trenerwilanow/lib/IMG_4377-1-mf2g7usc.webp">
+  <meta property="og:url" content="https://trenerwilanow.pl/o-mnie/">
+  <meta property="og:image" content="https://trenerwilanow.pl/lib/IMG_4377-1-mf2g7usc.webp">
   <meta name="twitter:card" content="summary_large_image">
 
   <meta name="theme-color" content="#2e9b2f">
   <meta name="color-scheme" content="light">
 
-  <!-- Performance: preconnect + fonty jednorazowo w <head> -->
+  <!-- Performance: preconnect + fonty -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
   <!-- Preload kluczowego zdjęcia -->
-  <link rel="preload" as="image" href="lib/IMG_4377-1-mf2g7usc.webp" imagesrcset="lib/IMG_4377-1-mf2g7usc.webp" imagesizes="320px" fetchpriority="high">
+  <link rel="preload" as="image" href="/lib/IMG_4377-1-mf2g7usc.webp" imagesrcset="/lib/IMG_4377-1-mf2g7usc.webp" imagesizes="320px" fetchpriority="high">
 
   <style>
-    :root{
-      --ff-sans:'Open Sans',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
-      --ff-head:'Poppins',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
-      --green:#2e9b2f; --green-700:#1f7e21;
-    }
+    :root{--ff-sans:'Open Sans',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;--ff-head:'Poppins',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;--green:#2e9b2f;--green-700:#1f7e21}
     html{scroll-behavior:smooth}
-    html,body{background:#fff; color:#1a1a1a}
+    html,body{background:#fff;color:#1a1a1a}
     .visually-hidden{position:absolute!important;width:1px;height:1px;margin:-1px;border:0;padding:0;white-space:nowrap;clip-path:inset(50%);clip:rect(0 0 0 0);overflow:hidden}
 
     /* ================== HEADER ================== */
-    #site-header{position:sticky;top:0;z-index:9999;min-height:56px;background:#fff;
-      border-bottom:1px solid rgba(0,0,0,.06);-webkit-font-smoothing:antialiased;
-      transition:box-shadow .2s,border-color .2s,background .2s}
+    #site-header{position:sticky;top:0;z-index:9999;min-height:56px;background:#fff;border-bottom:1px solid rgba(0,0,0,.06);-webkit-font-smoothing:antialiased;transition:box-shadow .2s,border-color .2s,background .2s}
     #site-header.is-scrolled{box-shadow:0 8px 16px rgba(0,0,0,.06);border-color:rgba(0,0,0,.03)}
     @supports(backdrop-filter:blur(4px)){#site-header{background:#ffffffcc;backdrop-filter:saturate(1.2) blur(4px)}}
     @media (max-width:900px){#site-header{background:#fff;backdrop-filter:none;-webkit-backdrop-filter:none}}
@@ -189,7 +182,6 @@
     #ig-footer .bar{border-top:1px solid rgba(255,255,255,.08);margin-top:6px;padding:14px 20px;text-align:center;font-size:.95rem;color:#cfd6dc}
     @media (max-width:480px){#ig-footer .wrap{padding:24px 16px}#ig-footer .cta-row a{flex:1;text-align:center}}
 
-    /* Accessibility & motion reduce */
     @media (prefers-reduced-motion:reduce){*{transition:none!important}}
   </style>
 </head>
@@ -200,23 +192,23 @@
 <!-- ================== SITE HEADER ================== -->
 <header id="site-header" role="banner">
   <div class="nav-wrap">
-    <a class="brand" href="./" aria-label="Strona główna – Igor Stelmaszczyk">
+    <a class="brand" href="/" aria-label="Strona główna – Igor Stelmaszczyk">
       <span class="brand-mark" aria-hidden="true">IS</span>
       <span class="brand-text"><strong>Igor Stelmaszczyk</strong><em>Trener personalny</em></span>
     </a>
 
     <nav class="nav" aria-label="Główne">
       <ul>
-        <li><a href="o-mnie/">O mnie</a></li>
-        <li><a href="uslugi/">Usługi</a></li>
-        <li><a href="cennik/">Cennik</a></li>
-        <li><a href="efekty/">Efekty</a></li>
-        <li><a href="umow-konsultacje/">Kontakt</a></li>
+        <li><a href="/o-mnie">O mnie</a></li>
+        <li><a href="/uslugi">Usługi</a></li>
+        <li><a href="/cennik">Cennik</a></li>
+        <li><a href="/efekty">Efekty</a></li>
+        <li><a href="/umow-konsultacje">Kontakt</a></li>
       </ul>
     </nav>
 
     <div class="cta">
-      <a class="hero-button btn-primary cta-desktop" href="umow-konsultacje/">Umów konsultację</a>
+      <a class="hero-button btn-primary cta-desktop" href="/umow-konsultacje">Umów konsultację</a>
       <a class="hero-button btn-wa cta-mobile"
          href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87%20Igor%2C%20chc%C4%99%20kr%C3%B3tkiej%20konsultacji%20na%20WhatsApp.%20Imi%C4%99%3A%20__%2C%20cel%3A%20__"
          target="_blank" rel="noopener">
@@ -236,13 +228,12 @@
 
 <nav id="site-menu" class="mobile-menu" aria-label="Menu mobilne">
   <a href="#" class="close" aria-label="Zamknij menu">✕</a>
-  <a href="o-mnie/">O mnie</a>
-  <a href="uslugi/">Usługi</a>
-  <a href="cennik/">Cennik</a>
-  <a href="efekty/">Efekty</a>
-  <a href="umow-konsultacje/">Kontakt</a>
-  <a class="wa-link" href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87%20Igor%2C%20chc%C4%99%20kr%C3%B3tkiej%20konsultacji%20na%20WhatsApp.%20Imi%C4%99%3A%20__%2C%20cel%3A%20__"
-     target="_blank" rel="noopener">Napisz na WhatsApp</a>
+  <a href="/o-mnie">O mnie</a>
+  <a href="/uslugi">Usługi</a>
+  <a href="/cennik">Cennik</a>
+  <a href="/efekty">Efekty</a>
+  <a href="/umow-konsultacje">Kontakt</a>
+  <a class="wa-link" href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87%20Igor%2C%20chc%C4%99%20kr%C3%B3tkiej%20konsultacji%20na%20WhatsApp.%20Imi%C4%99%3A%20__%2C%20cel%3A%20__" target="_blank" rel="noopener">Napisz na WhatsApp</a>
 </nav>
 <a href="#" class="menu-backdrop" aria-hidden="true"></a>
 
@@ -260,7 +251,7 @@
 <section id="about-page">
   <div class="about-hero">
     <figure class="photo">
-      <img src="https://igorstelmaszczyk-create.github.io/trenerwilanow/lib/IMG_4377-1-mf2g7usc.webp" alt="Igor Stelmaszczyk – trener personalny w Zdrofit Wilanów" decoding="async" fetchpriority="high">
+      <img src="/lib/IMG_4377-1-mf2g7usc.webp" alt="Igor Stelmaszczyk – trener personalny w Zdrofit Wilanów" decoding="async" fetchpriority="high">
     </figure>
 
     <div class="copy">
@@ -271,9 +262,9 @@
       </ul>
 
       <div class="cta-row">
-        <a class="hero-button btn-fill cta-desktop" href="umow-konsultacje/">Umów konsultację</a>
+        <a class="hero-button btn-fill cta-desktop" href="/umow-konsultacje">Umów konsultację</a>
         <a class="hero-button btn-outline cta-mobile" href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87%20Igor%2C%20chc%C4%99%20um%C3%B3wi%C4%87%20konsultacj%C4%99." target="_blank" rel="noopener">Umów konsultację</a>
-        <a class="hero-button btn-outline" href="cennik/">Zobacz cennik</a>
+        <a class="hero-button btn-outline" href="/cennik">Zobacz cennik</a>
       </div>
     </div>
   </div>
@@ -304,15 +295,15 @@
 
   <div class="trust" aria-label="Zaufanie i certyfikaty">
     <div class="tcard">
-      <div class="iconwrap"><img src="https://gdh4ps.webwave.dev/lib/gdh4ps/7-md6ahbnn.svg" alt="Certyfikaty trenerskie" loading="lazy" decoding="async"></div>
+      <div class="iconwrap"><img src="/lib/7-md6ahbnn.svg" alt="Certyfikaty trenerskie" loading="lazy" decoding="async"></div>
       <h3>20+ szkoleń</h3><p>Aktualna wiedza i praktyka</p>
     </div>
     <div class="tcard">
-      <div class="iconwrap"><img src="https://gdh4ps.webwave.dev/lib/gdh4ps/6-md6a1v5m.svg" alt="Zadowoleni klienci" loading="lazy" decoding="async"></div>
+      <div class="iconwrap"><img src="/lib/6-md6a1v5m.svg" alt="Zadowoleni klienci" loading="lazy" decoding="async"></div>
       <h3>180+ klientów</h3><p>Realne wyniki i rekomendacje</p>
     </div>
     <div class="tcard">
-      <div class="iconwrap"><img src="https://gdh4ps.webwave.dev/lib/gdh4ps/5-md69zcjz.svg" alt="Lata doświadczenia" loading="lazy" decoding="async"></div>
+      <div class="iconwrap"><img src="/lib/5-md69zcjz.svg" alt="Lata doświadczenia" loading="lazy" decoding="async"></div>
       <h3>8 lat</h3><p>Na sali treningowej</p>
     </div>
   </div>
@@ -321,29 +312,27 @@
     <h2>Zaczynamy od krótkiej konsultacji</h2>
     <p>Wybierz termin — <strong>odpisuję tego samego dnia</strong>.</p>
     <div class="cta-row" style="justify-content:center;">
-      <a class="hero-button btn-fill" href="umow-konsultacje/">Umów konsultację</a>
-      <a class="hero-button btn-outline" href="cennik/">Zobacz cennik</a>
+      <a class="hero-button btn-fill" href="/umow-konsultacje">Umów konsultację</a>
+      <a class="hero-button btn-outline" href="/cennik">Zobacz cennik</a>
     </div>
   </div>
 
-  <!-- JSON-LD (AboutPage + Image) -->
+  <!-- JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "AboutPage",
     "name": "O mnie – Igor Stelmaszczyk",
-    "url": "https://igorstelmaszczyk-create.github.io/trenerwilanow/o-mnie/",
+    "url": "https://trenerwilanow.pl/o-mnie/",
     "primaryImageOfPage": {
       "@type": "ImageObject",
-      "url": "https://igorstelmaszczyk-create.github.io/trenerwilanow/lib/IMG_4377-1-mf2g7usc.webp",
-      "width": 2120,
-      "height": 3622
+      "url": "https://trenerwilanow.pl/lib/IMG_4377-1-mf2g7usc.webp"
     },
     "about": {
       "@type": "Person",
       "name": "Igor Stelmaszczyk",
       "jobTitle": "Trener personalny",
-      "image": "https://igorstelmaszczyk-create.github.io/trenerwilanow/lib/IMG_4377-1-mf2g7usc.webp",
+      "image": "https://trenerwilanow.pl/lib/IMG_4377-1-mf2g7usc.webp",
       "areaServed": "Warszawa, Wilanów",
       "worksFor": { "@type": "HealthClub", "name": "Zdrofit Wilanów" }
     }
@@ -378,18 +367,18 @@
     <nav class="col links" aria-label="Szybkie linki">
       <h4>Na skróty</h4>
       <ul class="list">
-        <li><a href="cennik/">Cennik</a></li>
-        <li><a href="o-mnie/">O mnie</a></li>
-        <li><a href="index.html#coop-sec">Jak wygląda współpraca</a></li>
-        <li><a href="umow-konsultacje/">Kontakt</a></li>
+        <li><a href="/cennik">Cennik</a></li>
+        <li><a href="/o-mnie">O mnie</a></li>
+        <li><a href="/#coop-sec">Jak wygląda współpraca</a></li>
+        <li><a href="/umow-konsultacje">Kontakt</a></li>
       </ul>
     </nav>
 
     <div class="col policies">
       <h4>Informacje</h4>
       <ul class="list">
-        <li><a href="polityka-prywatnosci/">Polityka prywatności</a></li>
-        <li><a href="regulamin/">Regulamin</a></li>
+        <li><a href="/polityka-prywatnosci">Polityka prywatności</a></li>
+        <li><a href="/regulamin">Regulamin</a></li>
       </ul>
       <p class="note">Odpowiadam tego samego dnia.</p>
     </div>
@@ -406,7 +395,7 @@
 
     var here = location.pathname.replace(/\/+$/,''); // bez trailing slash
     document.querySelectorAll('#site-header .nav a').forEach(function(a){
-      var path = (new URL(a.getAttribute('href'), location)).pathname.replace(/\/+$/,'');
+      var path = (new URL(a.getAttribute('href'), location.origin)).pathname.replace(/\/+$/,'');
       if(path && path === here){ a.setAttribute('aria-current','page'); }
     });
   });
@@ -414,4 +403,3 @@
 
 </body>
 </html>
-
