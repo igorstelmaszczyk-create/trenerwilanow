@@ -13,21 +13,95 @@
   <meta name="description" content="Umów bezpłatną konsultację treningową w Zdrofit Wilanów. Telefon, WhatsApp lub formularz — odpowiadam tego samego dnia." />
   <link rel="canonical" href="https://trenerwilanow.pl/umow-konsultacje" />
 
-  <!-- Open Graph / Twitter (podstawy) -->
+  <!-- Open Graph / Twitter -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Umów konsultację – Igor Stelmaszczyk">
   <meta property="og:description" content="Najszybciej przez WhatsApp lub formularz — odpowiadam w ciągu dnia.">
   <meta property="og:url" content="https://trenerwilanow.pl/umow-konsultacje">
   <meta property="og:image" content="https://trenerwilanow.pl/og/umow-konsultacje.jpg">
+  <meta property="og:locale" content="pl_PL">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Umów konsultację – Igor Stelmaszczyk">
+  <meta name="twitter:description" content="Najszybciej przez WhatsApp lub formularz — odpowiadam w ciągu dnia.">
+  <meta name="twitter:image" content="https://trenerwilanow.pl/og/umow-konsultacje.jpg">
 
-  <!-- Fonty (display=swap, z preconnect); jeśli chcesz zero zewn. requestów, usuń i użyj systemowych w CSS -->
+  <!-- Fonty (display=swap, z preconnect); aby mieć 0 zewn. requestów – usuń i użyj systemowych -->
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
 
   <!-- Prefetch strony podziękowania dla szybszego wrażenia po submit -->
   <link rel="prefetch" href="https://trenerwilanow.pl/dziekujemy" as="document">
+
+  <!-- JSON-LD: Person -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": "https://trenerwilanow.pl/#igor",
+    "name": "Igor Stelmaszczyk",
+    "jobTitle": "Trener personalny",
+    "url": "https://trenerwilanow.pl/",
+    "image": "https://trenerwilanow.pl/og/igor.jpg",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Trener personalny – Igor Stelmaszczyk"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer support",
+      "telephone": "+48-537-918-161",
+      "email": "treningi.wilanow@gmail.com",
+      "availableLanguage": ["pl-PL"]
+    },
+    "knowsAbout": [
+      "trening personalny",
+      "redukcja masy ciała",
+      "budowanie siły",
+      "mobilność i stabilizacja",
+      "zdrowe plecy",
+      "powrót po kontuzji"
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "al. Rzeczypospolitej 1",
+      "postalCode": "02-972",
+      "addressLocality": "Warszawa",
+      "addressCountry": "PL"
+    }
+  }
+  </script>
+
+  <!-- JSON-LD: LocalBusiness (usługa trenerska) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "@id": "https://trenerwilanow.pl/#biz",
+    "name": "Trener personalny – Igor Stelmaszczyk",
+    "url": "https://trenerwilanow.pl/",
+    "telephone": "+48-537-918-161",
+    "email": "treningi.wilanow@gmail.com",
+    "image": "https://trenerwilanow.pl/og/umow-konsultacje.jpg",
+    "priceRange": "PLN",
+    "areaServed": "Warszawa – Wilanów",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "al. Rzeczypospolitej 1",
+      "postalCode": "02-972",
+      "addressLocality": "Warszawa",
+      "addressCountry": "PL"
+    },
+    "hasMap": "https://www.google.com/maps?q=al.+Rzeczypospolitej+1,+02-972+Warszawa&output=embed",
+    "makesOffer": [{
+      "@type": "Offer",
+      "name": "Bezpłatna konsultacja treningowa",
+      "price": "0",
+      "priceCurrency": "PLN",
+      "url": "https://trenerwilanow.pl/umow-konsultacje"
+    }]
+  }
+  </script>
 
   <style>
     /* ================== RESET & ZMIENNE ================== */
@@ -198,7 +272,7 @@
     @media (max-width:420px){ .contact-hero h1{ font-size:1.6rem; } }
     @media (max-width:360px){ .btn{ padding:12px 14px; font-size:.95rem; } }
 
-    /* ================== FOCUS HEADER (ta podstrona) ================== */
+    /* ================== FOCUS HEADER (tylko na tej podstronie) ================== */
     .focus-header #site-header .nav,
     .focus-header #site-header .cta,
     .focus-header #site-header .nav-toggle{ display:none !important; }
@@ -498,9 +572,8 @@
     </div>
   </footer>
 
-  <!-- ================== SCRIPTS ================== -->
   <script>
-    // Tryb "focus header" tylko na tej podstronie (zachowuje minimalizm)
+    // Tryb "focus header" tylko na tej podstronie
     (function(){
       var contact = document.getElementById('contact-page');
       var header  = document.getElementById('site-header');
@@ -607,7 +680,7 @@
         if (!form.checkValidity()){ form.reportValidity(); return; }
         if (!hasPhoneOrEmail()){ updateContactError(); document.getElementById('cf-phone').focus(); return; }
         if (!passAntiSpam()){
-          statusEl.textContent = 'Zbyt szybkie wysłanie. Spróbuj ponownie za chwilę.';
+          statusEl.textContent = 'Zbyt szybkie wysyłanie. Spróbuj ponownie za chwilę.';
           statusEl.style.color = '#c0392b';
           return;
         }
