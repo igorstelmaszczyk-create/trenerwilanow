@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Nie indeksuj adresów z parametrami kampanii
+Disallow: /*?*gclid=
+Disallow: /*?*utm_source=
+Disallow: /*?*utm_medium=
+Disallow: /*?*utm_campaign=
+Disallow: /*?*utm_term=
+Disallow: /*?*utm_content=
+
+Sitemap: https://trenerwilanow.pl/sitemap.xml
