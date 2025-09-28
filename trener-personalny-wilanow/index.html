@@ -9,7 +9,7 @@
   <meta name="description" content="Trener personalny Wilanów — treningi 1:1 w Zdrofit Miasteczko Wilanów (al. Rzeczypospolitej 1). Konsultacja 0 zł, plan pod Twój cel, WhatsApp i telefon. Pierwsze efekty po 4–6 tygodniach.">
   <link rel="canonical" href="https://trenerwilanow.pl/trener-personalny-wilanow">
 
-  <!-- Preload hero (lokalnie z /lib/) -->
+  <!-- Preload hero -->
   <link rel="preload" as="image"
         href="/lib/IMG_4377-1-mf2g7usc.webp"
         imagesrcset="/lib/IMG_4377-1-mf2g7usc.webp"
@@ -31,19 +31,28 @@
   <meta name="color-scheme" content="light">
   <meta name="geo.region" content="PL-MZ">
   <meta name="geo.placename" content="Warszawa, Wilanów">
-  <meta name="geo.position" content="52.1636;21.0901"><meta name="ICBM" content="52.1636, 21.0901">
+  <meta name="geo.position" content="52.1636;21.0901">
+  <meta name="ICBM" content="52.1636, 21.0901">
 
-  <!-- GA4 + Google Ads (PODMIEŃ ID) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YYYYYYYY"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-YYYYYYYY', { anonymize_ip: true }); // GA4
-    gtag('config', 'AW-XXXXXXX');                         // Google Ads
+  <!-- Network hints -->
+  <link rel="dns-prefetch" href="//www.googletagmanager.com">
+  <link rel="dns-prefetch" href="//www.google-analytics.com">
+  <link rel="dns-prefetch" href="//wa.me">
+  <link rel="dns-prefetch" href="//www.google.com">
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+
+  <!-- Speculative prerender dla najczęściej klikanych podstron -->
+  <script type="speculationrules">
+  {
+    "prerender": [
+      {"source": "document", "where": {"href_matches": "*/umow-konsultacje*"}},
+      {"source": "document", "where": {"href_matches": "*/cennik*"}}
+    ]
+  }
   </script>
 
-  <!-- JSON-LD (Person) dla spójności z HOME -->
+  <!-- JSON-LD (Person) -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -64,12 +73,21 @@
   }
   </script>
 
-  <!-- Reset + fix -->
+  <!-- Reset + fix + content-visibility -->
   <style>
     html{scroll-behavior:smooth}
     html,body{background:#fff;color:#1a1a1a}
     .visually-hidden{position:absolute!important;width:1px;height:1px;margin:-1px;border:0;padding:0;white-space:nowrap;clip-path:inset(50%);clip:rect(0 0 0 0);overflow:hidden}
     #site-header.is-scrolled{box-shadow:0 8px 16px rgba(0,0,0,.06);border-color:rgba(0,0,0,.03)}
+
+    /* Renderuj dopiero gdy sekcja wchodzi w viewport (mniej pracy CPU) */
+    #stats, #about-mini, #coop-sec, #price-highlight, #opinie-klientow, #faq, #ig-footer {
+      content-visibility: auto;
+      contain-intrinsic-size: 1px 800px; /* rezerwuje miejsce -> brak CLS */
+    }
+
+    @keyframes pulse {0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+    @keyframes heroArrBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
   </style>
 </head>
 <body>
@@ -83,7 +101,7 @@
   </symbol>
 </svg>
 
-<!-- ================== HEADER (styl jak HOME) ================== -->
+<!-- ================== HEADER ================== -->
 <header id="site-header" role="banner">
   <div class="nav-wrap">
     <!-- Brand -->
@@ -139,7 +157,7 @@
 </nav>
 <a href="#" class="menu-backdrop" aria-hidden="true"></a>
 
-<!-- ===== STYLE nagłówka (jak HOME) ===== -->
+<!-- ===== STYLE nagłówka ===== -->
 <style>
   :root{
     --ff-sans:'Open Sans',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
@@ -189,23 +207,37 @@
 </style>
 
 <script>
+  // Scalony DOMContentLoaded: cień headera + aria-current + smooth scroll
   document.addEventListener('DOMContentLoaded', function(){
     // Cień nagłówka przy scrollu
     var h=document.getElementById('site-header');
     function s(){ h.classList.toggle('is-scrolled', window.scrollY>4); }
     s(); window.addEventListener('scroll', s, {passive:true});
+
     // aria-current dla tej podstrony
     var here = location.pathname.replace(/\/+$/,'');
     document.querySelectorAll('#site-header .nav a').forEach(function(a){
-      var path = a.getAttribute('href').replace(/\/+$/,'');
+      var path = (a.getAttribute('href')||'').replace(/\/+$/,'');
       if(path && path === here){ a.setAttribute('aria-current','page'); }
     });
+
+    // Smooth scroll do sekcji współpracy
+    var link=document.querySelector('#ig-hero .scroll-down');
+    if(link){
+      link.addEventListener('click',function(e){
+        var t=document.querySelector('#coop-sec');
+        if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
+      }, {passive:true});
+    }
   });
 </script>
 
-<!-- === WhatsApp FAB (jak HOME) === -->
+<!-- === WhatsApp FAB === -->
 <style>
-  @keyframes pulse {0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+  @media (max-width:768px){
+    #ig-hero .hero-image img { box-shadow:0 6px 14px rgba(0,0,0,.16) }
+    #site-header.is-scrolled { box-shadow:0 6px 12px rgba(0,0,0,.06) }
+  }
   #whatsapp-fixed{position:fixed;bottom:20px;right:20px;z-index:9999;width:58px;height:58px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 8px 20px rgba(0,0,0,.25);animation:pulse 2s infinite;line-height:0}
   #whatsapp-fixed svg{width:28px;height:28px;fill:#fff}
   #whatsapp-fixed:focus-visible{outline:3px solid #1f7e21;outline-offset:2px}
@@ -218,7 +250,7 @@
   <svg aria-hidden="true" focusable="false"><use href="#ico-wa"/></svg>
 </a>
 
-<!-- ================== HERO (treść z LP, styl jak HOME) ================== -->
+<!-- ================== HERO ================== -->
 <section id="ig-hero" aria-label="Hero: Trener personalny Wilanów">
   <div class="hero">
     <div class="hero-image">
@@ -304,6 +336,7 @@
         #fff;
     }
     #ig-hero .hero{display:flex;flex-direction:row;align-items:center;justify-content:center;min-height:calc(100vh - 80px);padding:60px 40px;gap:60px}
+    #ig-hero .hero-image{inline-size:min(300px,85vw);aspect-ratio:2120/3622;block-size:auto}
     #ig-hero .hero-image img{
       width:300px;max-width:100%;height:auto;border-radius:20px;display:block;
       box-shadow:0 10px 20px rgba(0,0,0,.2);opacity:0;transition:opacity .35s ease;aspect-ratio:2120/3622
@@ -334,7 +367,6 @@
     #ig-hero .scroll-down{display:inline-flex;align-items:center;gap:8px;color:var(--green);font-weight:700;text-decoration:none;padding:6px 8px;border-radius:8px}
     #ig-hero .scroll-down:hover{text-decoration:underline}
     #ig-hero .scroll-down .arr{display:inline-block;animation:heroArrBounce 1.8s ease-in-out infinite}
-    @keyframes heroArrBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
     @media (max-width:768px){
       #ig-hero .hero{flex-direction:column;text-align:center;padding:32px 16px;gap:22px;min-height:auto}
       #ig-hero .hero-image img{width:min(68vw,240px);box-shadow:0 8px 18px rgba(0,0,0,.16)}
@@ -349,21 +381,9 @@
     @media (max-width:360px){#ig-hero .hero{padding:24px 14px;gap:16px} #ig-hero .cta-item .hero-button{padding:12px 14px;font-size:.95rem}}
     @media (prefers-reduced-motion:reduce){#ig-hero *{animation:none!important;transition:none!important}#ig-hero .hero-image img{opacity:1!important}}
   </style>
-
-  <script>
-    document.addEventListener('DOMContentLoaded',function(){
-      var link=document.querySelector('#ig-hero .scroll-down');
-      if(link){
-        link.addEventListener('click',function(e){
-          var t=document.querySelector('#coop-sec');
-          if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
-        });
-      }
-    });
-  </script>
 </section>
 
-<!-- ================== KPI / Statystyki (3 boxy) ================== -->
+<!-- ================== KPI / Statystyki ================== -->
 <section id="stats" style="background:#fff;font-family:'Open Sans',sans-serif">
   <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:40px;padding:40px 20px">
     <div style="flex:1 1 220px;max-width:250px;text-align:center;animation:fadeIn .6s ease both">
@@ -394,7 +414,7 @@
   <style>@keyframes fadeIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}</style>
 </section>
 
-<!-- ================== ABOUT MINI (lokalizacja Wilanów) ================== -->
+<!-- ================== ABOUT MINI ================== -->
 <section id="about-mini" style="background:#f9f9f9">
   <div class="wrap" style="padding:60px 20px;max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:40px;font-family:'Open Sans',sans-serif">
     <div class="img" style="flex:0 1 280px;max-width:280px">
@@ -610,7 +630,7 @@
   </script>
 </section>
 
-<!-- ================== STOPKA (jak HOME) ================== -->
+<!-- ================== STOPKA ================== -->
 <footer id="ig-footer" role="contentinfo" aria-label="Stopka strony">
   <div class="wrap">
     <div class="col about">
@@ -696,7 +716,7 @@
   });
 </script>
 
-<!-- ===== Kampanie: przenoszenie gclid/utm + eventy konwersji ===== -->
+<!-- ===== Kampanie: przenoszenie gclid/utm + eventy konwersji + scroll depth via IO ===== -->
 <script>
 (function(){
   // 1) Przenoszenie parametrów kampanii do wszystkich CTA
@@ -718,13 +738,15 @@
     });
   }
 
-  // 2) Helpery konwersji
+  // 2) Helpery konwersji (spójne z lazy GA niżej)
   function gaEvent(name,params){ if(typeof gtag==='function') gtag('event',name,params||{}); }
   function adsConv(send_to,value){
     if(typeof gtag!=='function'||!send_to) return;
     const p={send_to:send_to}; if(typeof value==='number'){p.value=value;p.currency='PLN';}
     gtag('event','conversion',p);
   }
+  window.gaEvent = gaEvent;
+  window.adsConv = adsConv;
 
   // 3) Kliknięcia CTA → GA4 + Ads (PODMIEŃ ID konwersji!)
   [
@@ -739,13 +761,82 @@
     el.addEventListener('click',()=>{ gaEvent(name,{category:'CTA',label}); if(conv) adsConv(conv); }, {passive:true});
   });
 
-  // 4) Mikro-konwersje: scroll 50% i 90%
-  let s50=false,s90=false;
-  window.addEventListener('scroll',()=>{
-    const p=(scrollY+innerHeight)/document.documentElement.scrollHeight;
-    if(!s50&&p>=.5){s50=true;gaEvent('scroll_depth',{percent:50});}
-    if(!s90&&p>=.9){s90=true;gaEvent('scroll_depth',{percent:90});}
-  },{passive:true});
+  // 4) Mikro-konwersje: 50% i 90% bez nasłuchiwania scrolla (IntersectionObserver)
+  try{
+    var sent = {50:false, 90:false};
+    function observePercent(pct){
+      var marker = document.createElement('div');
+      marker.style.position = 'absolute';
+      marker.style.top = pct + 'vh';
+      marker.style.width = '1px'; marker.style.height = '1px';
+      marker.style.pointerEvents = 'none';
+      document.body.appendChild(marker);
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting && !sent[pct]){
+            sent[pct] = true;
+            gaEvent('scroll_depth', { percent: pct });
+            io.disconnect();
+          }
+        });
+      }, { root: null, threshold: 0 });
+      io.observe(marker);
+    }
+    observePercent(50);
+    observePercent(90);
+  }catch(e){}
+})();
+</script>
+
+<!-- ===== Autolazy obrazków (poza hero) ===== -->
+<script>
+(function(){
+  var hero = document.querySelector('#ig-hero .hero-photo');
+  document.querySelectorAll('img').forEach(function(img){
+    if(hero && img === hero) return;
+    if(!img.hasAttribute('loading')) img.setAttribute('loading','lazy');
+    if(!img.hasAttribute='decoding' || img.getAttribute('decoding')!=='async') img.setAttribute('decoding','async');
+    if(!img.hasAttribute('fetchpriority')) img.setAttribute('fetchpriority','low');
+  });
+})();
+</script>
+
+<!-- ===== Lazy GA/Ads – ładowane po interakcji/idle (PODMIEŃ ID) ===== -->
+<script>
+/* Bufor zdarzeń zanim wczyta się GA */
+window.dataLayer = window.dataLayer || [];
+function gtag(){ dataLayer.push(arguments); }
+
+(function(){
+  var loaded = false;
+  var GA_ID  = 'G-YYYYYYYY';   // <-- PODMIEŃ (GA4)
+  var ADS_ID = 'AW-XXXXXXX';   // <-- PODMIEŃ (Google Ads)
+
+  function loadGA(){
+    if(loaded) return; loaded = true;
+    var s = document.createElement('script');
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+    s.async = true;
+    document.head.appendChild(s);
+
+    gtag('js', new Date());
+    gtag('config', GA_ID, { anonymize_ip: true });
+    gtag('config', ADS_ID);
+  }
+
+  var firedBy = null;
+  ['pointerdown','keydown','scroll','visibilitychange'].forEach(function(ev){
+    window.addEventListener(ev, function once(){
+      if(!firedBy) firedBy = ev; loadGA();
+      window.removeEventListener(ev, once, {passive:true});
+    }, {passive:true, once:true});
+  });
+
+  if('requestIdleCallback' in window){
+    requestIdleCallback(function(){ loadGA(); }, {timeout:3500});
+  }else{
+    setTimeout(loadGA, 3500);
+  }
 })();
 </script>
 </body>
