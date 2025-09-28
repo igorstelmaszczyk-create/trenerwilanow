@@ -795,7 +795,7 @@
   document.querySelectorAll('img').forEach(function(img){
     if(hero && img === hero) return;
     if(!img.hasAttribute('loading')) img.setAttribute('loading','lazy');
-    if(!img.hasAttribute='decoding' || img.getAttribute('decoding')!=='async') img.setAttribute('decoding','async');
+    if(!img.hasAttribute('decoding')) img.setAttribute('decoding','async');
     if(!img.hasAttribute('fetchpriority')) img.setAttribute('fetchpriority','low');
   });
 })();
@@ -836,6 +836,77 @@ function gtag(){ dataLayer.push(arguments); }
     requestIdleCallback(function(){ loadGA(); }, {timeout:3500});
   }else{
     setTimeout(loadGA, 3500);
+  }
+})();
+</script>
+
+<!-- ===== Preload-on-hover (prefetch linków wewnętrznych) ===== -->
+<script>
+(function(){
+  var supported = 'relList' in HTMLLinkElement.prototype && HTMLLinkElement.prototype.relList.supports && HTMLLinkElement.prototype.relList.supports('prefetch');
+  var prefetched = new Set();
+  var ORIGIN = location.origin;
+
+  function shouldPrefetch(a){
+    if(!a || !a.href) return false;
+    if(a.target && a.target !== '_self') return false;
+    if(a.hasAttribute('download')) return false;
+    if(a.getAttribute('rel') === 'nofollow') return false;
+    var url;
+    try{ url = new URL(a.href, ORIGIN); }catch(e){ return false; }
+    if(url.origin !== ORIGIN) return false;
+    if(url.pathname === location.pathname && (!url.search || url.search === location.search)) return false;
+    if(url.hash && url.pathname === location.pathname) return false;
+    return true;
+  }
+
+  function prefetch(href){
+    if(!href || prefetched.has(href)) return;
+    prefetched.add(href);
+    var l = document.createElement('link');
+    l.rel = 'prefetch';
+    l.as = 'document';
+    l.href = href;
+    l.fetchPriority = 'low';
+    l.crossOrigin = 'anonymous';
+    document.head.appendChild(l);
+  }
+
+  function onIntent(e){
+    if(!supported) return;
+    var a = e.target && (e.target.closest ? e.target.closest('a') : null);
+    if(!a || !shouldPrefetch(a)) return;
+    prefetch(a.href);
+  }
+
+  var opts = {passive:true,capture:true};
+  document.addEventListener('mouseover', onIntent, opts);
+  document.addEventListener('focusin',  onIntent, opts);
+  document.addEventListener('touchstart', onIntent, opts);
+
+  // Podgrzej WA (DNS+preconnect) przy pierwszym hoverze na linku WA
+  var waWarmed = false;
+  function warmWA(){
+    if(waWarmed) return; waWarmed = true;
+    var p1=document.createElement('link'); p1.rel='dns-prefetch'; p1.href='//wa.me';
+    var p2=document.createElement('link'); p2.rel='preconnect'; p2.href='https://wa.me'; p2.crossOrigin='anonymous';
+    document.head.appendChild(p1); document.head.appendChild(p2);
+  }
+  document.querySelectorAll('a[href^="https://wa.me/"]').forEach(function(a){
+    ['mouseover','focus','touchstart'].forEach(function(ev){ a.addEventListener(ev, warmWA, {passive:true, once:true}); });
+  });
+})();
+</script>
+
+<!-- ===== Rejestracja Service Workera (przy idle) ===== -->
+<script>
+(function(){
+  if(!('serviceWorker' in navigator)) return;
+  function reg(){ navigator.serviceWorker.register('/sw.js').catch(function(){}); }
+  if('requestIdleCallback' in window){
+    requestIdleCallback(function(){ reg(); }, {timeout:2000});
+  }else{
+    setTimeout(reg, 1000);
   }
 })();
 </script>
