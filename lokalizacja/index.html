@@ -5,26 +5,22 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-  <title>Lokalizacja i parking — Zdrofit Miasteczko Wilanów | Igor Stelmaszczyk</title>
-  <meta name="description" content="Jak dojechać do Zdrofit Miasteczko Wilanów (al. Rzeczypospolitej 1): mapka, wejście do klubu, parking, komunikacja miejska oraz garderoba i prysznice. Wyznacz trasę lub zadzwoń.">
+  <title>Lokalizacja i parking — Zdrofit Miasteczko Wilanów | Trener 1:1</title>
+  <meta name="description" content="Dojazd do Zdrofit Miasteczko Wilanów (al. Rzeczypospolitej 1). Mapka, wejście do klubu, parking w okolicy, komunikacja miejska, garderoba i prysznice. Wyznacz trasę lub zadzwoń.">
   <link rel="canonical" href="https://trenerwilanow.pl/lokalizacja/">
 
   <!-- Open Graph / Twitter -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Lokalizacja i parking — Zdrofit Wilanów">
-  <meta property="og:description" content="Mapka, parking, wejście do klubu i dojazd komunikacją.">
+  <meta property="og:title" content="Lokalizacja i parking — Zdrofit Miasteczko Wilanów">
+  <meta property="og:description" content="Mapka, wejście do klubu, parking, komunikacja miejska. Wyznacz trasę lub zadzwoń.">
   <meta property="og:image" content="https://trenerwilanow.pl/lib/IMG_4377-1-mf2g7usc.webp">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
   <meta property="og:url" content="https://trenerwilanow.pl/lokalizacja/">
   <meta name="twitter:card" content="summary_large_image">
 
-  <!-- Theme / color-scheme + local intent -->
+  <!-- Theme / color-scheme -->
   <meta name="theme-color" content="#2e9b2f">
   <meta name="color-scheme" content="light">
-  <meta name="geo.region" content="PL-MZ">
-  <meta name="geo.placename" content="Warszawa, Wilanów">
-  <meta name="geo.position" content="52.1636;21.0901"><meta name="ICBM" content="52.1636, 21.0901">
 
   <!-- Connection hints -->
   <link rel="dns-prefetch" href="//www.googletagmanager.com">
@@ -33,7 +29,7 @@
   <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
   <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
 
-  <!-- GA4 + Ads (użyj swoich ID jak na stronie głównej) -->
+  <!-- GA4 + Ads (ID podmień na swoje) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-YYYYYYYY"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -43,52 +39,35 @@
     gtag('config','AW-XXXXXXX');
   </script>
 
-  <!-- Base reset + content-visibility (spójne ze stroną główną) -->
+  <!-- Reset / bazowe -->
   <style>
     html{scroll-behavior:smooth}
     html,body{background:#fff;color:#1a1a1a}
     .visually-hidden{position:absolute!important;width:1px;height:1px;margin:-1px;border:0;padding:0;white-space:nowrap;clip-path:inset(50%);clip:rect(0 0 0 0);overflow:hidden}
     #site-header.is-scrolled{box-shadow:0 8px 16px rgba(0,0,0,.06);border-color:rgba(0,0,0,.03)}
-    #loc-hero,#wejscie,#parking,#komunikacja,#szatnie,#cta-final,#ig-footer{content-visibility:auto;contain-intrinsic-size:1px 800px}
+    /* Sekcje z content-visibility dla performance */
+    #lok-hero,#mapa,#wejscie,#parking,#komunikacja,#szatnie,#sticky-cta,#ig-footer{content-visibility:auto;contain-intrinsic-size:1px 800px}
   </style>
-
-  <!-- Breadcrumb + ExerciseGym JSON-LD -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@graph":[
-      {
-        "@type":"BreadcrumbList",
-        "itemListElement":[
-          {"@type":"ListItem","position":1,"name":"Strona główna","item":"https://trenerwilanow.pl/"},
-          {"@type":"ListItem","position":2,"name":"Lokalizacja i parking","item":"https://trenerwilanow.pl/lokalizacja/"}
-        ]
-      },
-      {
-        "@type":"ExerciseGym",
-        "name":"Zdrofit Miasteczko Wilanów",
-        "address":{"@type":"PostalAddress","streetAddress":"al. Rzeczypospolitej 1","addressLocality":"Warszawa","addressCountry":"PL"},
-        "geo":{"@type":"GeoCoordinates","latitude":52.1636,"longitude":21.0901},
-        "url":"https://trenerwilanow.pl/lokalizacja/",
-        "image":"https://trenerwilanow.pl/lib/IMG_4377-1-mf2g7usc.webp",
-        "telephone":"+48537918161"
-      }
-    ]
-  }
-  </script>
 </head>
 <body>
-<a href="#loc-hero" class="visually-hidden">Przejdź do treści</a>
 
-<!-- SVG sprite -->
+<a href="#lok-hero" class="visually-hidden">Przejdź do treści</a>
+
+<!-- ============ SVG SPRITE (WhatsApp) ============ -->
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
   <symbol id="ico-wa" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
     <path d="M19.1 17.4c-.2-.1-1.3-.6-1.5-.7-.2-.1-.4-.1-.6.1-.2.2-.6.7-.7.8-.1.1-.3.2-.6.1-.2-.1-.9-.3-1.7-1-.6-.5-1-1.1-1.1-1.3-.1-.2 0-.4.1-.5s.5-.6.6-.8c.1-.2.1-.4 0-.5s-.6-1.4-.8-1.9-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.2-.9.8-.9 2s1 2.4 1.1 2.6c.1.2 1.9 3 4.5 4.1.6.3 1.1.5 1.5.6.6.2 1.1.2 1.5.1.5-.1 1.3-.5 1.5-1.1.2-.6.2-1.1.1-1.2 0-.1-.2-.1-.4-.2z"/>
     <path d="M16 3C9.9 3 5 7.9 5 14c0 2.5.9 4.8 2.4 6.6L6 29l8.6-1.4c1.4.4 2.9.6 4.4.6 6.1 0 11-4.9 11-11S22.1 3 16 3zm0 20.9c-1.5 0-2.9-.4-4.1-1l-.3-.2-5 .8.9-4.8-.2-.3C6.4 17.1 6 15.6 6 14c0-5.5 4.5-10 10-10s10 4.5 10 10-4.5 9.9-10 9.9z"/>
   </symbol>
+  <symbol id="ico-pin" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></symbol>
+  <symbol id="ico-parking" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3h9a5 5 0 0 1 0 10H9v8H5V3zm4 6h5a2 2 0 1 0 0-4H9v4z"/></symbol>
+  <symbol id="ico-bus" viewBox="0 0 24 24" fill="currentColor"><path d="M17 1H7a4 4 0 0 0-4 4v10a2 2 0 0 0 2 2v3a1 1 0 0 0 1 1h2v-4h8v4h2a1 1 0 0 0 1-1v-3a2 2 0 0 0 2-2V5a4 4 0 0 0-4-4zM5 9h14v4H5V9zm0-2V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v2H5zM7 18a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm10 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></symbol>
+  <symbol id="ico-shower" viewBox="0 0 24 24" fill="currentColor"><path d="M6 3a6 6 0 0 1 6 6h7v2h-1v10h-2V11h-4.19A6.002 6.002 0 0 1 0 9h2a4 4 0 0 0 4-4V3zM6 15a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm3 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm3 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></symbol>
+  <symbol id="ico-door" viewBox="0 0 24 24" fill="currentColor"><path d="M5 21h2V3H5v18zm4-18v18l10-2V5L9 3zm7 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/></symbol>
+  <symbol id="ico-phone" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.7 11.7 0 0 0 3.7.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.4 21 3 13.6 3 4a1 1 0 0 1 1-1h3.4a1 1 0 0 1 1 1 11.7 11.7 0 0 0 .6 3.7 1 1 0 0 1-.24 1L6.6 10.8z"/></symbol>
 </svg>
 
-<!-- ============ HEADER (spójny) ============ -->
+<!-- ============ HEADER (spójny z główną) ============ -->
 <header id="site-header" role="banner">
   <div class="nav-wrap">
     <a class="brand" href="/" aria-label="Strona główna – Igor Stelmaszczyk">
@@ -101,13 +80,12 @@
         <li><a href="/uslugi">Usługi</a></li>
         <li><a href="/cennik">Cennik</a></li>
         <li><a href="/efekty">Efekty</a></li>
-        <li><a href="/lokalizacja/">Lokalizacja</a></li>
         <li><a href="/umow-konsultacje">Kontakt</a></li>
       </ul>
     </nav>
     <div class="cta">
       <a class="hero-button btn-primary cta-desktop" href="/umow-konsultacje">Umów konsultację</a>
-      <a class="hero-button btn-wa cta-mobile" href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87%20Igor%2C%20potrzebuj%C4%99%20wskaz%C3%B3wek%20dojazdu%20do%20Zdrofit%20Wilan%C3%B3w" target="_blank" rel="noopener noreferrer">
+      <a class="hero-button btn-wa cta-mobile" href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87%20Igor%2C%20potrzebuj%C4%99%20wskaz%C3%B3wek%20dojazdu%20do%20Zdrofit%20Wilan%C3%B3w" target="_blank" rel="noopener">
         <span class="wa-ico" aria-hidden="true"><svg width="16" height="16"><use href="#ico-wa"/></svg></span>WhatsApp
       </a>
     </div>
@@ -115,22 +93,20 @@
   </div>
 </header>
 
-<!-- Mobile menu -->
 <nav id="site-menu" class="mobile-menu" aria-label="Menu mobilne">
   <a href="#" class="close" aria-label="Zamknij menu">✕</a>
   <a href="/o-mnie">O mnie</a>
   <a href="/uslugi">Usługi</a>
   <a href="/cennik">Cennik</a>
   <a href="/efekty">Efekty</a>
-  <a href="/lokalizacja/">Lokalizacja</a>
   <a href="/umow-konsultacje">Kontakt</a>
-  <a class="wa-link" href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87%20Igor%2C%20potrzebuj%C4%99%20wskaz%C3%B3wek%20dojazdu%20do%20Zdrofit%20Wilan%C3%B3w" target="_blank" rel="noopener noreferrer">
+  <a class="wa-link" href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87%20Igor%2C%20potrzebuj%C4%99%20informacji%20o%20parkingu%20i%20doje%C5%BAdzie%20do%20Zdrofit%20Wilan%C3%B3w" target="_blank" rel="noopener">
     <span class="wa-ico" aria-hidden="true"><svg width="16" height="16"><use href="#ico-wa"/></svg></span>Napisz na WhatsApp
   </a>
 </nav>
 <a href="#" class="menu-backdrop" aria-hidden="true"></a>
 
-<!-- Header styles + script (identyczne jak na głównej) -->
+<!-- ===== Header styles z głównej ===== -->
 <style>
   :root{--ff-sans:'Open Sans',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;--ff-head:'Poppins',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;--green:#2e9b2f;--green-700:#1f7e21}
   #site-header{position:sticky;top:0;z-index:9999;min-height:56px;background:#fff;border-bottom:1px solid rgba(0,0,0,.06);-webkit-font-smoothing:antialiased;transition:box-shadow .2s,border-color .2s,background .2s}
@@ -148,14 +124,11 @@
   #site-header .nav a:hover{color:var(--green)}
   #site-header .nav a[aria-current="page"]::after{content:"";position:absolute;left:6px;right:6px;bottom:0;height:2px;background:var(--green);border-radius:2px}
   #site-header .hero-button{display:inline-flex;align-items:center;justify-content:center;font-family:var(--ff-sans);font-weight:700;font-size:.95rem;line-height:1;padding:10px 14px;min-height:40px;border-radius:10px;border:2px solid;text-decoration:none;white-space:nowrap;transition:background-color .25s,border-color .25s,color .25s}
-  #site-header .btn-primary{background:var(--green);color:#fff;border-color:var(--green)}
-  #site-header .btn-primary:hover{background:var(--green-700);border-color:var(--green-700)}
-  #site-header .btn-wa{background:transparent;color:var(--green);border-color:var(--green)}
-  #site-header .btn-wa:hover{background:var(--green);color:#fff}
+  #site-header .btn-primary{background:var(--green);color:#fff;border-color:var(--green)} #site-header .btn-primary:hover{background:var(--green-700);border-color:var(--green-700)}
+  #site-header .btn-wa{background:transparent;color:var(--green);border-color:var(--green)} #site-header .btn-wa:hover{background:var(--green);color:#fff}
   #site-header .wa-ico{display:inline-flex;margin-right:6px}
   #site-header .cta{display:flex;gap:8px;margin-left:6px}
-  #site-header .cta-desktop{display:inline-flex}
-  #site-header .cta-mobile{display:none}
+  #site-header .cta-desktop{display:inline-flex} #site-header .cta-mobile{display:none}
   #site-header .nav-toggle{margin-left:6px;padding:6px;border-radius:8px;display:none;cursor:pointer}
   #site-header .nav-toggle .bar{display:block;width:20px;height:2px;background:#1a1a1a;margin:3px 0}
   .mobile-menu{position:fixed;left:12px;right:12px;top:52px;z-index:10000;background:#fff;border:1px solid #eee;border-radius:14px;box-shadow:0 14px 34px rgba(0,0,0,.12);padding:12px;opacity:0;transform:translateY(-6px);pointer-events:none;visibility:hidden;transition:opacity .18s ease,transform .18s ease,visibility 0s linear .18s;contain:layout paint style}
@@ -166,18 +139,18 @@
   .mobile-menu .wa-link:hover{background:var(--green);color:#fff}
   .menu-backdrop{position:fixed;inset:0;z-index:9998;display:none;background:transparent}
   .mobile-menu:target{opacity:1;transform:translateY(0);pointer-events:auto;visibility:visible;transition-delay:0s}
-  #site-menu:target + .menu-backdrop{display:block}
-  html:has(#site-menu:target){overflow:hidden}
+  #site-menu:target + .menu-backdrop{display:block} html:has(#site-menu:target){overflow:hidden}
   @media (max-width:900px){#site-header .nav{display:none!important}#site-header .nav-toggle{display:inline-block!important}#site-header .cta-desktop{display:none!important}#site-header .cta-mobile{display:inline-flex!important}}
   @media (max-width:360px){#site-header .brand-text strong{font-size:.95rem}#site-header .brand-text em{font-size:.76rem}#site-header .hero-button{padding:9px 12px;min-height:38px;font-size:.92rem}}
   #site-header a:focus-visible,.mobile-menu a:focus-visible{outline:3px solid var(--green);outline-offset:2px}
 </style>
 <script>
+  // header: cień + aria-current
   document.addEventListener('DOMContentLoaded',function(){
     var h=document.getElementById('site-header');
     function s(){ h.classList.toggle('is-scrolled', window.scrollY>4); }
     s(); window.addEventListener('scroll', s, {passive:true});
-    var here = location.pathname.replace(/\/+$/,'');
+    var here=location.pathname.replace(/\/+$/,'');
     document.querySelectorAll('#site-header .nav a').forEach(function(a){
       var path=(a.getAttribute('href')||'').replace(/\/+$/,'');
       if(path && path===here){ a.setAttribute('aria-current','page'); }
@@ -185,157 +158,181 @@
   });
 </script>
 
-<!-- WhatsApp FAB -->
-<style>
-  @keyframes pulse {0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
-  #whatsapp-fixed{position:fixed;bottom:20px;right:20px;z-index:9999;width:58px;height:58px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 8px 20px rgba(0,0,0,.25);animation:pulse 2s infinite;line-height:0}
-  #whatsapp-fixed svg{width:28px;height:28px;fill:#fff}
-  #whatsapp-fixed:focus-visible{outline:3px solid #1f7e21;outline-offset:2px}
-  @media (min-width:769px){#whatsapp-fixed{display:none}}
-  @media (prefers-reduced-motion:reduce){#whatsapp-fixed{animation:none}}
-</style>
-<a id="whatsapp-fixed" href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87!%20Poprosz%C4%99%20o%20najszybsz%C4%85%20tras%C4%99%20do%20Zdrofit%20Wilan%C3%B3w" target="_blank" rel="noopener noreferrer" title="Napisz na WhatsApp" aria-label="Napisz na WhatsApp"><svg aria-hidden="true"><use href="#ico-wa"/></svg></a>
-
 <!-- ============ HERO: Lokalizacja ============ -->
-<section id="loc-hero" class="wrap" style="padding:48px 20px;max-width:1100px;margin:0 auto">
-  <p class="eyebrow" style="color:#2e9b2f;font-weight:700;letter-spacing:.02em;margin:0 0 6px;font-family:'Open Sans',sans-serif">Lokalizacja i parking</p>
-  <div class="grid" style="display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center">
+<section id="lok-hero" aria-label="Lokalizacja i parking — Zdrofit Wilanów" style="font-family:'Open Sans',sans-serif;background:#fff">
+  <div style="max-width:1100px;margin:0 auto;padding:40px 20px;display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center">
     <div>
-      <h1 style="font-family:'Poppins',sans-serif;font-size:2rem;font-weight:700;margin:0 0 8px">Zdrofit Miasteczko Wilanów — dojazd bez stresu</h1>
-      <p class="addr" style="color:#555;font-weight:600;margin:0 0 12px">al. Rzeczypospolitej 1, Warszawa (Wilanów)</p>
-      <p style="margin:0 0 12px">Tu znajdziesz wszystko, by łatwo dotrzeć na trening: mapkę, wskazówki do wejścia, informacje o parkingu, komunikacji miejskiej oraz garderobie i prysznicach.</p>
-      <div class="cta-row" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">
-        <a id="cta-route-hero" class="hero-button btn-fill" href="https://www.google.com/maps/dir/?api=1&destination=Zdrofit%20Wilan%C3%B3w%2C%20al.%20Rzeczypospolitej%201%2C%20Warszawa" target="_blank" rel="noopener">Wyznacz trasę</a>
-        <a id="cta-call-hero" class="hero-button btn-outline" href="tel:+48537918161">Zadzwoń: +48&nbsp;537&nbsp;918&nbsp;161</a>
+      <p style="margin:0 0 6px;color:#2e9b2f;font-weight:700;letter-spacing:.02em">Wilanów • Zdrofit</p>
+      <h1 style="font-family:'Poppins',sans-serif;font-weight:700;font-size:2.2rem;line-height:1.3;margin:0 0 8px">Lokalizacja i parking</h1>
+      <p style="color:#555;margin:0 0 10px;font-size:1.05rem">Zbijamy barierę dojazdu: dokładny adres, wejście do klubu, parking, komunikacja — wszystko w jednym miejscu.</p>
+      <ul style="list-style:none;padding:0;margin:14px 0 18px;display:flex;flex-wrap:wrap;gap:10px">
+        <li style="padding:6px 10px;border-radius:999px;background:#f0f7f0;border:1px solid #d9ead9;font-weight:700">Zdrofit Miasteczko Wilanów</li>
+        <li style="padding:6px 10px;border-radius:999px;background:#f0f7f0;border:1px solid #d9ead9;font-weight:700">al. Rzeczypospolitej 1</li>
+      </ul>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a id="cta-trasa-hero" class="btn" href="https://www.google.com/maps/dir/?api=1&destination=Zdrofit%20Miasteczko%20Wilan%C3%B3w%2C%20al.%20Rzeczypospolitej%201%2C%20Warszawa" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#2e9b2f;color:#fff;border:2px solid #2e9b2f;border-radius:10px;padding:12px 16px;font-weight:700;text-decoration:none">
+          <svg width="18" height="18" aria-hidden="true"><use href="#ico-pin"/></svg> Wyznacz trasę
+        </a>
+        <a id="cta-zadzwon-hero" class="btn" href="tel:+48537918161" style="display:inline-flex;align-items:center;gap:8px;background:#1a1a1a;color:#fff;border:2px solid #1a1a1a;border-radius:10px;padding:12px 16px;font-weight:700;text-decoration:none">
+          <svg width="18" height="18" aria-hidden="true"><use href="#ico-phone"/></svg> Zadzwoń
+        </a>
       </div>
+      <p style="margin:10px 0 0;color:#6b6b6b;font-size:.95rem">Sitelink: <strong>Zdrofit Miasteczko Wilanów</strong> • <strong>Parking i szybki dojazd</strong></p>
     </div>
-    <div class="card" style="background:#f6fbf6;border:1px solid #d9ead9;border-radius:14px;overflow:hidden">
-      <iframe
-        src="https://www.google.com/maps?q=Zdrofit%20Wilan%C3%B3w%2C%20al.%20Rzeczypospolitej%201%2C%20Warszawa&output=embed"
-        title="Mapa dojazdu: Zdrofit Miasteczko Wilanów"
-        loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+
+    <!-- Mapka (iframe bez klucza, lightweight) -->
+    <div style="border-radius:14px;overflow:hidden;border:1px solid #e6eee6;box-shadow:0 8px 24px rgba(0,0,0,.06)">
+      <iframe title="Mapa dojazdu — Zdrofit Miasteczko Wilanów" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps?q=Zdrofit%20Miasteczko%20Wilan%C3%B3w%2C%20al.%20Rzeczypospolitej%201%2C%20Warszawa&output=embed"
         style="display:block;width:100%;height:360px;border:0"></iframe>
     </div>
   </div>
-  <style>
-    @media (max-width:900px){#loc-hero .grid{grid-template-columns:1fr}}
-  </style>
 </section>
 
-<!-- ============ Wejście do klubu ============ -->
-<section id="wejscie" style="background:#f9f9f9">
-  <div class="wrap" style="max-width:1100px;margin:0 auto;padding:40px 20px">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
-      <div class="card" style="background:#fff;border:1px solid #eee;border-radius:12px;padding:18px">
-        <h2 style="font-family:'Poppins',sans-serif;margin:0 0 10px">Wejście do klubu</h2>
-        <ul style="list-style:none;padding:0;margin:0;display:grid;gap:8px">
-          <li><strong>Wejście od al. Rzeczypospolitej 1</strong> — kieruj się na logotyp Zdrofit.</li>
-          <li>Po wejściu recepcja po prawej — powiedz, że masz trening z <strong>Igorem</strong>.</li>
-          <li>Pierwszy raz? Przyjdź 5–10 min wcześniej — pomogę w formalnościach.</li>
-        </ul>
-      </div>
-      <div class="card" style="background:#fff;border:1px solid #eee;border-radius:12px;padding:12px">
-        <img src="/lib/IMG_4377-1-mf2g7usc.webp" alt="Wejście do Zdrofit Wilanów" width="960" height="640" loading="lazy" style="display:block;width:100%;height:auto;border-radius:10px;object-fit:cover">
-        <p style="margin:8px 0 0;color:#6b6b6b;font-size:.95rem">Najłatwiej zaparkować i podejść pieszo 1–3 min.</p>
-      </div>
+<!-- ============ MAPA • szybkie linki ============ -->
+<section id="mapa" style="font-family:'Open Sans',sans-serif;background:#f9f9f9">
+  <div style="max-width:1100px;margin:0 auto;padding:26px 20px">
+    <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center">
+      <a class="chip" href="https://www.google.com/maps/dir/?api=1&destination=Zdrofit%20Miasteczko%20Wilan%C3%B3w%2C%20al.%20Rzeczypospolitej%201%2C%20Warszawa" target="_blank" rel="noopener"
+         style="padding:8px 12px;border-radius:999px;background:#fff;border:1px solid #d9ead9;font-weight:700;display:inline-flex;align-items:center;gap:8px">
+         <svg width="16" height="16" aria-hidden="true"><use href="#ico-pin"/></svg> Nawigacja Google
+      </a>
+      <a class="chip" href="https://ul.waze.com/ul?ll=52.1636%2C21.0901&navigate=yes" target="_blank" rel="noopener"
+         style="padding:8px 12px;border-radius:999px;background:#fff;border:1px solid #d9ead9;font-weight:700;display:inline-flex;align-items:center;gap:8px">
+         🚗 Waze
+      </a>
+      <a class="chip" href="https://apple.maps/?q=Zdrofit%20Miasteczko%20Wilan%C3%B3w%2C%20Warszawa" target="_blank" rel="noopener"
+         style="padding:8px 12px;border-radius:999px;background:#fff;border:1px solid #d9ead9;font-weight:700;display:inline-flex;align-items:center;gap:8px">
+          Apple Maps
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ============ Parking ============ -->
-<section id="parking">
-  <div class="wrap" style="max-width:1100px;margin:0 auto;padding:40px 20px">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
-      <div class="card" style="background:#fff;border:1px solid #eee;border-radius:12px;padding:18px">
-        <h2 style="font-family:'Poppins',sans-serif;margin:0 0 10px">Parking w pobliżu</h2>
-        <ul style="list-style:none;padding:0;margin:0;display:grid;gap:8px">
-          <li>Ogólnodostępne miejsca przy <strong>al. Rzeczypospolitej</strong> i sąsiednich ulicach.</li>
-          <li>W szczycie dolicz <strong>5–10 min</strong> na znalezienie miejsca.</li>
-          <li>Ustaw cel: <em>“Zdrofit Miasteczko Wilanów, al. Rzeczypospolitej 1”</em>.</li>
-        </ul>
-        <div style="margin-top:12px">
-          <a id="cta-route-parking" class="hero-button btn-outline" href="https://www.google.com/maps/dir/?api=1&destination=Zdrofit%20Wilan%C3%B3w%2C%20al.%20Rzeczypospolitej%201%2C%20Warszawa" target="_blank" rel="noopener">Prowadź do parkingu</a>
-        </div>
-        <p style="margin:10px 0 0;color:#6b6b6b;font-size:.95rem">Zasady parkowania mogą się zmieniać — sprawdź znaki na miejscu.</p>
+<!-- ============ WEJŚCIE DO KLUBU ============ -->
+<section id="wejscie" style="font-family:'Open Sans',sans-serif;background:#fff">
+  <div style="max-width:1100px;margin:0 auto;padding:46px 20px;display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center">
+    <div>
+      <h2 style="font-family:'Poppins',sans-serif;font-weight:700;margin:0 0 10px;font-size:1.8rem">Wejście do klubu</h2>
+      <p style="color:#333;margin:0 0 12px;font-size:1.05rem">Wejście znajduje się od strony <strong>al. Rzeczypospolitej 1</strong>. Przy drzwiach recepcja Zdrofit — powiedz, że masz umówiony trening personalny z Igorem.</p>
+      <ul style="padding-left:18px;margin:0;color:#555;line-height:1.7">
+        <li>Recepcja i bramki po lewej — przejście na salę główną.</li>
+        <li>W razie problemu z wejściem — zadzwoń, podejdę.</li>
+      </ul>
+      <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn" href="tel:+48537918161" style="display:inline-flex;align-items:center;gap:8px;background:#1a1a1a;color:#fff;border:2px solid #1a1a1a;border-radius:10px;padding:10px 14px;font-weight:700;text-decoration:none">
+          <svg width="18" height="18"><use href="#ico-phone"/></svg> Zadzwoń
+        </a>
+        <a class="btn" href="#szatnie" style="display:inline-flex;align-items:center;gap:8px;background:#fff;border:2px solid #2e9b2f;color:#2e9b2f;border-radius:10px;padding:10px 14px;font-weight:700;text-decoration:none">
+          <svg width="18" height="18"><use href="#ico-door"/></svg> Szatnie i prysznice
+        </a>
       </div>
-      <div class="card" style="background:#fff;border:1px solid #eee;border-radius:12px;padding:12px;display:flex;align-items:center;justify-content:center">
-        <img src="/lib/7-md6ahbnn.svg" alt="Ikona parkingu" width="420" height="300" loading="lazy" style="display:block;width:100%;max-width:360px;height:auto;object-fit:contain">
-      </div>
+    </div>
+    <div aria-hidden="true" style="border-radius:14px;min-height:220px;background:radial-gradient(600px 260px at 30% 20%, rgba(46,155,47,.08), transparent),#f6fbf6;border:1px solid #d9ead9;display:flex;align-items:center;justify-content:center;font-weight:700;color:#1c371d">
+      Zdjęcie wejścia (opcjonalnie)
     </div>
   </div>
 </section>
 
-<!-- ============ Komunikacja miejska ============ -->
-<section id="komunikacja" style="background:#f9f9f9">
-  <div class="wrap" style="max-width:1100px;margin:0 auto;padding:40px 20px">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
-      <div class="card" style="background:#fff;border:1px solid #eee;border-radius:12px;padding:18px">
-        <h2 style="font-family:'Poppins',sans-serif;margin:0 0 10px">Komunikacja miejska</h2>
-        <ul style="list-style:none;padding:0;margin:0;display:grid;gap:8px">
-          <li>Najbliższe przystanki w Miasteczku Wilanów — dojdziesz pieszo w kilka minut.</li>
-          <li>Aktualne połączenia i przesiadki sprawdzisz w Google Maps.</li>
-        </ul>
-        <div style="margin-top:12px">
-          <a id="cta-transit" class="hero-button btn-outline" href="https://www.google.com/maps/dir/?api=1&destination=Zdrofit%20Wilan%C3%B3w%2C%20al.%20Rzeczypospolitej%201%2C%20Warszawa&travelmode=transit" target="_blank" rel="noopener">Trasa komunikacją</a>
-        </div>
+<!-- ============ PARKING ============ -->
+<section id="parking" style="font-family:'Open Sans',sans-serif;background:#f9f9f9">
+  <div style="max-width:1100px;margin:0 auto;padding:46px 20px;display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center">
+    <div>
+      <h2 style="font-family:'Poppins',sans-serif;font-weight:700;margin:0 0 10px;font-size:1.8rem">Parking w okolicy</h2>
+      <p style="color:#333;margin:0 0 12px;font-size:1.05rem">Najbliższe miejsca postojowe znajdują się przy ulicy wzdłuż okolicznych budynków oraz na pobliskich parkingach osiedlowych/komercyjnych.</p>
+      <ul style="padding-left:18px;margin:0;color:#555;line-height:1.7">
+        <li>Sprawdź oznakowanie na miejscu (ew. strefy/limity czasowe).</li>
+        <li>Na krótkie wizyty często wystarczą miejsca „kiss & ride”/zatoczki — poprowadzę Cię tak, by było najszybciej.</li>
+        <li>Jeśli wolisz — przyjedź 5–7 min wcześniej, pomogę Ci bez stresu zaparkować.</li>
+      </ul>
+      <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn" href="https://www.google.com/maps/search/?api=1&query=parking%20al.%20Rzeczypospolitej%201%20Warszawa" target="_blank" rel="noopener"
+           style="display:inline-flex;align-items:center;gap:8px;background:#fff;border:2px solid #2e9b2f;color:#2e9b2f;border-radius:10px;padding:10px 14px;font-weight:700;text-decoration:none">
+          <svg width="18" height="18"><use href="#ico-parking"/></svg> Znajdź parking
+        </a>
+        <a class="btn" href="tel:+48537918161" style="display:inline-flex;align-items:center;gap:8px;background:#1a1a1a;color:#fff;border:2px solid #1a1a1a;border-radius:10px;padding:10px 14px;font-weight:700;text-decoration:none">
+          <svg width="18" height="18"><use href="#ico-phone"/></svg> Zadzwoń — pomogę
+        </a>
       </div>
-      <div class="card" style="background:#fff;border:1px solid #eee;border-radius:12px;padding:12px;display:flex;align-items:center;justify-content:center">
-        <img src="/lib/10-md6dcaca.svg" alt="Ikona autobusu" width="420" height="300" loading="lazy" style="display:block;width:100%;max-width:360px;height:auto;object-fit:contain">
-      </div>
+    </div>
+    <div aria-hidden="true" style="border-radius:14px;min-height:220px;background:radial-gradient(600px 260px at 30% 20%, rgba(0,0,0,.05), transparent),#fff;border:1px solid #e6eee6;display:flex;align-items:center;justify-content:center;font-weight:700;color:#333">
+      Schemat parkingu (opcjonalnie)
     </div>
   </div>
 </section>
 
-<!-- ============ Garderoba / prysznice ============ -->
-<section id="szatnie">
-  <div class="wrap" style="max-width:1100px;margin:0 auto;padding:40px 20px">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
-      <div class="card" style="background:#fff;border:1px solid #eee;border-radius:12px;padding:18px">
-        <h2 style="font-family:'Poppins',sans-serif;margin:0 0 10px">Garderoba i prysznice</h2>
-        <ul style="list-style:none;padding:0;margin:0;display:grid;gap:8px">
-          <li>Przestronne szatnie damskie i męskie.</li>
-          <li>Prysznice i suszarki — weź ręcznik i klapki.</li>
-          <li>Szafki na rzeczy (zabierz kłódkę lub zapytaj w recepcji).</li>
-        </ul>
+<!-- ============ KOMUNIKACJA MIEJSKA ============ -->
+<section id="komunikacja" style="font-family:'Open Sans',sans-serif;background:#fff">
+  <div style="max-width:1100px;margin:0 auto;padding:46px 20px;display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center">
+    <div>
+      <h2 style="font-family:'Poppins',sans-serif;font-weight:700;margin:0 0 10px;font-size:1.8rem">Komunikacja miejska</h2>
+      <p style="color:#333;margin:0 0 12px;font-size:1.05rem">Do klubu dojedziesz wygodnie autobusami kursującymi przez Miasteczko Wilanów. Najbliższe przystanki znajdują się w zasięgu krótkiego spaceru.</p>
+      <ul style="padding-left:18px;margin:0;color:#555;line-height:1.7">
+        <li>Wyszukaj najlepsze połączenie w <a href="https://jakdojade.pl/warszawa/trasa/" target="_blank" rel="noopener">Jakdojade</a> lub <a href="https://www.google.com/maps" target="_blank" rel="noopener">Google Maps</a>.</li>
+        <li>Wysiądź w rejonie al. Rzeczypospolitej — kieruj się na numer 1.</li>
+      </ul>
+      <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn" href="https://jakdojade.pl/warszawa/trasa/?tc=52.1636:21.0901" target="_blank" rel="noopener"
+           style="display:inline-flex;align-items:center;gap:8px;background:#fff;border:2px solid #2e9b2f;color:#2e9b2f;border-radius:10px;padding:10px 14px;font-weight:700;text-decoration:none">
+          <svg width="18" height="18"><use href="#ico-bus"/></svg> Zaplanuj dojazd
+        </a>
+        <a class="btn" href="#lok-hero" style="display:inline-flex;align-items:center;gap:8px;background:#2e9b2f;color:#fff;border:2px solid #2e9b2f;border-radius:10px;padding:10px 14px;font-weight:700;text-decoration:none">
+          <svg width="18" height="18"><use href="#ico-pin"/></svg> Adres i trasa
+        </a>
       </div>
-      <div class="card" style="background:#fff;border:1px solid #eee;border-radius:12px;padding:12px;display:flex;align-items:center;justify-content:center">
-        <img src="/lib/12-md6dhwga.svg" alt="Ikona szatni" width="420" height="300" loading="lazy" style="display:block;width:100%;max-width:360px;height:auto;object-fit:contain">
-      </div>
+    </div>
+    <div aria-hidden="true" style="border-radius:14px;min-height:220px;background:radial-gradient(600px 260px at 70% 20%, rgba(46,155,47,.08), transparent),#f6fbf6;border:1px solid #d9ead9;display:flex;align-items:center;justify-content:center;font-weight:700;color:#1c371d">
+      Ikona autobusu / mapka (opcjonalnie)
     </div>
   </div>
 </section>
 
-<!-- ============ CTA końcowe ============ -->
-<section id="cta-final" style="background:#f9f9f9">
-  <div class="wrap" style="max-width:1100px;margin:0 auto;padding:40px 20px;text-align:center">
-    <h2 style="font-family:'Poppins',sans-serif;margin:0 0 8px">Gotowy? Ustaw nawigację albo zadzwoń</h2>
-    <p style="margin:8px 0 16px;color:#6b6b6b">Jeśli masz pytania o dojazd lub parking — chętnie pomogę.</p>
-    <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
-      <a id="cta-route-final" class="hero-button btn-fill" href="https://www.google.com/maps/dir/?api=1&destination=Zdrofit%20Wilan%C3%B3w%2C%20al.%20Rzeczypospolitej%201%2C%20Warszawa" target="_blank" rel="noopener">Wyznacz trasę</a>
-      <a id="cta-call-final" class="hero-button btn-outline" href="tel:+48537918161">Zadzwoń</a>
+<!-- ============ SZATNIE / PRYSZNICE ============ -->
+<section id="szatnie" style="font-family:'Open Sans',sans-serif;background:#f9f9f9">
+  <div style="max-width:1100px;margin:0 auto;padding:46px 20px;display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center">
+    <div>
+      <h2 style="font-family:'Poppins',sans-serif;font-weight:700;margin:0 0 10px;font-size:1.8rem">Garderoba i prysznice</h2>
+      <p style="color:#333;margin:0 0 12px;font-size:1.05rem">Na miejscu skorzystasz z szatni damskich i męskich, szafek oraz pryszniców. Zabierz <strong>ręcznik i klapki</strong>.</p>
+      <ul style="padding-left:18px;margin:0;color:#555;line-height:1.7">
+        <li>Szafki na kłódkę lub na kod — dostępne w recepcji (w razie potrzeby pomogę).</li>
+        <li>Suszarki do włosów — dostępne.</li>
+      </ul>
+      <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn" href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87%20Igor%2C%20mam%20pytanie%20o%20szatnie%2Fprysznice%20w%20Zdrofit%20Wilan%C3%B3w" target="_blank" rel="noopener"
+           style="display:inline-flex;align-items:center;gap:8px;background:#2e9b2f;color:#fff;border:2px solid #2e9b2f;border-radius:10px;padding:10px 14px;font-weight:700;text-decoration:none">
+          <svg width="18" height="18"><use href="#ico-wa"/></svg> Zapytaj na WhatsApp
+        </a>
+      </div>
+    </div>
+    <div aria-hidden="true" style="border-radius:14px;min-height:220px;background:radial-gradient(600px 260px at 50% 30%, rgba(0,0,0,.05), transparent),#fff;border:1px solid #e6eee6;display:flex;align-items:center;justify-content:center;font-weight:700;color:#333">
+      Ikona prysznica / zdjęcie (opcjonalnie)
     </div>
   </div>
 </section>
 
-<!-- Sticky CTA (mobile-first) -->
-<div id="sticky-cta" style="position:sticky;bottom:0;z-index:50;background:#0f1111;padding:10px 14px">
-  <div class="wrap" style="max-width:1100px;margin:0 auto;padding:0">
-    <div style="display:flex;gap:10px;justify-content:center">
-      <a id="cta-route-sticky" class="hero-button btn-fill" href="https://www.google.com/maps/dir/?api=1&destination=Zdrofit%20Wilan%C3%B3w%2C%20al.%20Rzeczypospolitej%201%2C%20Warszawa" target="_blank" rel="noopener">Wyznacz trasę</a>
-      <a id="cta-call-sticky" class="hero-button btn-outline" href="tel:+48537918161">Zadzwoń</a>
-    </div>
+<!-- ============ STICKY CTA (mobile) ============ -->
+<div id="sticky-cta" aria-label="Szybkie działania" style="position:sticky;bottom:0;z-index:9998;background:#ffffffcc;backdrop-filter:saturate(1.1) blur(6px);border-top:1px solid rgba(0,0,0,.06)">
+  <div style="max-width:1100px;margin:0 auto;padding:10px 12px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+    <a id="cta-trasa-sticky" class="btn" href="https://www.google.com/maps/dir/?api=1&destination=Zdrofit%20Miasteczko%20Wilan%C3%B3w%2C%20al.%20Rzeczypospolitej%201%2C%20Warszawa" target="_blank" rel="noopener"
+       style="display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#2e9b2f;color:#fff;border:2px solid #2e9b2f;border-radius:10px;padding:12px 14px;font-weight:700;text-decoration:none">
+      <svg width="18" height="18"><use href="#ico-pin"/></svg> Wyznacz trasę
+    </a>
+    <a id="cta-zadzwon-sticky" class="btn" href="tel:+48537918161"
+       style="display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#1a1a1a;color:#fff;border:2px solid #1a1a1a;border-radius:10px;padding:12px 14px;font-weight:700;text-decoration:none">
+      <svg width="18" height="18"><use href="#ico-phone"/></svg> Zadzwoń
+    </a>
   </div>
 </div>
 
-<!-- ============ FOOTER (identyczny) ============ -->
+<!-- ============ FOOTER (jak na głównej) ============ -->
 <footer id="ig-footer" role="contentinfo" aria-label="Stopka strony">
   <div class="wrap">
     <div class="col about">
       <h3>Igor Stelmaszczyk</h3>
       <p>Trener personalny w Zdrofit Wilanów. Bez zadęcia, z planem, który działa.</p>
       <div class="cta-row">
-        <a id="cta-tel-any" class="btn btn-call" href="tel:+48537918161">Zadzwoń</a>
-        <a class="btn btn-wa" href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87%2C%20potrzebuj%C4%99%20info%20o%20doje%C5%BAdzie%20i%20parkingu%20do%20Zdrofit%20Wilan%C3%B3w" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a class="btn btn-call" href="tel:+48537918161">Zadzwoń</a>
+        <a class="btn btn-wa" href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87%2C%20potrzebuj%C4%99%20info%20o%20doje%C5%BAdzie%20%2F%20parkingu%20do%20Zdrofit%20Wilan%C3%B3w" target="_blank" rel="noopener">WhatsApp</a>
       </div>
     </div>
     <div class="col contact">
@@ -345,8 +342,8 @@
         <a href="tel:+48537918161">+48&nbsp;537&nbsp;918&nbsp;161</a>
       </address>
       <h4>Lokalizacja</h4>
-      <p>Trenuję w: <strong>Zdrofit Wilanów</strong><br>
-        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Zdrofit%20Wilan%C3%B3w%20Warszawa" target="_blank" rel="noopener noreferrer">Pokaż na mapie →</a>
+      <p>Trenuję w: <strong>Zdrofit Miasteczko Wilanów</strong><br>
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Zdrofit%20Wilan%C3%B3w%20Warszawa" target="_blank" rel="noopener">Pokaż na mapie →</a>
       </p>
     </div>
     <nav class="col links" aria-label="Szybkie linki">
@@ -354,7 +351,6 @@
       <ul class="list">
         <li><a href="/cennik">Cennik</a></li>
         <li><a href="/o-mnie">O mnie</a></li>
-        <li><a href="/lokalizacja/">Lokalizacja</a></li>
         <li><a href="/umow-konsultacje">Kontakt</a></li>
       </ul>
     </nav>
@@ -386,18 +382,14 @@
   </style>
 </footer>
 
-<!-- Kampanie: przenoszenie gclid/utm + eventy (spójne z główną) -->
+<!-- ===== Kampanie: dopinanie UTM/GCLID do linków CTA ===== -->
 <script>
 (function(){
   const qs = location.search;
   if(qs && /\b(gclid|utm_)/i.test(qs)){
     const sel=[
-      '#cta-route-hero','#cta-call-hero',
-      '#cta-route-parking','#cta-transit',
-      '#cta-route-final','#cta-call-final',
-      '#cta-route-sticky','#cta-call-sticky',
-      '#whatsapp-fixed','#cta-tel-any',
-      'a[href^="/umow-konsultacje"]','a[href^="/cennik"]','a[href^="https://wa.me/"]'
+      '#cta-trasa-hero','#cta-zadzwon-hero','#cta-trasa-sticky','#cta-zadzwon-sticky',
+      'a[href^="https://www.google.com/maps/dir/"]','a[href^="https://wa.me/"]'
     ];
     document.querySelectorAll(sel.join(',')).forEach(a=>{
       if(!a||!a.href) return;
@@ -409,26 +401,44 @@
       }catch(e){}
     });
   }
+  // GA eventy
   function gaEvent(name,params){ if(typeof gtag==='function') gtag('event',name,params||{}); }
-  function adsConv(send_to,value){
-    if(typeof gtag!=='function'||!send_to) return;
-    const p={send_to:send_to}; if(typeof value==='number'){p.value=value;p.currency='PLN';}
-    gtag('event','conversion',p);
-  }
-  [
-    {sel:'#cta-route-hero',   name:'route_click',    label:'route_hero',   conv:'AW-XXXXXXX/route'},
-    {sel:'#cta-call-hero',    name:'call_click',     label:'call_hero',    conv:'AW-XXXXXXX/callClick'},
-    {sel:'#cta-route-parking',name:'route_click',    label:'route_parking',conv:'AW-XXXXXXX/route'},
-    {sel:'#cta-transit',      name:'transit_click',  label:'transit',      conv:null},
-    {sel:'#cta-route-final',  name:'route_click',    label:'route_final',  conv:'AW-XXXXXXX/route'},
-    {sel:'#cta-call-final',   name:'call_click',     label:'call_final',   conv:'AW-XXXXXXX/callClick'},
-    {sel:'#cta-route-sticky', name:'route_click',    label:'route_sticky', conv:'AW-XXXXXXX/route'},
-    {sel:'#cta-call-sticky',  name:'call_click',     label:'call_sticky',  conv:'AW-XXXXXXX/callClick'}
-  ].forEach(({sel,name,label,conv})=>{
+  [['#cta-trasa-hero','route_click','hero'],
+   ['#cta-zadzwon-hero','call_click','hero'],
+   ['#cta-trasa-sticky','route_click','sticky'],
+   ['#cta-zadzwon-sticky','call_click','sticky']
+  ].forEach(([sel,evt,label])=>{
     const el=document.querySelector(sel); if(!el) return;
-    el.addEventListener('click',()=>{ gaEvent(name,{category:'CTA',label}); if(conv) adsConv(conv); }, {passive:true});
+    el.addEventListener('click',()=>gaEvent(evt,{category:'CTA',label}),{passive:true});
   });
 })();
 </script>
+
+<!-- ===== Structured Data: LocalBusiness + Breadcrumbs ===== -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"LocalBusiness",
+  "name":"Zdrofit Miasteczko Wilanów — trener personalny 1:1",
+  "image":"https://trenerwilanow.pl/lib/IMG_4377-1-mf2g7usc.webp",
+  "telephone":"+48537918161",
+  "address":{"@type":"PostalAddress","streetAddress":"al. Rzeczypospolitej 1","addressLocality":"Warszawa","addressRegion":"Mazowieckie","postalCode":"","addressCountry":"PL"},
+  "areaServed":"Wilanów, Warszawa",
+  "url":"https://trenerwilanow.pl/lokalizacja/",
+  "hasMap":"https://www.google.com/maps?q=Zdrofit%20Miasteczko%20Wilan%C3%B3w%20al.%20Rzeczypospolitej%201%20Warszawa",
+  "geo":{"@type":"GeoCoordinates","latitude":52.1636,"longitude":21.0901}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Strona główna","item":"https://trenerwilanow.pl/"},
+    {"@type":"ListItem","position":2,"name":"Lokalizacja i parking","item":"https://trenerwilanow.pl/lokalizacja/"}
+  ]
+}
+</script>
+
 </body>
 </html>
