@@ -68,9 +68,11 @@
     gtag('config','G-YYYYYYYY',{ anonymize_ip:true });
     gtag('config','AW-XXXXXXX');
   </script>
-  <!-- Base reset + content-visibility -->
+  <!-- Base reset + content-visibility (POPRAWKA #1: smooth tylko bez R-M) -->
   <style>
-    html{scroll-behavior:smooth}
+    @media (prefers-reduced-motion:no-preference){ html{scroll-behavior:smooth} }
+    @media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} }
+
     html,body{background:#fff;color:#1a1a1a}
     .visually-hidden{position:absolute!important;width:1px;height:1px;margin:-1px;border:0;padding:0;white-space:nowrap;clip-path:inset(50%);clip:rect(0 0 0 0);overflow:hidden}
     #site-header.is-scrolled{box-shadow:0 8px 16px rgba(0,0,0,.06);border-color:rgba(0,0,0,.03)}
@@ -177,11 +179,19 @@
   #coop-sec,#opinie-klientow,#formularz{scroll-margin-top:90px}
   @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
+<!-- POPRAWKA #1: scroll handler na rAF -->
 <script>
   document.addEventListener('DOMContentLoaded',function(){
     var h=document.getElementById('site-header');
-    function s(){ h.classList.toggle('is-scrolled', window.scrollY>4); }
-    s(); window.addEventListener('scroll', s, {passive:true});
+    function apply(){ h.classList.toggle('is-scrolled', window.scrollY>4); }
+    apply();
+    let ticking=false;
+    window.addEventListener('scroll',function(){
+      if(!ticking){
+        ticking=true;
+        requestAnimationFrame(function(){ apply(); ticking=false; });
+      }
+    },{passive:true});
     var here = location.pathname.replace(/\/+$/,'');
     document.querySelectorAll('#site-header .nav a').forEach(function(a){
       var path=(a.getAttribute('href')||'').replace(/\/+$/,'');
@@ -199,6 +209,17 @@
   @media (prefers-reduced-motion:reduce){#whatsapp-fixed{animation:none}}
 </style>
 <a id="whatsapp-fixed" href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87!%20Chc%C4%99%20um%C3%B3wi%C4%87%20bezp%C5%82atn%C4%85%20konsultacj%C4%99%20w%20Zdrofit%20Wilan%C3%B3w" target="_blank" rel="noopener noreferrer" title="Napisz na WhatsApp" aria-label="Napisz na WhatsApp"><svg aria-hidden="true" focusable="false"><use href="#ico-wa"/></svg></a>
+<!-- POPRAWKA #3: wycisz pulsowanie FAB po pierwszym scrollu / 8s / R-M -->
+<script>
+  (function(){
+    var fab=document.getElementById('whatsapp-fixed');
+    if(!fab) return;
+    function stop(){ fab.style.animation='none'; }
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){ stop(); return; }
+    window.addEventListener('scroll', stop, {passive:true, once:true});
+    setTimeout(stop, 8000);
+  })();
+</script>
 <!-- HERO -->
 <section id="ig-hero" aria-label="Hero: Trener personalny Wilanów">
   <div class="hero">
@@ -223,7 +244,7 @@
         <li>Zdrofit Wilanów</li>
       </ul>
 
-      <!-- ZMIENIONE TYLKO PRZYCISKI + KOLEJNOŚĆ -->
+      <!-- KOLEJNOŚĆ CTA: Tel → WhatsApp → Formularz (pełna szerokość pod spodem) -->
       <div class="cta-row">
         <!-- Zadzwoń -->
         <div class="cta-item is-tel">
@@ -296,7 +317,7 @@
     @keyframes heroArrBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
     @media (max-width:768px){
       #ig-hero .hero{flex-direction:column;text-align:center;padding:32px 16px;gap:22px;min-height:auto}
-      #ig-hero .hero-image img{width:min(68vw,240px);box-shadow:0 8px 18px rgba(0,0,0,.16)}
+      #ig-hero .hero-image img{width:min(68vw,240px);box-shadow:0 8px 18px rgba(0,0,0,.16)} /* lżejszy cień na mobile */
       #ig-hero h1{font-size:1.65rem}
       #ig-hero h2{font-size:1.15rem}
       #ig-hero .lead{font-size:.88rem}
@@ -328,6 +349,12 @@
   </script>
 </section>
 
+<!-- POPRAWKA #4 – lżejsze cienie na mobile także dla kart z opiniami -->
+<style>
+  @media (max-width:768px){
+    #opinie-klientow [style*="box-shadow"]{ box-shadow:0 3px 10px rgba(0,0,0,.06)!important }
+  }
+</style>
 <!-- KPI / Statystyki -->
 <section id="stats" style="background:#fff;font-family:'Open Sans',sans-serif">
   <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:40px;padding:40px 20px">
@@ -607,6 +634,7 @@
     #ig-footer .bar{border-top:1px solid rgba(255,255,255,.08);padding:14px 20px;text-align:center;font-size:.95rem;color:#cfd6dc}
   </style>
 </footer>
+
 <!-- Schema Service -->
 <script type="application/ld+json">
 {
@@ -620,63 +648,95 @@
   "url":"https://trenerwilanow.pl/trener-personalny-wilanow"
 }
 </script>
-<!-- Prefetch najczęściej odwiedzanych -->
+
+<!-- Prefetch najczęściej odwiedzanych (pozostawione, ale odroczone do idle) -->
 <script>
   window.addEventListener('load',function(){
     try{
-      ['/umow-konsultacje','/cennik'].forEach(function(href){
-        var l=document.createElement('link'); l.rel='prefetch'; l.as='document'; l.href=href; document.head.appendChild(l);
+      var hrefs=['/umow-konsultacje','/cennik'];
+      (window.requestIdleCallback||function(cb){setTimeout(cb,1)})(function(){
+        hrefs.forEach(function(href){
+          var l=document.createElement('link');
+          l.rel='prefetch'; l.as='document'; l.href=href;
+          document.head.appendChild(l);
+        });
       });
     }catch(e){}
-  });
+  },{once:true});
 </script>
-<!-- Kampanie: przenoszenie gclid/utm + eventy -->
+
+<!-- POPRAWKA #2: fetchpriority=low dla obrazów poza HERO + upewnienie się, że są leniwie ładowane -->
+<script>
+  (function(){
+    document.addEventListener('DOMContentLoaded', function(){
+      var sel='#stats img, #about-mini img, #coop-sec img, #price-highlight img, #opinie-klientow img';
+      document.querySelectorAll(sel).forEach(function(img){
+        if(!img.hasAttribute('loading')) img.setAttribute('loading','lazy');
+        try{ img.fetchPriority='low'; }catch(e){}
+      });
+    }, {once:true});
+  })();
+</script>
+
+<!-- POPRAWKA #5 i #6: Kampanie/UTM + eventy — odroczone do idle + preconnect do WhatsApp, z poszanowaniem prefers-reduced-data -->
 <script>
 (function(){
-  const qs = location.search;
-  if(qs && /\b(gclid|utm_)/i.test(qs)){
-    const sel=[
-      '#cta-form-hero','#cta-wa-hero','#cta-form-coop','#cta-wa-coop',
-      '#cta-cennik','#whatsapp-fixed','#cta-tel-any',
-      'a[href^="/umow-konsultacje"]','a[href^="/cennik"]','a[href^="https://wa.me/"]'
-    ];
-    document.querySelectorAll(sel.join(',')).forEach(a=>{
-      if(!a||!a.href) return;
-      try{
-        const u=new URL(a.href,location.origin);
-        const current=new URLSearchParams(u.search), incoming=new URLSearchParams(qs);
-        incoming.forEach((v,k)=>{ if(!current.has(k)) current.set(k,v); });
-        u.search=current.toString(); a.href=u.toString();
-      }catch(e){}
+  function runCampaign(){
+    const qs = location.search;
+    if(qs && /\b(gclid|utm_)/i.test(qs)){
+      const sel=[
+        '#cta-form-hero','#cta-wa-hero','#cta-form-coop','#cta-wa-coop',
+        '#cta-cennik','#whatsapp-fixed','#cta-tel-any','#cta-tel-hero',
+        'a[href^="/umow-konsultacje"]','a[href^="/cennik"]','a[href^="https://wa.me/"]'
+      ];
+      document.querySelectorAll(sel.join(',')).forEach(function(a){
+        if(!a||!a.href) return;
+        try{
+          const u=new URL(a.href,location.origin);
+          const current=new URLSearchParams(u.search);
+          const incoming=new URLSearchParams(qs);
+          incoming.forEach((v,k)=>{ if(!current.has(k)) current.set(k,v); });
+          u.search=current.toString(); a.href=u.toString();
+        }catch(e){}
+      });
+    }
+    function gaEvent(name,params){ if(typeof gtag==='function') gtag('event',name,params||{}); }
+    function adsConv(send_to,value){
+      if(typeof gtag!=='function'||!send_to) return;
+      const p={send_to:send_to}; if(typeof value==='number'){p.value=value;p.currency='PLN';}
+      gtag('event','conversion',p);
+    }
+    [
+      {sel:'#cta-form-hero', name:'lead_click',     label:'form_hero',  conv:'AW-XXXXXXX/leadForm'},
+      {sel:'#cta-form-coop', name:'lead_click',     label:'form_coop',  conv:'AW-XXXXXXX/leadForm'},
+      {sel:'#cta-wa-hero',   name:'whatsapp_click', label:'wa_hero',    conv:'AW-XXXXXXX/waClick'},
+      {sel:'#cta-wa-coop',   name:'whatsapp_click', label:'wa_coop',    conv:'AW-XXXXXXX/waClick'},
+      {sel:'#cta-cennik',    name:'pricing_view',   label:'pricing_btn',conv:null},
+      {sel:'#cta-tel-any',   name:'call_click',     label:'tel_any',    conv:'AW-XXXXXXX/callClick'},
+      {sel:'#cta-tel-hero',  name:'call_click',     label:'tel_hero',   conv:'AW-XXXXXXX/callClick'}
+    ].forEach(function(x){
+      var el=document.querySelector(x.sel); if(!el) return;
+      el.addEventListener('click', function(){
+        gaEvent(x.name,{category:'CTA',label:x.label});
+        if(x.conv) adsConv(x.conv);
+      });
     });
   }
-  function gaEvent(name,params){ if(typeof gtag==='function') gtag('event',name,params||{}); }
-  function adsConv(send_to,value){
-    if(typeof gtag!=='function'||!send_to) return;
-    const p={send_to:send_to}; if(typeof value==='number'){p.value=value;p.currency='PLN';}
-    gtag('event','conversion',p);
-  }
-  [
-    {sel:'#cta-form-hero', name:'lead_click',     label:'form_hero',  conv:'AW-XXXXXXX/leadForm'},
-    {sel:'#cta-form-coop', name:'lead_click',     label:'form_coop',  conv:'AW-XXXXXXX/leadForm'},
-    {sel:'#cta-wa-hero',   name:'whatsapp_click', label:'wa_hero',    conv:'AW-XXXXXXX/waClick'},
-    {sel:'#cta-wa-coop',   name:'whatsapp_click', label:'wa_coop',    conv:'AW-XXXXXXX/waClick'},
-    {sel:'#cta-cennik',    name:'pricing_view',   label:'pricing_btn',conv:null},
-    {sel:'#cta-tel-any',   name:'call_click',     label:'tel_any',    conv:'AW-XXXXXXX/callClick'},
-    /* nowy przycisk po modyfikacji HERO */
-    {sel:'#cta-tel-hero',  name:'call_click',     label:'tel_hero',   conv:'AW-XXXXXXX/callClick'}
-  ].forEach(({sel,name,label,conv})=>{
-    const el=document.querySelector(sel); if(!el) return;
-    el.addEventListener('click',()=>{ gaEvent(name,{category:'CTA',label}); if(conv) adsConv(conv); }, {passive:true});
-  });
-  let s50=false,s90=false;
-  window.addEventListener('scroll',()=>{
-    const p=(scrollY+innerHeight)/document.documentElement.scrollHeight;
-    if(!s50&&p>=.5){s50=true;gaEvent('scroll_depth',{percent:50});}
-    if(!s90&&p>=.9){s90=true;gaEvent('scroll_depth',{percent:90});}
-  },{passive:true});
+
+  window.addEventListener('load', function(){
+    // #5: odroczenie do idle, aby nie blokować interakcji na mobile
+    (window.requestIdleCallback||function(cb){setTimeout(cb,400)})(runCampaign);
+
+    // #6: preconnect do WhatsApp tylko gdy nie ma oszczędzania danych
+    (window.requestIdleCallback||function(cb){setTimeout(cb,800)})(function(){
+      if(window.matchMedia('(prefers-reduced-data: reduce)').matches) return;
+      var l=document.createElement('link');
+      l.rel='preconnect'; l.href='https://wa.me'; l.crossOrigin='anonymous';
+      document.head.appendChild(l);
+    });
+  }, {once:true});
 })();
 </script>
+
 </body>
 </html>
-
