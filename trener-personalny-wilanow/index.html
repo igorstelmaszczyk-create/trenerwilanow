@@ -4,11 +4,17 @@
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
   <title>Trener personalny Wilanów – Zdrofit Miasteczko Wilanów | Konsultacja 0 zł</title>
   <meta name="description" content="Trener personalny Wilanów — treningi 1:1 w Zdrofit Miasteczko Wilanów (al. Rzeczypospolitej 1). Konsultacja 0 zł, plan pod Twój cel, WhatsApp i telefon. Pierwsze efekty po 4–6 tygodniach.">
   <link rel="canonical" href="https://trenerwilanow.pl/trener-personalny-wilanow">
-  <!-- Preload hero -->
-  <link rel="preload" as="image" href="/lib/IMG_4377-1-mf2g7usc.webp" imagesrcset="/lib/IMG_4377-1-mf2g7usc.webp" imagesizes="300px" fetchpriority="high">
+
+  <!-- PRELOAD HERO LCP (responsywny) -->
+  <link rel="preload" as="image"
+        imagesrcset="/lib/IMG_4377-1-480.avif 480w, /lib/IMG_4377-1-768.avif 768w, /lib/IMG_4377-1-960.avif 960w, /lib/IMG_4377-1-1200.avif 1200w"
+        imagesizes="(max-width:768px) 68vw, 300px"
+        fetchpriority="high">
+
   <!-- Open Graph / Twitter -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Trener personalny Wilanów — Igor Stelmaszczyk">
@@ -18,12 +24,14 @@
   <meta property="og:image:height" content="630">
   <meta property="og:url" content="https://trenerwilanow.pl/trener-personalny-wilanow">
   <meta name="twitter:card" content="summary_large_image">
+
   <!-- Theme / color-scheme + local intent -->
   <meta name="theme-color" content="#2e9b2f">
   <meta name="color-scheme" content="light">
   <meta name="geo.region" content="PL-MZ">
   <meta name="geo.placename" content="Warszawa, Wilanów">
   <meta name="geo.position" content="52.1636;21.0901"><meta name="ICBM" content="52.1636, 21.0901">
+
   <!-- JSON-LD Person -->
   <script type="application/ld+json">
   {
@@ -44,30 +52,13 @@
     "email":"treningi.wilanow@gmail.com"
   }
   </script>
-  <!-- Connection hints -->
+
+  <!-- Connection hints (lightweight) -->
   <link rel="dns-prefetch" href="//www.googletagmanager.com">
   <link rel="dns-prefetch" href="//www.google-analytics.com">
   <link rel="dns-prefetch" href="//wa.me">
-  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
-  <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
-  <!-- Speculation Rules (prerender) -->
-  <script type="speculationrules">
-  {
-    "prerender":[
-      {"source":"document","where":{"href_matches":"*/umow-konsultacje*"}},
-      {"source":"document","where":{"href_matches":"*/cennik*"}}
-    ]
-  }
-  </script>
-  <!-- GA4 + Ads (PODMIEŃ ID) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YYYYYYYY"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config','G-YYYYYYYY',{ anonymize_ip:true });
-    gtag('config','AW-XXXXXXX');
-  </script>
+  <!-- (Preconnect do GA/WA dodamy później warunkowo po load, patrz dół) -->
+
   <!-- Base reset + content-visibility -->
   <style>
     html{scroll-behavior:smooth}
@@ -79,6 +70,7 @@
 </head>
 <body>
 <a href="#ig-hero" class="visually-hidden">Przejdź do treści</a>
+
 <!-- SVG sprite -->
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none;">
   <symbol id="ico-wa" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
@@ -86,6 +78,7 @@
     <path d="M16 3C9.9 3 5 7.9 5 14c0 2.5.9 4.8 2.4 6.6L6 29l8.6-1.4c1.4.4 2.9.6 4.4.6 6.1 0 11-4.9 11-11S22.1 3 16 3zm0 20.9c-1.5 0-2.9-.4-4.1-1l-.3-.2-5 .8.9-4.8-.2-.3C6.4 17.1 6 15.6 6 14c0-5.5 4.5-10 10-10s10 4.5 10 10-4.5 9.9-10 9.9z"/>
   </symbol>
 </svg>
+
 <!-- HEADER -->
 <header id="site-header" role="banner">
   <div class="nav-wrap">
@@ -115,6 +108,7 @@
     <a href="#site-menu" class="nav-toggle" aria-label="Otwórz menu"><span class="bar"></span><span class="bar"></span><span class="bar"></span></a>
   </div>
 </header>
+
 <!-- Mobile overlay menu -->
 <nav id="site-menu" class="mobile-menu" aria-label="Menu mobilne">
   <a href="#" class="close" aria-label="Zamknij menu">✕</a>
@@ -129,6 +123,7 @@
   </a>
 </nav>
 <a href="#" class="menu-backdrop" aria-hidden="true"></a>
+
 <!-- Header styles -->
 <style>
   :root{
@@ -177,6 +172,7 @@
   #coop-sec,#opinie-klientow,#formularz{scroll-margin-top:90px}
   @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
+
 <script>
   document.addEventListener('DOMContentLoaded',function(){
     var h=document.getElementById('site-header');
@@ -189,6 +185,7 @@
     });
   });
 </script>
+
 <!-- WhatsApp FAB -->
 <style>
   @keyframes pulse {0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
@@ -199,11 +196,23 @@
   @media (prefers-reduced-motion:reduce){#whatsapp-fixed{animation:none}}
 </style>
 <a id="whatsapp-fixed" href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87!%20Chc%C4%99%20um%C3%B3wi%C4%87%20bezp%C5%82atn%C4%85%20konsultacj%C4%99%20w%20Zdrofit%20Wilan%C3%B3w" target="_blank" rel="noopener noreferrer" title="Napisz na WhatsApp" aria-label="Napisz na WhatsApp"><svg aria-hidden="true" focusable="false"><use href="#ico-wa"/></svg></a>
+
 <!-- HERO -->
 <section id="ig-hero" aria-label="Hero: Trener personalny Wilanów">
   <div class="hero">
     <div class="hero-image">
-      <img class="hero-photo" src="/lib/IMG_4377-1-mf2g7usc.webp" alt="Trener personalny Wilanów – Igor Stelmaszczyk" title="Trener personalny Zdrofit Wilanów — Igor Stelmaszczyk" width="2120" height="3622" decoding="async" fetchpriority="high" onload="this.classList.add('loaded')">
+      <!-- HERO obraz LCP – responsywny, bez fade-in -->
+      <picture class="hero-picture">
+        <source type="image/avif"
+          srcset="/lib/IMG_4377-1-480.avif 480w, /lib/IMG_4377-1-768.avif 768w, /lib/IMG_4377-1-960.avif 960w, /lib/IMG_4377-1-1200.avif 1200w"
+          sizes="(max-width:768px) 68vw, 300px">
+        <source type="image/webp"
+          srcset="/lib/IMG_4377-1-480.webp 480w, /lib/IMG_4377-1-768.webp 768w, /lib/IMG_4377-1-960.webp 960w, /lib/IMG_4377-1-1200.webp 1200w"
+          sizes="(max-width:768px) 68vw, 300px">
+        <img class="hero-photo" src="/lib/IMG_4377-1-mf2g7usc.webp"
+             alt="Trener personalny Wilanów – Igor Stelmaszczyk"
+             width="2120" height="3622" decoding="async" fetchpriority="high" loading="eager">
+      </picture>
     </div>
     <div class="hero-text">
       <p class="eyebrow">Trener personalny Wilanów</p>
@@ -223,7 +232,7 @@
         <li>Zdrofit Wilanów</li>
       </ul>
 
-      <!-- ZMIENIONE TYLKO PRZYCISKI + KOLEJNOŚĆ -->
+      <!-- CTA: Tel → WhatsApp → Formularz (pełna szerokość pod spodem) -->
       <div class="cta-row">
         <!-- Zadzwoń -->
         <div class="cta-item is-tel">
@@ -259,11 +268,12 @@
       </p>
     </div>
   </div>
+
+  <!-- HERO styles (bez fade-in) -->
   <style>
     #ig-hero{font-family:'Open Sans',sans-serif;-webkit-font-smoothing:antialiased;background:radial-gradient(1200px 500px at 20% 10%, rgba(46,155,47,.06), transparent 60%),radial-gradient(800px 400px at 90% 30%, rgba(0,0,0,.04), transparent 60%),#fff}
     #ig-hero .hero{display:flex;flex-direction:row;align-items:center;justify-content:center;min-height:calc(100vh - 80px);padding:60px 40px;gap:60px}
-    #ig-hero .hero-image img{width:300px;max-width:100%;height:auto;border-radius:20px;display:block;box-shadow:0 10px 20px rgba(0,0,0,.2);opacity:0;transition:opacity .35s ease;aspect-ratio:2120/3622}
-    #ig-hero .hero-image img.loaded{opacity:1}
+    #ig-hero .hero-image img{width:300px;max-width:100%;height:auto;border-radius:20px;display:block;box-shadow:0 10px 20px rgba(0,0,0,.2);opacity:1;transition:none;aspect-ratio:2120/3622}
     #ig-hero .hero-text{max-width:520px}
     #ig-hero .eyebrow{margin:0 0 6px;font:700 .9rem/1 'Open Sans',sans-serif;letter-spacing:.02em;color:var(--green)}
     #ig-hero h1{font-family:'Poppins',sans-serif;font-size:2.2rem;font-weight:600;margin:0 0 8px;letter-spacing:-.5px;line-height:1.3;max-width:28ch;text-shadow:0 1px 2px rgba(0,0,0,.05)}
@@ -278,7 +288,6 @@
     #ig-hero .usp-chips li{padding:6px 10px;border-radius:999px;background:#f0f7f0;color:#1c371d;font-weight:700;font-size:.88rem;border:1px solid #d9ead9}
     #ig-hero .cta-row{display:flex;gap:12px;flex-wrap:wrap}
     #ig-hero .cta-item{display:flex;flex-direction:column;align-items:stretch;flex:1 1 260px}
-    /* formularz na pełną szerokość POD przyciskami */
     #ig-hero .cta-item.is-form{flex:1 1 100%}
     #ig-hero .cta-item .hero-button{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border-radius:10px;min-height:48px;padding:14px 20px;font-weight:700;font-size:1rem;line-height:1;transition:background-color .25s,border-color .25s,transform .05s,color .25s;border:2px solid}
     #ig-hero .cta-sub{margin-top:6px;font-size:.85rem;color:#6b6b6b;text-align:center}
@@ -296,7 +305,7 @@
     @keyframes heroArrBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
     @media (max-width:768px){
       #ig-hero .hero{flex-direction:column;text-align:center;padding:32px 16px;gap:22px;min-height:auto}
-      #ig-hero .hero-image img{width:min(68vw,240px);box-shadow:0 8px 18px rgba(0,0,0,.16)}
+      #ig-hero .hero-image img{width:min(68vw,240px);box-shadow:0 4px 12px rgba(0,0,0,.10)} /* lżejszy cień na mobile */
       #ig-hero h1{font-size:1.65rem}
       #ig-hero h2{font-size:1.15rem}
       #ig-hero .lead{font-size:.88rem}
@@ -304,17 +313,18 @@
       #ig-hero .subclaim{font-size:.94rem;margin-bottom:14px}
       #ig-hero .usp-chips{justify-content:center}
       #ig-hero .usp-chips li{font-size:.86rem}
-      /* KOLEJNOŚĆ NA MOBILE: tel -> WA -> formularz */
+      /* kolejność: tel -> WA -> formularz */
       #ig-hero .cta-item.is-tel{order:1}
       #ig-hero .cta-item.is-wa{order:2}
       #ig-hero .cta-item.is-form{order:3}
-      /* mobilne kolory jak w oryginale: WA wypełniony, formularz obrys */
+      /* mobilne kolory: WA wypełniony, formularz obrys */
       #ig-hero .cta-item.is-wa .hero-button{background:var(--green);color:#fff;border-color:var(--green)}
       #ig-hero .cta-item.is-form .hero-button{background:transparent;color:var(--green);border-color:var(--green)}
     }
     @media (max-width:360px){#ig-hero .hero{padding:24px 14px;gap:16px}#ig-hero .cta-item .hero-button{padding:12px 14px;font-size:.95rem}}
-    @media (prefers-reduced-motion:reduce){#ig-hero *{animation:none!important;transition:none!important}#ig-hero .hero-image img{opacity:1!important}}
+    @media (prefers-reduced-motion:reduce){#ig-hero *{animation:none!important;transition:none!important}}
   </style>
+
   <script>
     document.addEventListener('DOMContentLoaded',function(){
       var link=document.querySelector('#ig-hero .scroll-down');
@@ -327,7 +337,6 @@
     });
   </script>
 </section>
-
 <!-- KPI / Statystyki -->
 <section id="stats" style="background:#fff;font-family:'Open Sans',sans-serif">
   <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:40px;padding:40px 20px">
@@ -358,6 +367,7 @@
   </div>
   <style>@keyframes fadeIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}</style>
 </section>
+
 <!-- ABOUT MINI -->
 <section id="about-mini" style="background:#f9f9f9">
   <div class="wrap" style="padding:60px 20px;max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:40px;font-family:'Open Sans',sans-serif">
@@ -372,6 +382,7 @@
     </div>
   </div>
 </section>
+
 <!-- WSPÓŁPRACA -->
 <section id="coop-sec" style="background-color:#f9f9f9;padding:60px 20px 30px;font-family:'Open Sans',sans-serif">
   <h2 style="text-align:center;margin-bottom:40px;font-family:'Poppins',sans-serif;font-size:2rem;font-weight:600;line-height:1.3">Jak wygląda współpraca?</h2>
@@ -450,6 +461,7 @@
     }
   </style>
 </section>
+
 <!-- CENNIK HIGHLIGHT -->
 <section id="price-highlight" style="padding:56px 20px;font-family:'Open Sans',sans-serif">
   <div class="band" style="max-width:1100px;margin:0 auto;background:#f6fbf6;border:1px solid #d9ead9;border-radius:16px;box-shadow:0 6px 18px rgba(0,0,0,.06);padding:26px">
@@ -488,6 +500,7 @@
     @media (max-width:768px){#price-highlight .col-main,#price-highlight .col-benefits{flex:1 1 100%}#price-highlight .cta-item.is-wa{order:1}#price-highlight .cta-item.is-price{order:2}}
   </style>
 </section>
+
 <!-- OPINIE -->
 <section id="opinie-klientow" style="background:#f9f9f9;padding:60px 20px;font-family:'Open Sans',sans-serif">
   <h2 style="text-align:center;margin-bottom:40px;font-family:'Poppins',sans-serif;font-size:2rem;font-weight:600;color:#1a1a1a">Opinie klientów</h2>
@@ -506,6 +519,7 @@
     </div>
   </div>
 </section>
+
 <!-- FAQ + JSON-LD -->
 <section id="faq" style="background:#fff;padding:40px 0;font-family:'Open Sans',sans-serif">
   <h2 style="text-align:center;font-family:'Poppins',sans-serif;font-weight:600;font-size:2rem;margin:0 0 18px">FAQ — trener personalny Wilanów</h2>
@@ -607,6 +621,7 @@
     #ig-footer .bar{border-top:1px solid rgba(255,255,255,.08);padding:14px 20px;text-align:center;font-size:.95rem;color:#cfd6dc}
   </style>
 </footer>
+
 <!-- Schema Service -->
 <script type="application/ld+json">
 {
@@ -620,6 +635,7 @@
   "url":"https://trenerwilanow.pl/trener-personalny-wilanow"
 }
 </script>
+
 <!-- Prefetch najczęściej odwiedzanych -->
 <script>
   window.addEventListener('load',function(){
@@ -630,14 +646,15 @@
     }catch(e){}
   });
 </script>
-<!-- Kampanie: przenoszenie gclid/utm + eventy -->
+
+<!-- Kampanie: przenoszenie gclid/utm + eventy (z dodanym #cta-tel-hero) -->
 <script>
 (function(){
   const qs = location.search;
   if(qs && /\b(gclid|utm_)/i.test(qs)){
     const sel=[
       '#cta-form-hero','#cta-wa-hero','#cta-form-coop','#cta-wa-coop',
-      '#cta-cennik','#whatsapp-fixed','#cta-tel-any',
+      '#cta-cennik','#whatsapp-fixed','#cta-tel-any','#cta-tel-hero',
       'a[href^="/umow-konsultacje"]','a[href^="/cennik"]','a[href^="https://wa.me/"]'
     ];
     document.querySelectorAll(sel.join(',')).forEach(a=>{
@@ -650,12 +667,14 @@
       }catch(e){}
     });
   }
+
   function gaEvent(name,params){ if(typeof gtag==='function') gtag('event',name,params||{}); }
   function adsConv(send_to,value){
     if(typeof gtag!=='function'||!send_to) return;
     const p={send_to:send_to}; if(typeof value==='number'){p.value=value;p.currency='PLN';}
     gtag('event','conversion',p);
   }
+
   [
     {sel:'#cta-form-hero', name:'lead_click',     label:'form_hero',  conv:'AW-XXXXXXX/leadForm'},
     {sel:'#cta-form-coop', name:'lead_click',     label:'form_coop',  conv:'AW-XXXXXXX/leadForm'},
@@ -663,12 +682,12 @@
     {sel:'#cta-wa-coop',   name:'whatsapp_click', label:'wa_coop',    conv:'AW-XXXXXXX/waClick'},
     {sel:'#cta-cennik',    name:'pricing_view',   label:'pricing_btn',conv:null},
     {sel:'#cta-tel-any',   name:'call_click',     label:'tel_any',    conv:'AW-XXXXXXX/callClick'},
-    /* nowy przycisk po modyfikacji HERO */
     {sel:'#cta-tel-hero',  name:'call_click',     label:'tel_hero',   conv:'AW-XXXXXXX/callClick'}
   ].forEach(({sel,name,label,conv})=>{
     const el=document.querySelector(sel); if(!el) return;
     el.addEventListener('click',()=>{ gaEvent(name,{category:'CTA',label}); if(conv) adsConv(conv); }, {passive:true});
   });
+
   let s50=false,s90=false;
   window.addEventListener('scroll',()=>{
     const p=(scrollY+innerHeight)/document.documentElement.scrollHeight;
@@ -679,5 +698,3 @@
 </script>
 </body>
 </html>
-
-
