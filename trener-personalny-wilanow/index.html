@@ -57,19 +57,22 @@
   <link rel="dns-prefetch" href="//www.googletagmanager.com">
   <link rel="dns-prefetch" href="//www.google-analytics.com">
   <link rel="dns-prefetch" href="//wa.me">
-  <!-- (Preconnect do GA/WA dodamy później warunkowo po load, patrz dół) -->
 
   <!-- Base reset + content-visibility -->
   <style>
     html{scroll-behavior:smooth}
     html,body{background:#fff;color:#1a1a1a}
     .visually-hidden{position:absolute!important;width:1px;height:1px;margin:-1px;border:0;padding:0;white-space:nowrap;clip-path:inset(50%);clip:rect(0 0 0 0);overflow:hidden}
+    /* widoczny skip-link dla klawiatury */
+    .skip-link{position:absolute;left:-9999px;top:auto}
+    .skip-link:focus{left:12px;top:12px;z-index:10000;background:#0f1111;color:#fff;padding:10px 12px;border-radius:10px;outline:3px solid #2e9b2f;outline-offset:2px}
     #site-header.is-scrolled{box-shadow:0 8px 16px rgba(0,0,0,.06);border-color:rgba(0,0,0,.03)}
     #stats,#about-mini,#coop-sec,#price-highlight,#opinie-klientow,#faq,#ig-footer{content-visibility:auto;contain-intrinsic-size:1px 800px}
   </style>
 </head>
 <body>
-<a href="#ig-hero" class="visually-hidden">Przejdź do treści</a>
+<!-- Skip to main content -->
+<a href="#main" class="skip-link visually-hidden">Przejdź do treści</a>
 
 <!-- SVG sprite -->
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none;">
@@ -105,12 +108,13 @@
         WhatsApp
       </a>
     </div>
-    <a href="#site-menu" class="nav-toggle" aria-label="Otwórz menu"><span class="bar"></span><span class="bar"></span><span class="bar"></span></a>
+    <!-- przycisk z ARIA dla menu -->
+    <a href="#site-menu" class="nav-toggle" role="button" aria-label="Otwórz menu" aria-controls="site-menu" aria-expanded="false"><span class="bar"></span><span class="bar"></span><span class="bar"></span></a>
   </div>
 </header>
 
 <!-- Mobile overlay menu -->
-<nav id="site-menu" class="mobile-menu" aria-label="Menu mobilne">
+<nav id="site-menu" class="mobile-menu" aria-label="Menu mobilne" aria-hidden="true" tabindex="-1">
   <a href="#" class="close" aria-label="Zamknij menu">✕</a>
   <a href="/o-mnie">O mnie</a>
   <a href="/uslugi">Usługi</a>
@@ -161,18 +165,22 @@
   .mobile-menu a:hover{background:#f6fbf6;color:var(--green)}
   .mobile-menu .close{text-align:right;font-size:1.1rem;padding:8px 10px}
   .mobile-menu .wa-link{margin-top:4px;border:2px solid var(--green);color:var(--green);text-align:center}
-  .mobile-menu .wa-link:hover{background:var(--green);color:#fff}
+  .mobile-menu .wa-link:hover{background:#2e9b2f;color:#fff}
   .menu-backdrop{position:fixed;inset:0;z-index:9998;display:none;background:transparent}
+  /* fallback :target */
   .mobile-menu:target{opacity:1;transform:translateY(0);pointer-events:auto;visibility:visible;transition-delay:0s}
   #site-menu:target + .menu-backdrop{display:block}
   html:has(#site-menu:target){overflow:hidden}
+  /* tryb JS/ARIA */
+  .mobile-menu[aria-hidden="false"]{opacity:1;transform:translateY(0);pointer-events:auto;visibility:visible;transition-delay:0s}
+  html.menu-open{overflow:hidden}
+  html.menu-open #site-menu + .menu-backdrop{display:block}
   @media (max-width:900px){#site-header .nav{display:none!important}#site-header .nav-toggle{display:inline-block!important}#site-header .cta-desktop{display:none!important}#site-header .cta-mobile{display:inline-flex!important}}
   @media (max-width:360px){#site-header .brand-text strong{font-size:.95rem}#site-header .brand-text em{font-size:.76rem}#site-header .hero-button{padding:9px 12px;min-height:38px;font-size:.92rem}}
   #site-header a:focus-visible,.mobile-menu a:focus-visible{outline:3px solid var(--green);outline-offset:2px}
   #coop-sec,#opinie-klientow,#formularz{scroll-margin-top:90px}
   @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
-
 <script>
   document.addEventListener('DOMContentLoaded',function(){
     var h=document.getElementById('site-header');
@@ -182,6 +190,54 @@
     document.querySelectorAll('#site-header .nav a').forEach(function(a){
       var path=(a.getAttribute('href')||'').replace(/\/+$/,'');
       if(path && path===here){ a.setAttribute('aria-current','page'); }
+    });
+
+    /* A11Y: menu mobilne z ARIA + pułapka fokusu + Esc */
+    const toggle = document.querySelector('.nav-toggle');
+    const menu = document.getElementById('site-menu');
+    const closeBtn = menu.querySelector('.close');
+    const backdrop = document.querySelector('.menu-backdrop');
+    const getFocusable = ()=> menu.querySelectorAll('a,button,[tabindex]:not([tabindex="-1"])');
+    let lastFocused = null;
+
+    function openMenu(e){
+      if(e) e.preventDefault();
+      lastFocused = document.activeElement;
+      document.documentElement.classList.add('menu-open');
+      menu.setAttribute('aria-hidden','false');
+      toggle.setAttribute('aria-expanded','true');
+      setTimeout(()=>{ menu.focus(); const f=getFocusable()[0]; if(f) f.focus(); },0);
+    }
+    function closeMenu(e){
+      if(e) e.preventDefault();
+      document.documentElement.classList.remove('menu-open');
+      menu.setAttribute('aria-hidden','true');
+      toggle.setAttribute('aria-expanded','false');
+      if(lastFocused){ lastFocused.focus(); }
+    }
+
+    toggle.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+    backdrop.addEventListener('click', closeMenu);
+    document.addEventListener('keydown', function(e){
+      if(menu.getAttribute('aria-hidden')==='false'){
+        if(e.key==='Escape'){ closeMenu(e); }
+        if(e.key==='Tab'){
+          const f = Array.from(getFocusable());
+          if(!f.length) return;
+          const i = f.indexOf(document.activeElement);
+          if(e.shiftKey && (i<=0)){ e.preventDefault(); f[f.length-1].focus(); }
+          else if(!e.shiftKey && (i===f.length-1)){ e.preventDefault(); f[0].focus(); }
+        }
+      }
+    });
+
+    // synchronizacja z fallbackiem #hash
+    window.addEventListener('hashchange', function(){
+      const isTarget = location.hash === '#site-menu';
+      document.documentElement.classList.toggle('menu-open', isTarget);
+      menu.setAttribute('aria-hidden', isTarget ? 'false' : 'true');
+      toggle.setAttribute('aria-expanded', isTarget ? 'true' : 'false');
     });
   });
 </script>
@@ -197,11 +253,13 @@
 </style>
 <a id="whatsapp-fixed" href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87!%20Chc%C4%99%20um%C3%B3wi%C4%87%20bezp%C5%82atn%C4%85%20konsultacj%C4%99%20w%20Zdrofit%20Wilan%C3%B3w" target="_blank" rel="noopener noreferrer" title="Napisz na WhatsApp" aria-label="Napisz na WhatsApp"><svg aria-hidden="true" focusable="false"><use href="#ico-wa"/></svg></a>
 
+<!-- MAIN -->
+<main id="main" role="main" tabindex="-1">
+
 <!-- HERO -->
 <section id="ig-hero" aria-label="Hero: Trener personalny Wilanów">
   <div class="hero">
     <div class="hero-image">
-      <!-- HERO obraz LCP – responsywny, bez fade-in -->
       <picture class="hero-picture">
         <source type="image/avif"
           srcset="/lib/480 awif.avif 480w, /lib/768w-avif.avif 768w, /lib/960w.avif 960w, /lib/1200w.avif 1200w"
@@ -232,17 +290,14 @@
         <li>Zdrofit Wilanów</li>
       </ul>
 
-      <!-- CTA: Tel → WhatsApp → Formularz (pełna szerokość pod spodem) -->
-      <div class="cta-row">
-        <!-- Zadzwoń -->
+      <!-- CTA: Tel → WhatsApp → Formularz -->
+      <div class="cta-row" role="group" aria-label="Kontakt i konsultacja">
         <div class="cta-item is-tel">
           <a id="cta-tel-hero" class="hero-button" href="tel:+48537918161" aria-label="Zadzwoń do mnie – Igor: +48 537 918 161" aria-describedby="cta-tel-note">
             Zadzwoń
           </a>
           <small id="cta-tel-note" class="cta-sub">+48 537 918 161</small>
         </div>
-
-        <!-- WhatsApp -->
         <div class="cta-item is-wa">
           <a id="cta-wa-hero" class="hero-button" href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87%2C%20chc%C4%99%20um%C3%B3wi%C4%87%20bezp%C5%82atn%C4%85%20konsultacj%C4%99.%20Imi%C4%99%3A%20__%2C%20cel%3A%20__" target="_blank" rel="noopener noreferrer" aria-label="Napisz do mnie na WhatsApp – otworzy aplikację" aria-describedby="cta-wa-note">
             <span class="wa-ico" aria-hidden="true" style="margin-right:8px;display:inline-flex;"><svg width="18" height="18" focusable="false" aria-hidden="true"><use href="#ico-wa"/></svg></span>
@@ -250,8 +305,6 @@
           </a>
           <small id="cta-wa-note" class="cta-sub">Napisz na WhatsApp</small>
         </div>
-
-        <!-- Formularz – pełna szerokość POD przyciskami -->
         <div class="cta-item is-form is-full">
           <a id="cta-form-hero" class="hero-button" href="/umow-konsultacje" aria-label="Chcesz, żebym to ja zadzwonił? – przejdź do formularza" aria-describedby="cta-form-note">
             <span aria-hidden="true" style="margin-right:8px;display:inline-flex;">
@@ -269,7 +322,7 @@
     </div>
   </div>
 
-  <!-- HERO styles (bez fade-in) -->
+  <!-- HERO styles -->
   <style>
     #ig-hero{font-family:'Open Sans',sans-serif;-webkit-font-smoothing:antialiased;background:radial-gradient(1200px 500px at 20% 10%, rgba(46,155,47,.06), transparent 60%),radial-gradient(800px 400px at 90% 30%, rgba(0,0,0,.04), transparent 60%),#fff}
     #ig-hero .hero{display:flex;flex-direction:row;align-items:center;justify-content:center;min-height:calc(100vh - 80px);padding:60px 40px;gap:60px}
@@ -305,7 +358,7 @@
     @keyframes heroArrBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
     @media (max-width:768px){
       #ig-hero .hero{flex-direction:column;text-align:center;padding:32px 16px;gap:22px;min-height:auto}
-      #ig-hero .hero-image img{width:min(68vw,240px);box-shadow:0 4px 12px rgba(0,0,0,.10)} /* lżejszy cień na mobile */
+      #ig-hero .hero-image img{width:min(68vw,240px);box-shadow:0 4px 12px rgba(0,0,0,.10)}
       #ig-hero h1{font-size:1.65rem}
       #ig-hero h2{font-size:1.15rem}
       #ig-hero .lead{font-size:.88rem}
@@ -317,7 +370,7 @@
       #ig-hero .cta-item.is-tel{order:1}
       #ig-hero .cta-item.is-wa{order:2}
       #ig-hero .cta-item.is-form{order:3}
-      /* mobilne kolory: WA wypełniony, formularz obrys */
+      /* mobilne kolory */
       #ig-hero .cta-item.is-wa .hero-button{background:var(--green);color:#fff;border-color:var(--green)}
       #ig-hero .cta-item.is-form .hero-button{background:transparent;color:var(--green);border-color:var(--green)}
     }
@@ -338,7 +391,7 @@
   </script>
 </section>
 <!-- KPI / Statystyki -->
-<section id="stats" style="background:#fff;font-family:'Open Sans',sans-serif">
+<section id="stats" aria-label="Statystyki" style="background:#fff;font-family:'Open Sans',sans-serif">
   <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:40px;padding:40px 20px">
     <div style="flex:1 1 220px;max-width:250px;text-align:center;animation:fadeIn .6s ease both">
       <div style="background:#4CAF50;border-radius:50%;padding:16px;width:80px;height:80px;margin:0 auto 14px;display:flex;align-items:center;justify-content:center">
@@ -369,7 +422,7 @@
 </section>
 
 <!-- ABOUT MINI -->
-<section id="about-mini" style="background:#f9f9f9">
+<section id="about-mini" aria-label="O mnie" style="background:#f9f9f9">
   <div class="wrap" style="padding:60px 20px;max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:40px;font-family:'Open Sans',sans-serif">
     <div class="img" style="flex:0 1 280px;max-width:280px">
       <img src="/lib/1-mf2gfur7.webp" alt="Igor – trener personalny Wilanów" loading="lazy" decoding="async" style="display:block;width:100%;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.1)">
@@ -463,13 +516,13 @@
 </section>
 
 <!-- CENNIK HIGHLIGHT -->
-<section id="price-highlight" style="padding:56px 20px;font-family:'Open Sans',sans-serif">
+<section id="price-highlight" aria-label="Cennik – pakiet polecany" style="padding:56px 20px;font-family:'Open Sans',sans-serif">
   <div class="band" style="max-width:1100px;margin:0 auto;background:#f6fbf6;border:1px solid #d9ead9;border-radius:16px;box-shadow:0 6px 18px rgba(0,0,0,.06);padding:26px">
     <div class="row" style="display:flex;gap:28px;align-items:center;flex-wrap:wrap">
       <div class="col col-main" style="flex:1 1 380px;min-width:280px">
         <h2 style="margin:0 0 6px;font-family:'Poppins',sans-serif;font-size:1.9rem;font-weight:700;line-height:1.2">Pakiet 10+ spotkań — Wilanów</h2>
-        <p style="margin:0 0 14px;color:#1a1a1a;font-size:1.05rem">najczęściej wybierany w <strong>Zdrofit Miasteczko Wilanów</strong></p>
-        <div class="price-badge" style="display:inline-flex;align-items:baseline;gap:8px;background:#fff;border:2px solid #2e9b2f;border-radius:12px;padding:10px 14px">
+        <p id="price-desc" style="margin:0 0 14px;color:#1a1a1a;font-size:1.05rem">najczęściej wybierany w <strong>Zdrofit Miasteczko Wilanów</strong></p>
+        <div class="price-badge" aria-describedby="price-desc" style="display:inline-flex;align-items:baseline;gap:8px;background:#fff;border:2px solid #2e9b2f;border-radius:12px;padding:10px 14px">
           <span style="font-family:'Poppins',sans-serif;font-weight:700;font-size:1.8rem;line-height:1">139 zł</span>
           <span style="color:#2e9b2f;font-weight:700;font-size:.95rem">/ trening</span>
         </div>
@@ -502,7 +555,7 @@
 </section>
 
 <!-- OPINIE -->
-<section id="opinie-klientow" style="background:#f9f9f9;padding:60px 20px;font-family:'Open Sans',sans-serif">
+<section id="opinie-klientow" aria-label="Opinie klientów" style="background:#f9f9f9;padding:60px 20px;font-family:'Open Sans',sans-serif">
   <h2 style="text-align:center;margin-bottom:40px;font-family:'Poppins',sans-serif;font-size:2rem;font-weight:600;color:#1a1a1a">Opinie klientów</h2>
   <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:40px;max-width:1200px;margin:0 auto">
     <div style="flex:1 1 300px;background:#fff;padding:24px;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,.05)">
@@ -521,7 +574,7 @@
 </section>
 
 <!-- FAQ + JSON-LD -->
-<section id="faq" style="background:#fff;padding:40px 0;font-family:'Open Sans',sans-serif">
+<section id="faq" aria-label="Najczęstsze pytania" style="background:#fff;padding:40px 0;font-family:'Open Sans',sans-serif">
   <h2 style="text-align:center;font-family:'Poppins',sans-serif;font-weight:600;font-size:2rem;margin:0 0 18px">FAQ — trener personalny Wilanów</h2>
   <div class="faq-wrap" style="max-width:620px;width:100%;margin:16px auto 0;padding:0 16px">
     <details class="faq-item" style="background:#f8faf9;border:1px solid #e1e7e3;border-radius:12px;padding:14px 16px"><summary class="faq-q" style="display:block;cursor:pointer;list-style:none;font-weight:700;position:relative;padding-right:28px;margin:0">Ile kosztuje trener personalny w Wilanowie?</summary><div class="faq-a" style="margin-top:8px;color:#333">Najczęściej wybierany jest pakiet <strong>10+ spotkań</strong> — od <strong>139&nbsp;zł / trening</strong>. Pełny cennik: <a href="/cennik">Cennik</a>.</div></details>
@@ -563,6 +616,8 @@
   }
   </script>
 </section>
+
+</main>
 <!-- FOOTER -->
 <footer id="ig-footer" role="contentinfo" aria-label="Stopka strony">
   <div class="wrap">
@@ -698,5 +753,3 @@
 </script>
 </body>
 </html>
-
-
