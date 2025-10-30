@@ -57,22 +57,20 @@
   <link rel="dns-prefetch" href="//www.googletagmanager.com">
   <link rel="dns-prefetch" href="//www.google-analytics.com">
   <link rel="dns-prefetch" href="//wa.me">
+  <!-- (Preconnect do GA/WA dodamy później warunkowo po load, patrz dół) -->
 
   <!-- Base reset + content-visibility -->
   <style>
     html{scroll-behavior:smooth}
     html,body{background:#fff;color:#1a1a1a}
     .visually-hidden{position:absolute!important;width:1px;height:1px;margin:-1px;border:0;padding:0;white-space:nowrap;clip-path:inset(50%);clip:rect(0 0 0 0);overflow:hidden}
-    /* widoczny skip-link dla klawiatury */
-    .skip-link{position:absolute;left:-9999px;top:auto}
-    .skip-link:focus{left:12px;top:12px;z-index:10000;background:#0f1111;color:#fff;padding:10px 12px;border-radius:10px;outline:3px solid #2e9b2f;outline-offset:2px}
     #site-header.is-scrolled{box-shadow:0 8px 16px rgba(0,0,0,.06);border-color:rgba(0,0,0,.03)}
     #stats,#about-mini,#coop-sec,#price-highlight,#opinie-klientow,#faq,#ig-footer{content-visibility:auto;contain-intrinsic-size:1px 800px}
   </style>
 </head>
 <body>
-<!-- Skip to main content -->
-<a href="#main" class="skip-link visually-hidden">Przejdź do treści</a>
+<!-- SKIP LINK → prawdziwy main -->
+<a href="#main" class="visually-hidden">Przejdź do treści</a>
 
 <!-- SVG sprite -->
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none;">
@@ -108,13 +106,13 @@
         WhatsApp
       </a>
     </div>
-    <!-- przycisk z ARIA dla menu -->
-    <a href="#site-menu" class="nav-toggle" role="button" aria-label="Otwórz menu" aria-controls="site-menu" aria-expanded="false"><span class="bar"></span><span class="bar"></span><span class="bar"></span></a>
+    <!-- DODANE: aria-controls + aria-expanded -->
+    <a href="#site-menu" class="nav-toggle" aria-label="Otwórz menu" aria-controls="site-menu" aria-expanded="false"><span class="bar"></span><span class="bar"></span><span class="bar"></span></a>
   </div>
 </header>
 
 <!-- Mobile overlay menu -->
-<nav id="site-menu" class="mobile-menu" aria-label="Menu mobilne" aria-hidden="true" tabindex="-1">
+<nav id="site-menu" class="mobile-menu" aria-label="Menu mobilne">
   <a href="#" class="close" aria-label="Zamknij menu">✕</a>
   <a href="/o-mnie">O mnie</a>
   <a href="/uslugi">Usługi</a>
@@ -126,7 +124,8 @@
     Napisz na WhatsApp
   </a>
 </nav>
-<a href="#" class="menu-backdrop" aria-hidden="true"></a>
+<!-- ZAMIANA: backdrop ma etykietę i jest poza tab-order -->
+<a href="#" class="menu-backdrop" aria-label="Zamknij menu" tabindex="-1"></a>
 
 <!-- Header styles -->
 <style>
@@ -134,6 +133,8 @@
     --ff-sans:'Open Sans',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
     --ff-head:'Poppins',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
     --green:#2e9b2f; --green-700:#1f7e21;
+    /* dostępność: ciemniejsza zieleń do tekstu na białym */
+    --green-text:var(--green-700);
   }
   #site-header{position:sticky;top:0;z-index:9999;min-height:56px;background:#fff;border-bottom:1px solid rgba(0,0,0,.06);-webkit-font-smoothing:antialiased;transition:box-shadow .2s,border-color .2s,background .2s}
   @supports (backdrop-filter:blur(4px)){#site-header{background:#ffffffcc;backdrop-filter:saturate(1.2) blur(4px)}}
@@ -152,8 +153,8 @@
   #site-header .hero-button{display:inline-flex;align-items:center;justify-content:center;font-family:var(--ff-sans);font-weight:700;font-size:.95rem;line-height:1;padding:10px 14px;min-height:40px;border-radius:10px;border:2px solid;text-decoration:none;white-space:nowrap;transition:background-color .25s,border-color .25s,color .25s}
   #site-header .btn-primary{background:var(--green);color:#fff;border-color:var(--green)}
   #site-header .btn-primary:hover{background:var(--green-700);border-color:var(--green-700)}
-  #site-header .btn-wa{background:transparent;color:var(--green);border-color:var(--green)}
-  #site-header .btn-wa:hover{background:var(--green);color:#fff}
+  #site-header .btn-wa{background:transparent;color:var(--green-text);border-color:var(--green-text)}
+  #site-header .btn-wa:hover{background:var(--green-700);color:#fff;border-color:var(--green-700)}
   #site-header .wa-ico{display:inline-flex;margin-right:6px}
   #site-header .cta{display:flex;gap:8px;margin-left:6px}
   #site-header .cta-desktop{display:inline-flex}
@@ -165,22 +166,38 @@
   .mobile-menu a:hover{background:#f6fbf6;color:var(--green)}
   .mobile-menu .close{text-align:right;font-size:1.1rem;padding:8px 10px}
   .mobile-menu .wa-link{margin-top:4px;border:2px solid var(--green);color:var(--green);text-align:center}
-  .mobile-menu .wa-link:hover{background:#2e9b2f;color:#fff}
+  .mobile-menu .wa-link:hover{background:var(--green);color:#fff}
   .menu-backdrop{position:fixed;inset:0;z-index:9998;display:none;background:transparent}
-  /* fallback :target */
   .mobile-menu:target{opacity:1;transform:translateY(0);pointer-events:auto;visibility:visible;transition-delay:0s}
   #site-menu:target + .menu-backdrop{display:block}
   html:has(#site-menu:target){overflow:hidden}
-  /* tryb JS/ARIA */
-  .mobile-menu[aria-hidden="false"]{opacity:1;transform:translateY(0);pointer-events:auto;visibility:visible;transition-delay:0s}
-  html.menu-open{overflow:hidden}
-  html.menu-open #site-menu + .menu-backdrop{display:block}
   @media (max-width:900px){#site-header .nav{display:none!important}#site-header .nav-toggle{display:inline-block!important}#site-header .cta-desktop{display:none!important}#site-header .cta-mobile{display:inline-flex!important}}
   @media (max-width:360px){#site-header .brand-text strong{font-size:.95rem}#site-header .brand-text em{font-size:.76rem}#site-header .hero-button{padding:9px 12px;min-height:38px;font-size:.92rem}}
   #site-header a:focus-visible,.mobile-menu a:focus-visible{outline:3px solid var(--green);outline-offset:2px}
   #coop-sec,#opinie-klientow,#formularz{scroll-margin-top:90px}
   @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
+
+<!-- GLOBALNE poprawki kontrastu (przyciski obrysowe itp.) -->
+<style id="a11y-contrast-fixes">
+  /* link przewijający w hero */
+  #ig-hero .scroll-down{color:var(--green-text)}
+
+  /* outline na desktopie */
+  @media (min-width:769px){
+    #ig-hero .cta-item.is-tel .hero-button,
+    #ig-hero .cta-item.is-wa .hero-button,
+    #coop-sec .btn-outline,
+    #price-highlight .cta-item.is-price .hero-button{
+      color:var(--green-text);
+      border-color:var(--green-text);
+    }
+  }
+
+  /* ciemniejszy tekst w badge ceny (drugi span) */
+  #price-highlight .price-badge span:nth-child(2){ color:var(--green-700) }
+</style>
+
 <script>
   document.addEventListener('DOMContentLoaded',function(){
     var h=document.getElementById('site-header');
@@ -191,58 +208,30 @@
       var path=(a.getAttribute('href')||'').replace(/\/+$/,'');
       if(path && path===here){ a.setAttribute('aria-current','page'); }
     });
-
-    /* A11Y: menu mobilne z ARIA + pułapka fokusu + Esc */
-    const toggle = document.querySelector('.nav-toggle');
-    const menu = document.getElementById('site-menu');
-    const closeBtn = menu.querySelector('.close');
-    const backdrop = document.querySelector('.menu-backdrop');
-    const getFocusable = ()=> menu.querySelectorAll('a,button,[tabindex]:not([tabindex="-1"])');
-    let lastFocused = null;
-
-    function openMenu(e){
-      if(e) e.preventDefault();
-      lastFocused = document.activeElement;
-      document.documentElement.classList.add('menu-open');
-      menu.setAttribute('aria-hidden','false');
-      toggle.setAttribute('aria-expanded','true');
-      setTimeout(()=>{ menu.focus(); const f=getFocusable()[0]; if(f) f.focus(); },0);
-    }
-    function closeMenu(e){
-      if(e) e.preventDefault();
-      document.documentElement.classList.remove('menu-open');
-      menu.setAttribute('aria-hidden','true');
-      toggle.setAttribute('aria-expanded','false');
-      if(lastFocused){ lastFocused.focus(); }
-    }
-
-    toggle.addEventListener('click', openMenu);
-    closeBtn.addEventListener('click', closeMenu);
-    backdrop.addEventListener('click', closeMenu);
-    document.addEventListener('keydown', function(e){
-      if(menu.getAttribute('aria-hidden')==='false'){
-        if(e.key==='Escape'){ closeMenu(e); }
-        if(e.key==='Tab'){
-          const f = Array.from(getFocusable());
-          if(!f.length) return;
-          const i = f.indexOf(document.activeElement);
-          if(e.shiftKey && (i<=0)){ e.preventDefault(); f[f.length-1].focus(); }
-          else if(!e.shiftKey && (i===f.length-1)){ e.preventDefault(); f[0].focus(); }
-        }
-      }
-    });
-
-    // synchronizacja z fallbackiem #hash
-    window.addEventListener('hashchange', function(){
-      const isTarget = location.hash === '#site-menu';
-      document.documentElement.classList.toggle('menu-open', isTarget);
-      menu.setAttribute('aria-hidden', isTarget ? 'false' : 'true');
-      toggle.setAttribute('aria-expanded', isTarget ? 'true' : 'false');
-    });
   });
 </script>
 
-<!-- WhatsApp FAB -->
+<!-- A11Y: synchronizacja aria-expanded + ESC do zamykania menu -->
+<script>
+  (function(){
+    const toggle = document.querySelector('.nav-toggle');
+    const menu   = document.getElementById('site-menu');
+    const first  = menu ? menu.querySelector('a,button,[tabindex]:not([tabindex="-1"])') : null;
+    function sync(){
+      const open = location.hash === '#site-menu';
+      if(toggle) toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if(open && first) first.focus();
+      if(!open && toggle) toggle.focus();
+    }
+    window.addEventListener('hashchange', sync, {passive:true});
+    if(toggle) toggle.addEventListener('click', ()=>setTimeout(sync,0), {passive:true});
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape' && location.hash === '#site-menu'){ location.hash=''; }
+    });
+    sync();
+  })();
+</script>
+<!-- WhatsApp FAB (po nagłówku, poza main) -->
 <style>
   @keyframes pulse {0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
   #whatsapp-fixed{position:fixed;bottom:20px;right:20px;z-index:9999;width:58px;height:58px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 8px 20px rgba(0,0,0,.25);animation:pulse 2s infinite;line-height:0}
@@ -251,15 +240,21 @@
   @media (min-width:769px){#whatsapp-fixed{display:none}}
   @media (prefers-reduced-motion:reduce){#whatsapp-fixed{animation:none}}
 </style>
-<a id="whatsapp-fixed" href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87!%20Chc%C4%99%20um%C3%B3wi%C4%87%20bezp%C5%82atn%C4%85%20konsultacj%C4%99%20w%20Zdrofit%20Wilan%C3%B3w" target="_blank" rel="noopener noreferrer" title="Napisz na WhatsApp" aria-label="Napisz na WhatsApp"><svg aria-hidden="true" focusable="false"><use href="#ico-wa"/></svg></a>
+<a id="whatsapp-fixed"
+   href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87!%20Chc%C4%99%20um%C3%B3wi%C4%87%20bezp%C5%82atn%C4%85%20konsultacj%C4%99%20w%20Zdrofit%20Wilan%C3%B3w"
+   target="_blank" rel="noopener noreferrer"
+   aria-label="Napisz na WhatsApp">
+  <svg aria-hidden="true" focusable="false"><use href="#ico-wa"/></svg>
+</a>
 
-<!-- MAIN -->
+<!-- MAIN CONTENT -->
 <main id="main" role="main" tabindex="-1">
 
 <!-- HERO -->
 <section id="ig-hero" aria-label="Hero: Trener personalny Wilanów">
   <div class="hero">
     <div class="hero-image">
+      <!-- HERO obraz LCP – responsywny, bez fade-in -->
       <picture class="hero-picture">
         <source type="image/avif"
           srcset="/lib/480 awif.avif 480w, /lib/768w-avif.avif 768w, /lib/960w.avif 960w, /lib/1200w.avif 1200w"
@@ -290,14 +285,17 @@
         <li>Zdrofit Wilanów</li>
       </ul>
 
-      <!-- CTA: Tel → WhatsApp → Formularz -->
-      <div class="cta-row" role="group" aria-label="Kontakt i konsultacja">
+      <!-- CTA: Tel → WhatsApp → Formularz (pełna szerokość pod spodem) -->
+      <div class="cta-row">
+        <!-- Zadzwoń -->
         <div class="cta-item is-tel">
           <a id="cta-tel-hero" class="hero-button" href="tel:+48537918161" aria-label="Zadzwoń do mnie – Igor: +48 537 918 161" aria-describedby="cta-tel-note">
             Zadzwoń
           </a>
           <small id="cta-tel-note" class="cta-sub">+48 537 918 161</small>
         </div>
+
+        <!-- WhatsApp -->
         <div class="cta-item is-wa">
           <a id="cta-wa-hero" class="hero-button" href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87%2C%20chc%C4%99%20um%C3%B3wi%C4%87%20bezp%C5%82atn%C4%85%20konsultacj%C4%99.%20Imi%C4%99%3A%20__%2C%20cel%3A%20__" target="_blank" rel="noopener noreferrer" aria-label="Napisz do mnie na WhatsApp – otworzy aplikację" aria-describedby="cta-wa-note">
             <span class="wa-ico" aria-hidden="true" style="margin-right:8px;display:inline-flex;"><svg width="18" height="18" focusable="false" aria-hidden="true"><use href="#ico-wa"/></svg></span>
@@ -305,6 +303,8 @@
           </a>
           <small id="cta-wa-note" class="cta-sub">Napisz na WhatsApp</small>
         </div>
+
+        <!-- Formularz – pełna szerokość POD przyciskami -->
         <div class="cta-item is-form is-full">
           <a id="cta-form-hero" class="hero-button" href="/umow-konsultacje" aria-label="Chcesz, żebym to ja zadzwonił? – przejdź do formularza" aria-describedby="cta-form-note">
             <span aria-hidden="true" style="margin-right:8px;display:inline-flex;">
@@ -322,7 +322,7 @@
     </div>
   </div>
 
-  <!-- HERO styles -->
+  <!-- HERO styles (bez fade-in) -->
   <style>
     #ig-hero{font-family:'Open Sans',sans-serif;-webkit-font-smoothing:antialiased;background:radial-gradient(1200px 500px at 20% 10%, rgba(46,155,47,.06), transparent 60%),radial-gradient(800px 400px at 90% 30%, rgba(0,0,0,.04), transparent 60%),#fff}
     #ig-hero .hero{display:flex;flex-direction:row;align-items:center;justify-content:center;min-height:calc(100vh - 80px);padding:60px 40px;gap:60px}
@@ -370,7 +370,7 @@
       #ig-hero .cta-item.is-tel{order:1}
       #ig-hero .cta-item.is-wa{order:2}
       #ig-hero .cta-item.is-form{order:3}
-      /* mobilne kolory */
+      /* mobilne kolory: WA wypełniony, formularz obrys */
       #ig-hero .cta-item.is-wa .hero-button{background:var(--green);color:#fff;border-color:var(--green)}
       #ig-hero .cta-item.is-form .hero-button{background:transparent;color:var(--green);border-color:var(--green)}
     }
@@ -390,14 +390,16 @@
     });
   </script>
 </section>
+
 <!-- KPI / Statystyki -->
-<section id="stats" aria-label="Statystyki" style="background:#fff;font-family:'Open Sans',sans-serif">
+<section id="stats" aria-labelledby="stats-heading" style="background:#fff;font-family:'Open Sans',sans-serif">
+  <h2 id="stats-heading" class="visually-hidden">Najważniejsze liczby</h2>
   <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:40px;padding:40px 20px">
     <div style="flex:1 1 220px;max-width:250px;text-align:center;animation:fadeIn .6s ease both">
       <div style="background:#4CAF50;border-radius:50%;padding:16px;width:80px;height:80px;margin:0 auto 14px;display:flex;align-items:center;justify-content:center">
         <img src="/lib/6-md6a1v5m.svg" alt="Zadowoleni klienci" loading="lazy" decoding="async" width="40" height="40" style="width:40px;height:40px;object-fit:contain">
       </div>
-      <h2 style="margin:0;font-family:'Poppins',sans-serif;font-weight:700;font-size:1.8rem">180+</h2>
+      <p aria-hidden="true" style="margin:0;font-family:'Poppins',sans-serif;font-weight:700;font-size:1.8rem">180+</p>
       <p style="margin:6px 0 2px;font-size:1rem;font-weight:600;color:#1a1a1a">Zadowolonych klientów</p>
       <p style="font-size:13px;color:#6e6e6e;line-height:1.4">Efekty, które naprawdę widać</p>
     </div>
@@ -405,7 +407,7 @@
       <div style="background:#4CAF50;border-radius:50%;padding:16px;width:80px;height:80px;margin:0 auto 14px;display:flex;align-items:center;justify-content:center">
         <img src="/lib/5-md69zcjz.svg" alt="Doświadczenie" loading="lazy" decoding="async" width="40" height="40" style="width:40px;height:40px;object-fit:contain">
       </div>
-      <h2 style="margin:0;font-family:'Poppins',sans-serif;font-weight:700;font-size:1.8rem">8 lat</h2>
+      <p aria-hidden="true" style="margin:0;font-family:'Poppins',sans-serif;font-weight:700;font-size:1.8rem">8 lat</p>
       <p style="margin:6px 0 2px;font-size:1rem;font-weight:600;color:#1a1a1a">Doświadczenia w branży</p>
       <p style="font-size:13px;color:#6e6e6e;line-height:1.4">Różne cele, różni ludzie</p>
     </div>
@@ -413,7 +415,7 @@
       <div style="background:#4CAF50;border-radius:50%;padding:16px;width:80px;height:80px;margin:0 auto 14px;display:flex;align-items:center;justify-content:center">
         <img src="/lib/7-md6ahbnn.svg" alt="Certyfikaty" loading="lazy" decoding="async" width="40" height="40" style="width:40px;height:40px;object-fit:contain">
       </div>
-      <h2 style="margin:0;font-family:'Poppins',sans-serif;font-weight:700;font-size:1.8rem">20+</h2>
+      <p aria-hidden="true" style="margin:0;font-family:'Poppins',sans-serif;font-weight:700;font-size:1.8rem">20+</p>
       <p style="margin:6px 0 2px;font-size:1rem;font-weight:600;color:#1a1a1a">Certyfikatów i szkoleń</p>
       <p style="font-size:13px;color:#6e6e6e;line-height:1.4">Aktualna wiedza i rozwój</p>
     </div>
@@ -422,13 +424,13 @@
 </section>
 
 <!-- ABOUT MINI -->
-<section id="about-mini" aria-label="O mnie" style="background:#f9f9f9">
+<section id="about-mini" aria-labelledby="about-heading" style="background:#f9f9f9">
   <div class="wrap" style="padding:60px 20px;max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:40px;font-family:'Open Sans',sans-serif">
     <div class="img" style="flex:0 1 280px;max-width:280px">
       <img src="/lib/1-mf2gfur7.webp" alt="Igor – trener personalny Wilanów" loading="lazy" decoding="async" style="display:block;width:100%;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.1)">
     </div>
     <div class="txt" style="flex:1 1 320px;max-width:560px;min-width:260px">
-      <h2 style="margin:0 0 20px;font-family:'Poppins',sans-serif;font-size:2rem;font-weight:600">Cześć! Jestem Igor — trener personalny w Wilanowie 👋</h2>
+      <h2 id="about-heading" style="margin:0 0 20px;font-family:'Poppins',sans-serif;font-size:2rem;font-weight:600">Cześć! Jestem Igor — trener personalny w Wilanowie 👋</h2>
       <p style="font-size:1.05rem;line-height:1.6;margin:0 0 20px;color:#333">Na co dzień prowadzę treningi w <strong>Zdrofit Miasteczko Wilanów</strong> (al. Rzeczypospolitej&nbsp;1). Pomagam zbudować siłę, schudnąć bez „spiny” i poczuć się pewniej w ciele.</p>
       <p style="font-size:1.05rem;line-height:1.6;margin:0 0 20px;color:#333">Mam <strong>8 lat doświadczenia</strong> i pracowałem z <strong>180+ osobami</strong>. Jeśli szukasz wsparcia 1:1 w Wilanowie — jesteś w dobrym miejscu.</p>
       <p style="font-size:1.05rem;font-weight:700;color:#1a1a1a;margin:0">Pierwsze zauważalne zmiany zwykle po 4–6 tygodniach.</p>
@@ -436,10 +438,11 @@
   </div>
 </section>
 
+<!-- (ciąg dalszy w części 3/4) -->
 <!-- WSPÓŁPRACA -->
-<section id="coop-sec" style="background-color:#f9f9f9;padding:60px 20px 30px;font-family:'Open Sans',sans-serif">
-  <h2 style="text-align:center;margin-bottom:40px;font-family:'Poppins',sans-serif;font-size:2rem;font-weight:600;line-height:1.3">Jak wygląda współpraca?</h2>
-  <ol class="steps" style="display:flex;justify-content:center;align-items:flex-start;gap:40px;flex-wrap:wrap;margin:0;padding:0;list-style:none">
+<section id="coop-sec" aria-labelledby="coop-heading" style="background-color:#f9f9f9;padding:60px 20px 30px;font-family:'Open Sans',sans-serif">
+  <h2 id="coop-heading" style="text-align:center;margin-bottom:40px;font-family:'Poppins',sans-serif;font-size:2rem;font-weight:600;line-height:1.3">Jak wygląda współpraca?</h2>
+  <ol class="steps" aria-label="Kroki współpracy" style="display:flex;justify-content:center;align-items:flex-start;gap:40px;flex-wrap:wrap;margin:0;padding:0;list-style:none">
     <li class="step" style="flex:1 1 200px;max-width:250px;text-align:center">
       <div style="margin:0 auto 12px;background-color:#4CAF50;border-radius:50%;width:80px;height:80px;display:flex;align-items:center;justify-content:center">
         <img src="/lib/10-md6dcaca.svg" alt="Ikona: konsultacja" loading="lazy" decoding="async" width="40" height="40">
@@ -469,8 +472,9 @@
       <p style="font-size:.95rem;color:#666">Regularne treningi w <strong>Zdrofit Wilanów</strong>. Pomiar efektów co 4–6&nbsp;tyg.</p>
     </li>
   </ol>
+
   <div class="mini-meta" style="margin:18px auto 0;text-align:center">
-    <ul style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px;padding:0;margin:0;list-style:none;color:#1a1a1a;font-weight:600">
+    <ul aria-label="Szczegóły treningu próbnego" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px;padding:0;margin:0;list-style:none;color:#1a1a1a;font-weight:600">
       <li>Miejsce: <span style="font-weight:700">Zdrofit Miasteczko Wilanów</span></li>
       <li aria-hidden="true" style="opacity:.4">•</li>
       <li>Czas treningu próbnego: <span style="font-weight:700">50–60&nbsp;min</span></li>
@@ -478,19 +482,22 @@
       <li>Co zabrać: <span style="font-weight:700">buty i ręcznik</span></li>
     </ul>
   </div>
+
   <div class="benefits" style="max-width:1100px;margin:16px auto 0;padding:0 10px;text-align:center">
-    <ul style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px;padding:0;margin:0;list-style:none">
+    <ul aria-label="Korzyści współpracy" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px;padding:0;margin:0;list-style:none">
       <li style="padding:6px 12px;border-radius:999px;background:#eef7ee;color:#1c371d;font-weight:700;font-size:.95rem;border:1px solid #d9ead9">Elastyczne godziny na Wilanowie</li>
       <li style="padding:6px 12px;border-radius:999px;background:#eef7ee;color:#1c371d;font-weight:700;font-size:.95rem;border:1px solid #d9ead9">Indywidualny plan + monitoring 4–6&nbsp;tyg.</li>
       <li style="padding:6px 12px;border-radius:999px;background:#eef7ee;color:#1c371d;font-weight:700;font-size:.95rem;border:1px solid #d9ead9">Treningi 1-3x/tydz.</li>
       <li style="padding:6px 12px;border-radius:999px;background:#eef7ee;color:#1c371d;font-weight:700;font-size:.95rem;border:1px solid #d9ead9">Szybki kontakt przez WhatsApp</li>
     </ul>
   </div>
+
   <div class="cta-wrap" style="text-align:center;padding:40px 0 0">
     <a id="cta-form-coop" class="hero-button btn-fill cta-desktop" href="/umow-konsultacje" aria-label="Umów bezpłatną konsultację – formularz">Umów bezpłatną konsultację</a>
     <a id="cta-wa-coop" class="hero-button btn-fill cta-mobile" href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87%20Igor%2C%20chc%C4%99%20um%C3%B3wi%C4%87%20bezp%C5%82atn%C4%85%20konsultacj%C4%99%20w%20Zdrofit%20Wilan%C3%B3w.%20Termin%3A%20__%2C%20godz.%3A%20__" aria-label="Umów bezpłatną konsultację – WhatsApp">Umów bezpłatną konsultację</a>
     <a id="cta-cennik" class="hero-button btn-outline" href="/cennik" aria-label="Zobacz cennik">Zobacz cennik</a>
   </div>
+
   <style>
     @keyframes fadeInUp{from{transform:translateY(30px);opacity:.001}to{transform:translateY(0);opacity:1}}
     @media (prefers-reduced-motion:no-preference){
@@ -516,19 +523,19 @@
 </section>
 
 <!-- CENNIK HIGHLIGHT -->
-<section id="price-highlight" aria-label="Cennik – pakiet polecany" style="padding:56px 20px;font-family:'Open Sans',sans-serif">
+<section id="price-highlight" aria-labelledby="price-heading" style="padding:56px 20px;font-family:'Open Sans',sans-serif">
   <div class="band" style="max-width:1100px;margin:0 auto;background:#f6fbf6;border:1px solid #d9ead9;border-radius:16px;box-shadow:0 6px 18px rgba(0,0,0,.06);padding:26px">
     <div class="row" style="display:flex;gap:28px;align-items:center;flex-wrap:wrap">
       <div class="col col-main" style="flex:1 1 380px;min-width:280px">
-        <h2 style="margin:0 0 6px;font-family:'Poppins',sans-serif;font-size:1.9rem;font-weight:700;line-height:1.2">Pakiet 10+ spotkań — Wilanów</h2>
-        <p id="price-desc" style="margin:0 0 14px;color:#1a1a1a;font-size:1.05rem">najczęściej wybierany w <strong>Zdrofit Miasteczko Wilanów</strong></p>
-        <div class="price-badge" aria-describedby="price-desc" style="display:inline-flex;align-items:baseline;gap:8px;background:#fff;border:2px solid #2e9b2f;border-radius:12px;padding:10px 14px">
+        <h2 id="price-heading" style="margin:0 0 6px;font-family:'Poppins',sans-serif;font-size:1.9rem;font-weight:700;line-height:1.2">Pakiet 10+ spotkań — Wilanów</h2>
+        <p style="margin:0 0 14px;color:#1a1a1a;font-size:1.05rem">najczęściej wybierany w <strong>Zdrofit Miasteczko Wilanów</strong></p>
+        <div class="price-badge" style="display:inline-flex;align-items:baseline;gap:8px;background:#fff;border:2px solid #2e9b2f;border-radius:12px;padding:10px 14px" aria-label="Cena za trening w pakiecie">
           <span style="font-family:'Poppins',sans-serif;font-weight:700;font-size:1.8rem;line-height:1">139 zł</span>
           <span style="color:#2e9b2f;font-weight:700;font-size:.95rem">/ trening</span>
         </div>
       </div>
       <div class="col col-benefits" style="flex:1 1 360px;min-width:280px">
-        <ul style="list-style:none;padding:0;margin:0;display:grid;gap:10px">
+        <ul aria-label="Co zawiera pakiet" style="list-style:none;padding:0;margin:0;display:grid;gap:10px">
           <li style="display:flex;gap:10px"><span aria-hidden="true" style="color:#2e9b2f;font-weight:700">✓</span><span>Treningi w <strong>Zdrofit Miasteczko Wilanów</strong> (al. Rzeczypospolitej&nbsp;1)</span></li>
           <li style="display:flex;gap:10px"><span aria-hidden="true" style="color:#2e9b2f;font-weight:700">✓</span><span>Plan pod Twój cel + pomiar postępów co 4–6 tygodni</span></li>
           <li style="display:flex;gap:10px"><span aria-hidden="true" style="color:#2e9b2f;font-weight:700">✓</span><span>Wsparcie między treningami (WhatsApp)</span></li>
@@ -536,6 +543,7 @@
         </ul>
       </div>
     </div>
+
     <div class="cta-row" style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:18px">
       <div class="cta-item is-price" style="display:flex;flex-direction:column;flex:1 1 260px;max-width:420px">
         <a class="hero-button" href="/cennik" aria-label="Zobacz pełny cennik" style="display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:1rem;line-height:1;padding:14px 20px;min-height:48px;border-radius:10px;text-decoration:none;border:2px solid #2e9b2f;color:#2e9b2f;background:#fff;transition:background-color .25s,border-color .25s,color .25s">Zobacz pełny cennik</a>
@@ -546,6 +554,7 @@
         <small class="cta-sub" style="margin-top:6px;font-size:.85rem;color:#6b6b6b;text-align:center">Odpowiadam w ciągu dnia</small>
       </div>
     </div>
+
     <p style="text-align:center;color:#6b6b6b;font-size:.9rem;margin:14px 0 0">* Cena dotyczy pakietu 10+ spotkań i treningów w Wilanowie. Końcowa wycena zależy od częstotliwości i zakresu współpracy.</p>
   </div>
   <style>
@@ -555,40 +564,74 @@
 </section>
 
 <!-- OPINIE -->
-<section id="opinie-klientow" aria-label="Opinie klientów" style="background:#f9f9f9;padding:60px 20px;font-family:'Open Sans',sans-serif">
-  <h2 style="text-align:center;margin-bottom:40px;font-family:'Poppins',sans-serif;font-size:2rem;font-weight:600;color:#1a1a1a">Opinie klientów</h2>
+<section id="opinie-klientow" aria-labelledby="opinie-heading" style="background:#f9f9f9;padding:60px 20px;font-family:'Open Sans',sans-serif">
+  <h2 id="opinie-heading" style="text-align:center;margin-bottom:40px;font-family:'Poppins',sans-serif;font-size:2rem;font-weight:600;color:#1a1a1a">Opinie klientów</h2>
   <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:40px;max-width:1200px;margin:0 auto">
-    <div style="flex:1 1 300px;background:#fff;padding:24px;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,.05)">
+    <article aria-label="Opinia Michał, 34 lata" style="flex:1 1 300px;background:#fff;padding:24px;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,.05)">
       <p style="font-style:italic;font-size:1.05rem;color:#333;margin:0">„Z Igorem zaczynałem od zera. Po kilku tygodniach nie tylko czuję się lepiej, ale w końcu mam motywację i plan!”</p>
       <p style="font-weight:600;margin:15px 0 0;font-size:.95rem;color:#1a1a1a">— Michał, 34 lata (Miasteczko Wilanów)</p>
-    </div>
-    <div style="flex:1 1 300px;background:#fff;padding:24px;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,.05)">
+    </article>
+    <article aria-label="Opinia Kasia, 28 lat" style="flex:1 1 300px;background:#fff;padding:24px;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,.05)">
       <p style="font-style:italic;font-size:1.05rem;color:#333;margin:0">„Po kontuzji długo nie mogłam wrócić do formy. Igor pomógł mi wrócić na siłownię z głową i spokojem.”</p>
       <p style="font-weight:600;margin:15px 0 0;font-size:.95rem;color:#1a1a1a">— Kasia, 28 lat (al. Rzeczypospolitej 1)</p>
-    </div>
-    <div style="flex:1 1 300px;background:#fff;padding:24px;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,.05)">
+    </article>
+    <article aria-label="Opinia Bartek, 41 lat" style="flex:1 1 300px;background:#fff;padding:24px;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,.05)">
       <p style="font-style:italic;font-size:1.05rem;color:#333;margin:0">„Profesjonalizm i luz — idealne połączenie. Czułem, że ktoś naprawdę mnie słucha i wie, co robi.”</p>
       <p style="font-weight:600;margin:15px 0 0;font-size:.95rem;color:#1a1a1a">— Bartek, 41 lat (Wilanów)</p>
-    </div>
+    </article>
   </div>
 </section>
 
 <!-- FAQ + JSON-LD -->
-<section id="faq" aria-label="Najczęstsze pytania" style="background:#fff;padding:40px 0;font-family:'Open Sans',sans-serif">
-  <h2 style="text-align:center;font-family:'Poppins',sans-serif;font-weight:600;font-size:2rem;margin:0 0 18px">FAQ — trener personalny Wilanów</h2>
+<section id="faq" aria-labelledby="faq-heading" style="background:#fff;padding:40px 0;font-family:'Open Sans',sans-serif">
+  <h2 id="faq-heading" style="text-align:center;font-family:'Poppins',sans-serif;font-weight:600;font-size:2rem;margin:0 0 18px">FAQ — trener personalny Wilanów</h2>
   <div class="faq-wrap" style="max-width:620px;width:100%;margin:16px auto 0;padding:0 16px">
-    <details class="faq-item" style="background:#f8faf9;border:1px solid #e1e7e3;border-radius:12px;padding:14px 16px"><summary class="faq-q" style="display:block;cursor:pointer;list-style:none;font-weight:700;position:relative;padding-right:28px;margin:0">Ile kosztuje trener personalny w Wilanowie?</summary><div class="faq-a" style="margin-top:8px;color:#333">Najczęściej wybierany jest pakiet <strong>10+ spotkań</strong> — od <strong>139&nbsp;zł / trening</strong>. Pełny cennik: <a href="/cennik">Cennik</a>.</div></details>
-    <details class="faq-item" style="background:#f8faf9;border:1px solid #e1e7e3;border-radius:12px;padding:14px 16px"><summary class="faq-q" style="display:block;cursor:pointer;list-style:none;font-weight:700;position:relative;padding-right:28px;margin:0">Gdzie odbywają się treningi personalne w Wilanowie?</summary><div class="faq-a" style="margin-top:8px;color:#333">W <strong>Zdrofit Miasteczko Wilanów</strong>, <strong>al. Rzeczypospolitej 1</strong>. <a href="https://www.google.com/maps/search/?api=1&query=Zdrofit%20Wilan%C3%B3w%2C%20al.%20Rzeczypospolitej%201" target="_blank" rel="noopener">Google Maps</a>.</div></details>
-    <details class="faq-item" style="background:#f8faf9;border:1px solid #e1e7e3;border-radius:12px;padding:14px 16px"><summary class="faq-q" style="display:block;cursor:pointer;list-style:none;font-weight:700;position:relative;padding-right:28px;margin:0">Czy potrzebuję karnetu do Zdrofit Wilanów?</summary><div class="faq-a" style="margin-top:8px;color:#333">Tak — do treningów personalnych wymagany jest karnet klubowy. Pomogę dobrać najtańszy wariant do Twojej częstotliwości.</div></details>
-    <details class="faq-item" style="background:#f8faf9;border:1px solid #e1e7e3;border-radius:12px;padding:14px 16px"><summary class="faq-q" style="display:block;cursor:pointer;list-style:none;font-weight:700;position:relative;padding-right:28px;margin:0">Jak wygląda pierwszy trening?</summary><div class="faq-a" style="margin-top:8px;color:#333">Start od <strong>bezpłatnej konsultacji</strong>, później trening próbny: ocena ruchu, nauka techniki i plan pod cel.</div></details>
-    <details class="faq-item" style="background:#f8faf9;border:1px solid #e1e7e3;border-radius:12px;padding:14px 16px"><summary class="faq-q" style="display:block;cursor:pointer;list-style:none;font-weight:700;position:relative;padding-right:28px;margin:0">Czy to dla początkujących?</summary><div class="faq-a" style="margin-top:8px;color:#333">Tak, prowadzę osoby <strong>od zera</strong>. Intensywność dopasowuję do Twojego poziomu i zdrowia.</div></details>
-    <details class="faq-item" style="background:#f8faf9;border:1px solid #e1e7e3;border-radius:12px;padding:14px 16px"><summary class="faq-q" style="display:block;cursor:pointer;list-style:none;font-weight:700;position:relative;padding-right:28px;margin:0">Po jakim czasie widać efekty?</summary><div class="faq-a" style="margin-top:8px;color:#333">U większości osób <strong>4–6 tygodni</strong> regularnych treningów i prostych zmian w diecie.</div></details>
-    <details class="faq-item" style="background:#f8faf9;border:1px solid #e1e7e3;border-radius:12px;padding:14px 16px"><summary class="faq-q" style="display:block;cursor:pointer;list-style:none;font-weight:700;position:relative;padding-right:28px;margin:0">Ile trwa i jak często?</summary><div class="faq-a" style="margin-top:8px;color:#333">Sesja trwa <strong>50–60 min</strong>. Rekomenduję <strong>1–3x tygodniowo</strong> w Zdrofit Wilanów.</div></details>
-    <details class="faq-item" style="background:#f8faf9;border:1px solid #e1e7e3;border-radius:12px;padding:14px 16px"><summary class="faq-q" style="display:block;cursor:pointer;list-style:none;font-weight:700;position:relative;padding-right:28px;margin:0">Trening w parze?</summary><div class="faq-a" style="margin-top:8px;color:#333">Tak — możliwy w Zdrofit Wilanów. Motywacja + niższy koszt na osobę.</div></details>
-    <details class="faq-item" style="background:#f8faf9;border:1px solid #e1e7e3;border-radius:12px;padding:14px 16px"><summary class="faq-q" style="display:block;cursor:pointer;list-style:none;font-weight:700;position:relative;padding-right:28px;margin:0">Pomoc z dietą?</summary><div class="faq-a" style="margin-top:8px;color:#333">Otrzymasz <strong>praktyczne wskazówki żywieniowe</strong> dopasowane do celu – bez skrajnych restrykcji.</div></details>
-    <details class="faq-item" style="background:#f8faf9;border:1px solid #e1e7e3;border-radius:12px;padding:14px 16px"><summary class="faq-q" style="display:block;cursor:pointer;list-style:none;font-weight:700;position:relative;padding-right:28px;margin:0">Jak odwołać trening?</summary><div class="faq-a" style="margin-top:8px;color:#333">WhatsApp/telefon <strong>jak najwcześniej</strong> (najlepiej dzień wcześniej), by oddać slot innej osobie.</div></details>
-    <details class="faq-item" style="background:#f8faf9;border:1px solid #e1e7e3;border-radius:12px;padding:14px 16px"><summary class="faq-q" style="display:block;cursor:pointer;list-style:none;font-weight:700;position:relative;padding-right:28px;margin:0">Godziny pracy?</summary><div class="faq-a" style="margin-top:8px;color:#333">Głównie <strong>pn–pt 7:00–21:00</strong> w Zdrofit Wilanów. Ustalimy stałe, wygodne terminy.</div></details>
+    <details class="faq-item" style="background:#f8faf9;border:1px solid #e1e7e3;border-radius:12px;padding:14px 16px">
+      <summary class="faq-q" style="display:block;cursor:pointer;list-style:none;font-weight:700;position:relative;padding-right:28px;margin:0">Ile kosztuje trener personalny w Wilanowie?</summary>
+      <div class="faq-a" style="margin-top:8px;color:#333">Najczęściej wybierany jest pakiet <strong>10+ spotkań</strong> — od <strong>139&nbsp;zł / trening</strong>. Pełny cennik: <a href="/cennik">Cennik</a>.</div>
+    </details>
+    <details class="faq-item" style="background:#f8faf9;border:1px solid #e1e7e3;border-radius:12px;padding:14px 16px">
+      <summary class="faq-q" style="display:block;cursor:pointer;list-style:none;font-weight:700;position:relative;padding-right:28px;margin:0">Gdzie odbywają się treningi personalne w Wilanowie?</summary>
+      <div class="faq-a" style="margin-top:8px;color:#333">W <strong>Zdrofit Miasteczko Wilanów</strong>, <strong>al. Rzeczypospolitej 1</strong>. <a href="https://www.google.com/maps/search/?api=1&query=Zdrofit%20Wilan%C3%B3w%2C%20al.%20Rzeczypospolitej%201" target="_blank" rel="noopener">Google Maps</a>.</div>
+    </details>
+    <details class="faq-item" style="background:#f8faf9;border:1px solid #e1e7e3;border-radius:12px;padding:14px 16px">
+      <summary class="faq-q" style="display:block;cursor:pointer;list-style:none;font-weight:700;position:relative;padding-right:28px;margin:0">Czy potrzebuję karnetu do Zdrofit Wilanów?</summary>
+      <div class="faq-a" style="margin-top:8px;color:#333">Tak — do treningów personalnych wymagany jest karnet klubowy. Pomogę dobrać najtańszy wariant do Twojej częstotliwości.</div>
+    </details>
+    <details class="faq-item" style="background:#f8faf9;border:1px solid #e1e7e3;border-radius:12px;padding:14px 16px">
+      <summary class="faq-q" style="display:block;cursor:pointer;list-style:none;font-weight:700;position:relative;padding-right:28px;margin:0">Jak wygląda pierwszy trening?</summary>
+      <div class="faq-a" style="margin-top:8px;color:#333">Start od <strong>bezpłatnej konsultacji</strong>, później trening próbny: ocena ruchu, nauka techniki i plan pod cel.</div>
+    </details>
+    <details class="faq-item" style="background:#f8faf9;border:1px solid #e1e7e3;border-radius:12px;padding:14px 16px">
+      <summary class="faq-q" style="display:block;cursor:pointer;list-style:none;font-weight:700;position:relative;padding-right:28px;margin:0">Czy to dla początkujących?</summary>
+      <div class="faq-a" style="margin-top:8px;color:#333">Tak, prowadzę osoby <strong>od zera</strong>. Intensywność dopasowuję do Twojego poziomu i zdrowia.</div>
+    </details>
+    <details class="faq-item" style="background:#f8faf9;border:1px solid #e1e7e3;border-radius:12px;padding:14px 16px">
+      <summary class="faq-q" style="display:block;cursor:pointer;list-style:none;font-weight:700;position:relative;padding-right:28px;margin:0">Po jakim czasie widać efekty?</summary>
+      <div class="faq-a" style="margin-top:8px;color:#333">U większości osób <strong>4–6 tygodni</strong> regularnych treningów i prostych zmian w diecie.</div>
+    </details>
+    <details class="faq-item" style="background:#f8faf9;border:1px solid #e1e7e3;border-radius:12px;padding:14px 16px">
+      <summary class="faq-q" style="display:block;cursor:pointer;list-style:none;font-weight:700;position:relative;padding-right:28px;margin:0">Ile trwa i jak często?</summary>
+      <div class="faq-a" style="margin-top:8px;color:#333">Sesja trwa <strong>50–60 min</strong>. Rekomenduję <strong>1–3x tygodniowo</strong> w Zdrofit Wilanów.</div>
+    </details>
+    <details class="faq-item" style="background:#f8faf9;border:1px solid #e1e7e3;border-radius:12px;padding:14px 16px">
+      <summary class="faq-q" style="display:block;cursor:pointer;list-style:none;font-weight:700;position:relative;padding-right:28px;margin:0">Trening w parze?</summary>
+      <div class="faq-a" style="margin-top:8px;color:#333">Tak — możliwy w Zdrofit Wilanów. Motywacja + niższy koszt na osobę.</div>
+    </details>
+    <details class="faq-item" style="background:#f8faf9;border:1px solid #e1e7e3;border-radius:12px;padding:14px 16px">
+      <summary class="faq-q" style="display:block;cursor:pointer;list-style:none;font-weight:700;position:relative;padding-right:28px;margin:0">Pomoc z dietą?</summary>
+      <div class="faq-a" style="margin-top:8px;color:#333">Otrzymasz <strong>praktyczne wskazówki żywieniowe</strong> dopasowane do celu – bez skrajnych restrykcji.</div>
+    </details>
+    <details class="faq-item" style="background:#f8faf9;border:1px solid #e1e7e3;border-radius:12px;padding:14px 16px">
+      <summary class="faq-q" style="display:block;cursor:pointer;list-style:none;font-weight:700;position:relative;padding-right:28px;margin:0">Jak odwołać trening?</summary>
+      <div class="faq-a" style="margin-top:8px;color:#333">WhatsApp/telefon <strong>jak najwcześniej</strong> (najlepiej dzień wcześniej), by oddać slot innej osobie.</div>
+    </details>
+    <details class="faq-item" style="background:#f8faf9;border:1px solid #e1e7e3;border-radius:12px;padding:14px 16px">
+      <summary class="faq-q" style="display:block;cursor:pointer;list-style:none;font-weight:700;position:relative;padding-right:28px;margin:0">Godziny pracy?</summary>
+      <div class="faq-a" style="margin-top:8px;color:#333">Głównie <strong>pn–pt 7:00–21:00</strong> w Zdrofit Wilanów. Ustalimy stałe, wygodne terminy.</div>
+    </details>
   </div>
+
   <style>
     #faq *{box-sizing:border-box;max-width:100%}
     #faq summary::-webkit-details-marker{display:none}
@@ -597,6 +640,8 @@
     #faq .faq-q::after{content:'＋';position:absolute;right:0;top:0;font-weight:700;line-height:1}
     #faq details[open] .faq-q::after{content:'−'}
   </style>
+
+  <!-- JSON-LD FAQ -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org","@type":"FAQPage",
@@ -618,6 +663,10 @@
 </section>
 
 </main>
+<!-- /MAIN -->
+<!-- KONIEC TREŚCI GŁÓWNEJ -->
+</main>
+
 <!-- FOOTER -->
 <footer id="ig-footer" role="contentinfo" aria-label="Stopka strony">
   <div class="wrap">
@@ -626,7 +675,7 @@
       <p>Trener personalny w Wilanowie. Bez zadęcia, bez stresu — z planem, który działa.</p>
       <div class="cta-row">
         <a id="cta-tel-any" class="btn btn-call" href="tel:+48537918161" aria-label="Zadzwoń do mnie: +48 537 918 161">Zadzwoń</a>
-        <a class="btn btn-wa" href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87%2C%20chc%C4%99%20um%C3%B3wi%C4%87%20bezp%C5%82atn%C4%85%20konsultacj%C4%99.%20Termin%3A%20__%2C%20godz.%3A%20__" aria-label="Napisz na WhatsApp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a class="btn btn-wa" href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87%2C%20chc%C4%99%20um%C3%B3wi%C4%87%20bezp%C5%82atn%C4%85%20konsultacj%C4%99.%20Termin%3A%20__%2C%20godz.%3A%20__" aria-label="Napisz na WhatsApp (otworzy w nowej karcie)" target="_blank" rel="noopener noreferrer">WhatsApp</a>
       </div>
     </div>
     <div class="col contact">
@@ -637,7 +686,7 @@
       </address>
       <h4>Lokalizacja</h4>
       <p>Trenuję w: <strong>Zdrofit Wilanów</strong><br>
-        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Zdrofit%20Wilan%C3%B3w%20Warszawa" target="_blank" rel="noopener noreferrer">Pokaż na mapie →</a>
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Zdrofit%20Wilan%C3%B3w%20Warszawa" target="_blank" rel="noopener noreferrer" aria-label="Pokaż lokalizację Zdrofit Wilanów na mapie (nowa karta)">Pokaż na mapie →</a>
       </p>
     </div>
     <nav class="col links" aria-label="Szybkie linki">
@@ -702,7 +751,79 @@
   });
 </script>
 
-<!-- Kampanie: przenoszenie gclid/utm + eventy (z dodanym #cta-tel-hero) -->
+<!-- A11Y: obsługa menu mobilnego (aria-expanded, aria-hidden, inert + pułapka fokusa) -->
+<script>
+(function(){
+  const toggle = document.querySelector('#site-header .nav-toggle');
+  const menu   = document.getElementById('site-menu');
+  const backdrop = document.querySelector('.menu-backdrop');
+  const main   = document.getElementById('content');
+  const header = document.getElementById('site-header');
+  const footer = document.getElementById('ig-footer');
+
+  // jeśli mamy elementy, dodaj atrybuty startowe
+  if(menu){
+    menu.setAttribute('role','dialog');
+    menu.setAttribute('aria-modal','true');
+    menu.setAttribute('aria-hidden','true');
+    menu.setAttribute('tabindex','-1');
+    if(!menu.querySelector('#menu-title')){
+      const h = document.createElement('h2');
+      h.id = 'menu-title';
+      h.className = 'visually-hidden';
+      h.textContent = 'Menu mobilne';
+      menu.prepend(h);
+      menu.setAttribute('aria-labelledby','menu-title');
+    }
+  }
+  if(toggle){
+    toggle.setAttribute('aria-controls','site-menu');
+    toggle.setAttribute('aria-expanded','false');
+  }
+
+  function isOpen(){ return location.hash === '#site-menu'; }
+  function setInert(on){
+    [main, header, footer].forEach(el => { if(el) on ? el.setAttribute('inert','') : el.removeAttribute('inert'); });
+  }
+  function focusTrap(e){
+    if(!isOpen() || !menu) return;
+    if(e.key !== 'Tab') return;
+    const focusables = menu.querySelectorAll('a[href],button,[tabindex]:not([tabindex="-1"])');
+    if(!focusables.length) return;
+    const first = focusables[0];
+    const last  = focusables[focusables.length-1];
+    const active = document.activeElement;
+    if(e.shiftKey && active === first){ e.preventDefault(); last.focus(); }
+    else if(!e.shiftKey && active === last){ e.preventDefault(); first.focus(); }
+  }
+  function sync(){
+    const open = isOpen();
+    if(toggle) toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if(menu)   menu.setAttribute('aria-hidden', open ? 'false' : 'true');
+    setInert(open);
+    if(open && menu){ menu.focus(); }
+  }
+
+  window.addEventListener('hashchange', sync, {passive:true});
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && isOpen()){ location.hash = ''; }
+    focusTrap(e);
+  });
+  backdrop && backdrop.addEventListener('click', ()=>{ location.hash=''; });
+  sync();
+
+  // Skip link: przeniesienie fokusa na <main>
+  document.addEventListener('click', function(e){
+    const a = e.target.closest('a.skip-link');
+    if(a){
+      const t = document.getElementById('content');
+      if(t){ t.focus({preventScroll:true}); }
+    }
+  }, {passive:true});
+})();
+</script>
+
+<!-- Kampanie: przenoszenie gclid/utm + eventy (z #cta-tel-hero) -->
 <script>
 (function(){
   const qs = location.search;
