@@ -1,210 +1,509 @@
-<script>
-  // Ustawienia strony (focus header jak było)
-  (function(){
-    var contact = document.getElementById('contact-page');
-    var header  = document.getElementById('site-header');
-    if(contact&&header){ document.documentElement.classList.add('focus-header'); header.classList.add('header--focus'); }
-  })();
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Umów konsultację – Igor Stelmaszczyk</title>
 
-  // PROSTY FORMULARZ
-  document.addEventListener('DOMContentLoaded', () => {
-    const $ = s => document.querySelector(s);
-    const form = $('#contact-form');
-    if(!form) return;
+  <!-- Motyw / SEO -->
+  <meta name="color-scheme" content="light only">
+  <meta name="theme-color" content="#2e9b2f">
+  <meta name="description" content="Umów bezpłatną konsultację treningową w Zdrofit Wilanów. Telefon, WhatsApp lub formularz — odpowiadam tego samego dnia.">
+  <link rel="canonical" href="https://trenerwilanow.pl/umow-konsultacje">
 
-    const statusEl   = $('#cf-status');
-    const btnSubmit  = form.querySelector('button[type="submit"]');
-    const waLink     = $('#wa-dynamic');
-    const consent    = $('#cf-consent');
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Umów konsultację – Igor Stelmaszczyk">
+  <meta property="og:description" content="Najszybciej przez WhatsApp lub formularz — odpowiadam w ciągu dnia.">
+  <meta property="og:url" content="https://trenerwilanow.pl/umow-konsultacje">
+  <meta property="og:image" content="https://trenerwilanow.pl/og/umow-konsultacje.jpg">
+  <meta property="og:locale" content="pl_PL">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Umów konsultację – Igor Stelmaszczyk">
+  <meta name="twitter:description" content="Najszybciej przez WhatsApp lub formularz — odpowiadam w ciągu dnia.">
+  <meta name="twitter:image" content="https://trenerwilanow.pl/og/umow-konsultacje.jpg">
 
-    const inpName    = $('#cf-name');
-    const chTel      = $('#ch-tel');
-    const chMail     = $('#ch-mail');
+  <!-- Fonty: możesz usunąć i użyć systemowych dla 0 zewn. requestów -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="prefetch" href="https://trenerwilanow.pl/dziekujemy" as="document">
 
-    const wrapPhone  = $('#wrap-phone');
-    const wrapEmail  = $('#wrap-email');
-    const inpPhone   = $('#cf-phone');
-    const inpEmail   = $('#cf-email');
+  <!-- JSON-LD: Person -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "@id":"https://trenerwilanow.pl/#igor",
+    "name":"Igor Stelmaszczyk",
+    "jobTitle":"Trener personalny",
+    "url":"https://trenerwilanow.pl/",
+    "image":"https://trenerwilanow.pl/og/igor.jpg",
+    "worksFor":{"@type":"Organization","name":"Trener personalny – Igor Stelmaszczyk"},
+    "contactPoint":{"@type":"ContactPoint","contactType":"customer support","telephone":"+48-537-918-161","email":"treningi.wilanow@gmail.com","availableLanguage":["pl-PL"]},
+    "knowsAbout":["trening personalny","redukcja masy ciała","budowanie siły","mobilność i stabilizacja","zdrowe plecy","powrót po kontuzji"],
+    "address":{"@type":"PostalAddress","streetAddress":"al. Rzeczypospolitej 1","postalCode":"02-972","addressLocality":"Warszawa","addressCountry":"PL"}
+  }
+  </script>
 
-    const hiddenPhone= $('#cf-phone-hidden');
-    const hiddenEmail= $('#cf-email-hidden');
-    const errContact = $('#err-contact');
-    const replyTo    = $('#cf-replyto');
+  <!-- JSON-LD: ProfessionalService -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"ProfessionalService",
+    "@id":"https://trenerwilanow.pl/#biz",
+    "name":"Trener personalny – Igor Stelmaszczyk",
+    "url":"https://trenerwilanow.pl/",
+    "telephone":"+48-537-918-161",
+    "email":"treningi.wilanow@gmail.com",
+    "image":"https://trenerwilanow.pl/og/umow-konsultacje.jpg",
+    "priceRange":"PLN",
+    "areaServed":"Warszawa – Wilanów",
+    "address":{"@type":"PostalAddress","streetAddress":"al. Rzeczypospolitej 1","postalCode":"02-972","addressLocality":"Warszawa","addressCountry":"PL"},
+    "hasMap":"https://www.google.com/maps?q=al.+Rzeczypospolitej+1,+02-972+Warszawa&output=embed",
+    "makesOffer":[{"@type":"Offer","name":"Bezpłatna konsultacja treningowa","price":"0","priceCurrency":"PLN","url":"https://trenerwilanow.pl/umow-konsultacje"}]
+  }
+  </script>
 
-    const THANK_YOU_URL='https://trenerwilanow.pl/dziekujemy';
+  <style>
+    :root{--green:#2e9b2f;--green-dark:#1f7e21;--chip-bg:#f0f7f0;--chip-br:#d9ead9;--text:#1a1a1a;--muted:#555}
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;color:var(--text);font-family:'Open Sans',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+    a{color:var(--green);text-decoration:none}a:hover{text-decoration:underline}
+    :where(a,button,input,select,textarea):focus-visible{outline:3px solid var(--green);outline-offset:2px}
 
-    // Źródło + UTM
-    (function setMeta(){
-      $('#cf-source').value = location.origin + location.pathname;
-      const p=new URLSearchParams(location.search);
-      const utm=['utm_source','utm_medium','utm_campaign','utm_term','utm_content']
-        .map(k=>p.get(k)?k+'='+p.get(k):null).filter(Boolean).join('&');
-      $('#cf-utm').value = utm;
+    /* ===== Header ===== */
+    #site-header{position:sticky;top:0;z-index:9999;min-height:56px;background:#fff;border-bottom:1px solid rgba(0,0,0,.06);transition:box-shadow .2s,border-color .2s,background .2s}
+    @supports(backdrop-filter:blur(4px)){#site-header{background:#ffffffcc;backdrop-filter:saturate(1.2) blur(4px)}}
+    @media (max-width:900px){#site-header{background:#fff;backdrop-filter:none;-webkit-backdrop-filter:none}}
+    #site-header .nav-wrap{max-width:1100px;margin:0 auto;padding:8px 16px;display:flex;align-items:center;gap:14px}
+    .brand{display:flex;align-items:center;gap:8px;color:#1a1a1a}
+    .brand-mark{width:28px;height:28px;border-radius:50%;background:var(--green);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-weight:700;font-size:.85rem}
+    .brand-text{display:flex;flex-direction:column;line-height:1.05}
+    .brand-text strong{font-family:'Poppins',sans-serif;font-size:.98rem}
+    .brand-text em{font-style:normal;color:#555;font-size:.78rem}
+
+    .nav{margin-left:auto}
+    .nav ul{display:flex;gap:14px;list-style:none;margin:0;padding:0}
+    .nav a{color:#1a1a1a;font-weight:700;font-size:.95rem;padding:6px 4px;border-radius:8px;position:relative}
+    .nav a:hover{color:var(--green)}
+    .nav a[aria-current="page"]{color:var(--green)}
+    .nav a[aria-current="page"]::after{content:"";position:absolute;left:6px;right:6px;bottom:0;height:2px;background:var(--green);border-radius:2px}
+
+    .btn{display:inline-flex;align-items:center;justify-content:center;font-weight:700;line-height:1;padding:10px 14px;min-height:40px;border-radius:10px;border:2px solid;white-space:nowrap;transition:background-color .25s,border-color .25s,color .25s}
+    .btn-primary{background:var(--green);color:#fff;border-color:var(--green)}
+    .btn-primary:hover{background:var(--green-dark);border-color:var(--green-dark)}
+    .btn-wa{background:transparent;color:var(--green);border-color:var(--green)}
+    .btn-wa:hover{background:var(--green);color:#fff}
+    .cta{display:flex;gap:8px;margin-left:6px}
+    .cta-desktop{display:inline-flex}.cta-mobile{display:none}
+    .nav-toggle{margin-left:6px;padding:6px;border-radius:8px;display:none}
+    .nav-toggle .bar{display:block;width:20px;height:2px;background:#1a1a1a;margin:3px 0}
+    @media (max-width:900px){.nav{display:none!important}.nav-toggle{display:inline-block!important}.cta-desktop{display:none!important}.cta-mobile{display:inline-flex!important}}
+
+    /* ===== Mobile menu (CSS :target) ===== */
+    .mobile-menu{position:fixed;left:12px;right:12px;top:52px;z-index:10000;background:#fff;border:1px solid #eee;border-radius:14px;box-shadow:0 14px 34px rgba(0,0,0,.12);padding:12px;display:block;opacity:0;transform:translateY(-6px);pointer-events:none;visibility:hidden;transition:opacity .18s ease,transform .18s ease,visibility 0s linear .18s;contain:layout paint style}
+    .mobile-menu a,.mobile-menu .close{display:block;padding:12px;border-radius:10px;color:#1a1a1a;font-weight:700}
+    .mobile-menu a:hover{background:#f6fbf6;color:var(--green)}
+    .mobile-menu .wa-link{margin-top:4px;border:2px solid var(--green);color:var(--green);text-align:center}
+    .mobile-menu .wa-link:hover{background:var(--green);color:#fff}
+    .menu-backdrop{position:fixed;inset:0;z-index:9998;display:none;background:transparent}
+    .mobile-menu:target{opacity:1;transform:translateY(0);pointer-events:auto;visibility:visible;transition-delay:0s}
+    #site-menu:target + .menu-backdrop{display:block}
+    html:has(#site-menu:target){overflow:hidden}
+
+    /* ===== WhatsApp FAB ===== */
+    @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+    #whatsapp-fixed{position:fixed;bottom:20px;right:20px;z-index:9999;width:58px;height:58px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,0,0,.25);animation:pulse 2s infinite;line-height:0}
+    #whatsapp-fixed svg{width:28px;height:28px;fill:#fff}
+    #whatsapp-fixed:focus-visible{outline:3px solid #1f7e21;outline-offset:2px}
+    @media (min-width:769px){#whatsapp-fixed{display:none}}
+    @media (prefers-reduced-motion:reduce){#whatsapp-fixed{animation:none}}
+
+    /* ===== Contact page ===== */
+    #contact-page{padding:56px 20px;scroll-margin-top:90px}
+    .contact-hero{max-width:1100px;margin:0 auto 22px;text-align:center}
+    .contact-hero h1{font-family:'Poppins',sans-serif;font-size:2.2rem;font-weight:700;line-height:1.2;margin:0 0 8px}
+    .contact-hero p{color:#444;font-size:1.05rem;margin:0}
+    .usp-chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:12px 0 0;padding:0;list-style:none}
+    .usp-chips li{padding:6px 10px;border-radius:999px;background:var(--chip-bg);color:#1c371d;font-weight:700;font-size:.88rem;border:1px solid var(--chip-br)}
+
+    .page-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.2fr .8fr;gap:22px}
+    @media (max-width:900px){.page-grid{grid-template-columns:1fr}}
+
+    #formularz{background:#f6fbf6;border:1px solid var(--chip-br);border-radius:16px;box-shadow:0 6px 18px rgba(0,0,0,.06);padding:22px}
+    #formularz h2{margin:0 0 8px;font-family:'Poppins',sans-serif;font-size:1.4rem;font-weight:700}
+    #formularz p{margin:0 0 14px;color:#555}
+    .field{margin-bottom:16px}
+    .field label{display:block;font-weight:700;margin-bottom:6px}
+    .field input,.field select,.field textarea{width:100%;border:1px solid var(--chip-br);border-radius:10px;padding:12px 14px;min-height:48px;font-size:16px}
+    .field textarea{resize:vertical}
+    .field-group{display:flex;gap:12px;flex-wrap:wrap}
+    .field-group .field{flex:1 1 160px}
+    .field-error{color:#c0392b;margin-top:6px;font-size:.9rem}
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:16px}
+    .cta-row .btn{flex:1 1 auto;width:auto}
+    .has-error input,.has-error select,.has-error textarea{border-color:#e59a9a!important}
+
+    .contact-aside{display:flex;flex-direction:column;gap:12px}
+    .card{background:#fff;border:1px solid #eee;border-radius:16px;padding:16px;box-shadow:0 4px 12px rgba(0,0,0,.05)}
+    .map-card iframe{width:100%;height:320px;border:0;border-radius:16px;overflow:hidden}
+
+    @media (max-width:768px){
+      #contact-page{padding:40px 14px}
+      .contact-hero h1{font-size:1.8rem;line-height:1.25}
+      .contact-hero p{font-size:.98rem}
+      .usp-chips{justify-content:center}.usp-chips li{font-size:.86rem}
+      .cta-row a,.cta-row button{width:100%}
+      .btn-wa{order:1;background:var(--green);color:#fff;border-color:var(--green)}
+      .btn-primary{order:2;background:transparent;color:var(--green);border-color:var(--green)}
+    }
+    @media (max-width:420px){.contact-hero h1{font-size:1.6rem}}
+    @media (max-width:360px){.btn{padding:12px 14px;font-size:.95rem}}
+
+    /* Focus header (tylko tu) */
+    .focus-header #site-header .nav,
+    .focus-header #site-header .cta,
+    .focus-header #site-header .nav-toggle{display:none!important}
+    .focus-header #site-menu,.focus-header .menu-backdrop{display:none!important}
+    .focus-header #site-header .nav-wrap{padding:6px 16px!important}
+    .focus-header #site-header.is-scrolled{box-shadow:0 6px 18px rgba(0,0,0,.06);border-color:rgba(0,0,0,.08);background:#fff}
+
+    /* Stopka */
+    #ig-footer{background:#0f1111;color:#e9ecef}
+    #ig-footer .wrap{max-width:1100px;margin:0 auto;padding:32px 20px;display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+    #ig-footer h3,#ig-footer h4{font-family:'Poppins',sans-serif;letter-spacing:-.2px;margin:0 0 10px;line-height:1.2;color:#fff}
+    #ig-footer h3{font-size:1.22rem}#ig-footer h4{font-size:1rem}
+    #ig-footer p{margin:0 0 10px;color:#cfd6dc}
+    #ig-footer address{font-style:normal;color:#cfd6dc;line-height:1.7;margin-bottom:6px}
+    #ig-footer .list{list-style:none;margin:0;padding:0}
+    #ig-footer .list li+li{margin-top:6px}
+    #ig-footer a{color:#d9fff0}#ig-footer a:hover,#ig-footer a:focus{text-decoration:underline;outline:none}
+    #ig-footer .map-link{color:#b9f6ca}
+    #ig-footer .cta-row{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+    #ig-footer .btn{border:2px solid transparent}
+    #ig-footer .btn-call{background:#1a1a1a;color:#fff;border-color:#1a1a1a}
+    #ig-footer .btn-call:hover{background:#101010}
+    #ig-footer .btn-wa{background:var(--green);color:#fff;border-color:#var(--green)}
+    #ig-footer .btn-wa:hover{background:#1f7e21}
+    #ig-footer .bar{border-top:1px solid rgba(255,255,255,.08);margin-top:6px;padding:14px 20px;text-align:center;font-size:.95rem;color:#cfd6dc}
+    @media (max-width:480px){#ig-footer .wrap{padding:24px 16px}#ig-footer .cta-row a{flex:1;text-align:center}}
+
+    @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+  </style>
+</head>
+<body>
+
+  <!-- ===== Header ===== -->
+  <header id="site-header" role="banner">
+    <div class="nav-wrap">
+      <a class="brand" href="/" aria-label="Strona główna – Igor Stelmaszczyk">
+        <span class="brand-mark" aria-hidden="true">IS</span>
+        <span class="brand-text"><strong>Igor Stelmaszczyk</strong><em>Trener personalny</em></span>
+      </a>
+
+      <nav class="nav" aria-label="Główne">
+        <ul>
+          <li><a href="/o-mnie">O mnie</a></li>
+          <li><a href="/uslugi">Usługi</a></li>
+          <li><a href="/cennik">Cennik</a></li>
+          <li><a href="/efekty">Efekty</a></li>
+          <li><a href="/umow-konsultacje" aria-current="page">Kontakt</a></li>
+        </ul>
+      </nav>
+
+      <div class="cta">
+        <a class="btn btn-primary cta-desktop" href="/umow-konsultacje" aria-label="Umów konsultację – formularz">Umów konsultację</a>
+        <a class="btn btn-wa cta-mobile" href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87%20Igor%2C%20chc%C4%99%20kr%C3%B3tkiej%20konsultacji%20na%20WhatsApp.%20Imi%C4%99%3A%20__%2C%20cel%3A%20__" target="_blank" rel="noopener" aria-label="Napisz na WhatsApp – nowa karta">WhatsApp</a>
+      </div>
+
+      <a href="#site-menu" class="nav-toggle" aria-label="Otwórz menu"><span class="bar"></span><span class="bar"></span><span class="bar"></span></a>
+    </div>
+  </header>
+
+  <!-- ===== Mobile menu ===== -->
+  <nav id="site-menu" class="mobile-menu" aria-label="Menu mobilne">
+    <a href="#" class="close" aria-label="Zamknij menu">✕</a>
+    <a href="/o-mnie">O mnie</a>
+    <a href="/uslugi">Usługi</a>
+    <a href="/cennik">Cennik</a>
+    <a href="/efekty">Efekty</a>
+    <a href="/umow-konsultacje">Kontakt</a>
+    <a class="wa-link" href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87%20Igor%2C%20chc%C4%99%20kr%C3%B3tkiej%20konsultacji%20na%20WhatsApp.%20Imi%C4%99%3A%20__%2C%20cel%3A%20__" target="_blank" rel="noopener">Napisz na WhatsApp</a>
+  </nav>
+  <a href="#" class="menu-backdrop" aria-hidden="true"></a>
+
+  <!-- ===== WhatsApp FAB (mobile) ===== -->
+  <a id="whatsapp-fixed" href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87!%20Chc%C4%99%20um%C3%B3wi%C4%87%20bezp%C5%82atn%C4%85%20konsultacj%C4%99%20treningow%C4%85" target="_blank" rel="noopener" title="Napisz na WhatsApp" aria-label="Napisz na WhatsApp">
+    <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M19.1 17.4c-.2-.1-1.3-.6-1.5-.7-.2-.1-.4-.1-.6.1-.2.2-.6.7-.7.8-.1.1-.3.2-.6.1-.2-.1-.9-.3-1.7-1-.6-.5-1-1.1-1.1-1.3-.1-.2 0-.4.1-.5s.5-.6.6-.8c.1-.2.1-.4 0-.5s-.6-1.4-.8-1.9-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.2-.9.8-.9 2s1 2.4 1.1 2.6c.1.2 1.9 3 4.5 4.1.6.3 1.1.5 1.5.6.6.2 1.1.2 1.5.1.5-.1 1.3-.5 1.5-1.1.2-.6.2-1.1.1-1.2 0-.1-.2-.1-.4-.2z"/><path d="M16 3C9.9 3 5 7.9 5 14c0 2.5.9 4.8 2.4 6.6L6 29l8.6-1.4c1.4.4 2.9.6 4.4.6 6.1 0 11-4.9 11-11S22.1 3 16 3zm0 20.9c-1.5 0-2.9-.4-4.1-1l-.3-.2-5 .8.9-4.8-.2-.3C6.4 17.1 6 15.6 6 14c0-5.5 4.5-10 10-10s10 4.5 10 10-4.5 9.9-10 9.9z"/></svg>
+  </a>
+
+  <!-- ===== Contact page ===== -->
+  <main id="contact-page">
+    <header class="contact-hero">
+      <h1>Umów konsultację</h1>
+      <p>Najszybciej przez WhatsApp lub formularz — odpowiadam w ciągu dnia</p>
+      <ul class="usp-chips" aria-label="Najważniejsze informacje">
+        <li>Zdrofit Wilanów</li><li>Pierwszy kontakt: 60 s</li><li>Odpowiadam tego samego dnia</li>
+      </ul>
+    </header>
+
+    <div class="page-grid">
+      <section id="formularz" aria-labelledby="form-title">
+        <h2 id="form-title">Formularz kontaktowy</h2>
+        <p>Podaj podstawowe informacje — oddzwonię/odpiszę najszybciej jak to możliwe.</p>
+
+        <form id="contact-form" action="https://formsubmit.co/igorstelmaszczyk@gmail.com" method="POST" novalidate aria-describedby="cf-hint cf-status">
+          <input type="hidden" name="_subject" value="Nowa konsultacja – trenerwilanow.pl">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" value="https://trenerwilanow.pl/dziekujemy">
+          <input type="hidden" name="Źródło" id="cf-source" value="">
+          <input type="hidden" name="UTM" id="cf-utm" value="">
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+          <input id="cf-replyto" type="hidden" name="_replyto" value="">
+
+          <div class="field">
+            <label for="cf-name">Imię*</label>
+            <input id="cf-name" name="name" type="text" required inputmode="text" autocomplete="given-name" aria-required="true" placeholder="np. Kasia">
+          </div>
+
+          <div class="field-group">
+            <div class="field" id="wrap-phone">
+              <label for="cf-phone">Telefon</label>
+              <input id="cf-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" pattern="^[\s()+-]*([0-9][\s()+-]*){6,}$" aria-describedby="err-contact" aria-invalid="false" placeholder="np. 537 918 161">
+            </div>
+            <div class="field" id="wrap-email">
+              <label for="cf-email">E-mail</label>
+              <input id="cf-email" name="email" type="email" inputmode="email" autocomplete="email" aria-describedby="err-contact" aria-invalid="false" placeholder="np. imie@domena.pl">
+            </div>
+          </div>
+
+          <p id="err-contact" class="field-error" role="alert" aria-live="polite" hidden>Podaj telefon lub e-mail (wystarczy jedno).</p>
+
+          <div class="field">
+            <label for="cf-goal">Cel</label>
+            <select id="cf-goal" name="goal">
+              <option value="">Wybierz…</option>
+              <option>Redukcja masy ciała</option>
+              <option>Budowanie siły/masy</option>
+              <option>Powrót po kontuzji</option>
+              <option>Mobilność/stabilizacja</option>
+              <option>„Forma ogólna” i zdrowe plecy</option>
+            </select>
+          </div>
+
+          <div class="field-group">
+            <div class="field">
+              <label for="cf-date">Data</label>
+              <input id="cf-date" name="date" type="date">
+            </div>
+            <div class="field">
+              <label for="cf-time">Godzina</label>
+              <input id="cf-time" name="time" type="time" step="900">
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="cf-msg">Wiadomość</label>
+            <textarea id="cf-msg" name="message" rows="4" placeholder="Napisz kilka słów o sobie i dostępnych terminach"></textarea>
+          </div>
+
+          <div class="field consent">
+            <label>
+              <input id="cf-consent" type="checkbox" required>
+              <span>Wyrażam zgodę na kontakt w sprawie konsultacji. <a href="/polityka-prywatnosci">Polityka prywatności</a>.</span>
+            </label>
+          </div>
+
+          <div class="cta-row">
+            <a id="wa-dynamic" class="btn btn-wa" href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87%20Igor%2C%20chc%C4%99%20um%C3%B3wi%C4%87%20konsultacj%C4%99." target="_blank" rel="noopener" aria-label="Napisz na WhatsApp – otworzy aplikację">WhatsApp</a>
+            <button type="submit" class="btn btn-primary" aria-label="Wyślij formularz">Wyślij formularz</button>
+          </div>
+
+          <p id="cf-hint" class="field-hint">Telefon <strong>lub</strong> e-mail — wystarczy jedno. Odpowiadam tego samego dnia.</p>
+          <div id="cf-status" role="status" aria-live="polite"></div>
+        </form>
+      </section>
+
+      <aside class="contact-aside">
+        <section class="card">
+          <h2 style="margin:0 0 10px;font-family:'Poppins',sans-serif;font-size:1.2rem;font-weight:700;">Dane kontaktowe</h2>
+          <ul style="list-style:none;padding:0;margin:0;display:grid;gap:8px;color:#1a1a1a;">
+            <li><strong>Telefon:</strong> <a href="tel:+48537918161">+48 537 918 161</a></li>
+            <li><strong>WhatsApp:</strong> <a href="https://wa.me/48537918161" target="_blank" rel="noopener">Napisz wiadomość</a></li>
+            <li><strong>E-mail:</strong> <a href="mailto:treningi.wilanow@gmail.com">treningi.wilanow@gmail.com</a></li>
+            <li><strong>Lokalizacja:</strong> Zdrofit Wilanów, al. Rzeczypospolitej 1, Warszawa</li>
+          </ul>
+        </section>
+        <section class="card map-card">
+          <iframe title="Zdrofit Wilanów – mapa" src="https://www.google.com/maps?q=al.+Rzeczypospolitej+1,+02-972+Warszawa&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </section>
+      </aside>
+    </div>
+  </main>
+  <!-- ===== Stopka ===== -->
+  <footer id="ig-footer" role="contentinfo" aria-label="Stopka strony">
+    <div class="wrap">
+      <div class="col about">
+        <h3>Igor Stelmaszczyk</h3>
+        <p>Trener personalny w Wilanowie. Bez zadęcia, bez stresu — z planem, który działa.</p>
+        <div class="cta-row">
+          <a class="btn btn-call" href="tel:+48537918161" aria-label="Zadzwoń do mnie: +48 537 918 161">Zadzwoń</a>
+          <a class="btn btn-wa" href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87%2C%20chc%C4%99%20um%C3%B3wi%C4%87%20bezp%C5%82atn%C4%85%20konsultacj%C4%99.%20Termin%3A%20__%2C%20godz.%3A%20__" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+      <div class="col contact">
+        <h4>Kontakt</h4>
+        <address>
+          <a href="mailto:treningi.wilanow@gmail.com">treningi.wilanow@gmail.com</a><br>
+          <a href="tel:+48537918161">+48&nbsp;537&nbsp;918&nbsp;161</a>
+        </address>
+        <h4>Lokalizacja</h4>
+        <p>Trenuję w: <strong>Zdrofit Wilanów</strong><br>
+          <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Zdrofit%20Wilan%C3%B3w%20Warszawa" target="_blank" rel="noopener">Pokaż na mapie →</a>
+        </p>
+      </div>
+      <nav class="col links" aria-label="Szybkie linki">
+        <h4>Na skróty</h4>
+        <ul class="list">
+          <li><a href="/cennik">Cennik</a></li>
+          <li><a href="/o-mnie">O mnie</a></li>
+          <li><a href="#coop-sec">Jak wygląda współpraca</a></li>
+          <li><a href="/umow-konsultacje">Kontakt</a></li>
+        </ul>
+      </nav>
+      <div class="col policies">
+        <h4>Informacje</h4>
+        <ul class="list">
+          <li><a href="/polityka-prywatnosci">Polityka prywatności</a></li>
+          <li><a href="/regulamin">Regulamin</a></li>
+        </ul>
+        <p class="note">Odpowiadam tego samego dnia.</p>
+      </div>
+    </div>
+    <div class="bar"><p>© 2025 Igor Stelmaszczyk • Wszystkie prawa zastrzeżone</p></div>
+  </footer>
+
+  <script>
+    // Focus header tylko na tej stronie
+    (function(){
+      var contact=document.getElementById('contact-page');
+      var header=document.getElementById('site-header');
+      if(contact&&header){
+        document.documentElement.classList.add('focus-header');
+        header.classList.add('header--focus');
+      }
     })();
 
-    // Proste formatowanie PL telefonu 9 cyfr (+48 obsługiwane)
-    function formatPL(raw){
-      const d = raw.replace(/[^\d+]/g,'');
-      const noCC = d.replace(/^(\+?48)/,''); // usuń +48
-      const digits = noCC.replace(/\D/g,'').slice(0,9);
-      return digits.replace(/(\d{3})(\d{3})(\d{0,3})/,(m,a,b,c)=> c ? `${a} ${b} ${c}` : (b ? `${a} ${b}` : a));
-    }
-    function isValidPhone(v){
-      const digits = v.replace(/\D/g,'');
-      return digits.length >= 6; // miękko: 6+ cyfr
-    }
-    function isValidEmail(v){
-      return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
-    }
+    // Formularz: UTM, min-date, WhatsApp, walidacja tel/email, anty-spam, timeout
+    document.addEventListener('DOMContentLoaded',()=> {
+      const $=s=>document.querySelector(s);
+      const form=$('#contact-form'), statusEl=$('#cf-status'), btnSend=form.querySelector('button[type="submit"]'),
+            waLink=$('#wa-dynamic'), replyTo=$('#cf-replyto'),
+            wrapPhone=$('#wrap-phone'), wrapEmail=$('#wrap-email'), errContact=$('#err-contact');
+      const THANK_YOU_URL='https://trenerwilanow.pl/dziekujemy';
 
-    // Przełączanie kanału — pokazuj tylko odpowiednie pole
-    function syncChannelUI(){
-      const tel = chTel.checked;
-      wrapPhone.hidden = !tel;
-      wrapEmail.hidden = tel;
-      // dostępność
-      inpPhone.toggleAttribute('required', tel);
-      inpEmail.toggleAttribute('required', !tel);
-      // WA jako skrót bardziej sensowny przy telefonie
-      waLink.style.display = tel ? 'inline-flex' : 'none';
-      // wyczyść błędy
-      errContact.hidden = true;
-      inpPhone.setAttribute('aria-invalid','false');
-      inpEmail.setAttribute('aria-invalid','false');
-    }
-    chTel.addEventListener('change', syncChannelUI);
-    chMail.addEventListener('change', syncChannelUI);
-    syncChannelUI();
+      // Źródło i UTM
+      (function setMeta(){
+        $('#cf-source').value=location.origin+location.pathname;
+        const p=new URLSearchParams(location.search);
+        const utm=['utm_source','utm_medium','utm_campaign','utm_term','utm_content']
+          .map(k=>p.get(k)?k+'='+p.get(k):null).filter(Boolean).join('&');
+        $('#cf-utm').value=utm;
+      })();
 
-    // Auto-format telefonu i aktualizacja ukrytych mirrorów
-    inpPhone.addEventListener('input', ()=>{
-      const caret = inpPhone.selectionStart;
-      inpPhone.value = formatPL(inpPhone.value);
-      hiddenPhone.value = inpPhone.value.replace(/\D/g,'');
-      buildWhatsApp();
-      // nie modyfikujemy caret — przy takim prostym formatterze jest OK
+      // Minimalna data = dziś
+      (function setMinDate(){
+        const d=$('#cf-date'); if(!d) return;
+        const t=new Date(), yyyy=t.getFullYear(), mm=String(t.getMonth()+1).padStart(2,'0'), dd=String(t.getDate()).padStart(2,'0');
+        d.min=`${yyyy}-${mm}-${dd}`;
+      })();
+
+      const debounce=(fn,ms=120)=>{let t;return(...a)=>{clearTimeout(t);t=setTimeout(()=>fn(...a),ms);} };
+      const val=id=>(document.getElementById(id)?.value||'').trim();
+
+      // Dynamiczny link WhatsApp z wypełnionymi polami
+      const buildWa=debounce(()=> {
+        const parts=[
+          "Cześć Igor, chcę umówić konsultację w Zdrofit Wilanów.",
+          val('cf-name')&&`Imię: ${val('cf-name')}`,
+          val('cf-goal')&&`Cel: ${val('cf-goal')}`,
+          (val('cf-date')||val('cf-time'))&&`Termin: ${val('cf-date')||'--'} ${val('cf-time')||'--'}`,
+          val('cf-phone')&&`Tel: ${val('cf-phone')}`,
+          val('cf-email')&&`Email: ${val('cf-email')}`
+        ].filter(Boolean).join('\n');
+        waLink.href=`https://wa.me/48537918161?text=${encodeURIComponent(parts)}`;
+        replyTo.value=val('cf-email');
+      },120);
+
+      function hasPhoneOrEmail(){ return Boolean(val('cf-phone')||val('cf-email')); }
+      function updateContactError(){
+        const ok=hasPhoneOrEmail();
+        wrapPhone.classList.toggle('has-error',!ok);
+        wrapEmail.classList.toggle('has-error',!ok);
+        document.getElementById('cf-phone').setAttribute('aria-invalid',String(!ok));
+        document.getElementById('cf-email').setAttribute('aria-invalid',String(!ok));
+        errContact.hidden=ok;
+      }
+
+      // Prosty anty-spam: honeypot + minimalny czas na stronie
+      const pageReadyTs=Date.now();
+      function passAntiSpam(){
+        const honey=form.querySelector('input[name="_honey"]')?.value||'';
+        const waited=(Date.now()-pageReadyTs)>=3000;
+        return !honey && waited;
+      }
+
+      ['cf-name','cf-phone','cf-email','cf-goal','cf-date','cf-time','cf-msg'].forEach(id=>{
+        const el=document.getElementById(id); if(!el) return;
+        el.addEventListener('input',()=>{ if(id==='cf-phone'||id==='cf-email') updateContactError(); buildWa(); });
+      });
+      updateContactError(); buildWa();
+
+      // Fetch z timeoutem
+      function fetchWithTimeout(resource,options={},timeout=10000){
+        const ctrl=new AbortController();
+        const id=setTimeout(()=>ctrl.abort(),timeout);
+        return fetch(resource,{...options,signal:ctrl.signal}).finally(()=>clearTimeout(id));
+      }
+
+      // Obsługa submitu
+      form.addEventListener('submit',async e=>{
+        e.preventDefault();
+        if(!form.checkValidity()){form.reportValidity();return;}
+        if(!hasPhoneOrEmail()){updateContactError();document.getElementById('cf-phone').focus();return;}
+        if(!passAntiSpam()){
+          statusEl.textContent='Zbyt szybkie wysyłanie. Spróbuj ponownie za chwilę.';
+          statusEl.style.color='#c0392b';
+          return;
+        }
+
+        btnSend.disabled=true;btnSend.setAttribute('aria-busy','true');btnSend.textContent='Wysyłam…';
+        statusEl.textContent='Wysyłam…';statusEl.style.color='#666';
+
+        try{
+          const fd=new FormData(form);
+          const res=await fetchWithTimeout(
+            'https://formsubmit.co/ajax/igorstelmaszczyk@gmail.com',
+            {method:'POST',body:fd,headers:{'Accept':'application/json'}},
+            10000
+          );
+          const json=await res.json();
+          if(json.success==='true'||json.message){
+            window.location.assign(THANK_YOU_URL);return;
+          }
+          throw new Error('Nie udało się wysłać formularza.');
+        }catch(err){
+          console.error(err);
+          statusEl.textContent='Ups, coś poszło nie tak. Napisz proszę na WhatsApp lub zadzwoń.';
+          statusEl.style.color='#c0392b';
+        }finally{
+          btnSend.disabled=false;btnSend.removeAttribute('aria-busy');btnSend.textContent='Wyślij formularz';
+        }
+      });
     });
-    inpEmail.addEventListener('input', ()=>{
-      hiddenEmail.value = inpEmail.value.trim();
-      replyTo.value = hiddenEmail.value;
-      buildWhatsApp();
-    });
-    inpName.addEventListener('input', buildWhatsApp);
-    document.querySelectorAll('input[name="goal"],#cf-msg').forEach(el=>el.addEventListener('input', buildWhatsApp));
-
-    // Komunikat WhatsApp
-    function buildWhatsApp(){
-      const name = (inpName.value||'').trim();
-      const goal = (form.querySelector('input[name="goal"]:checked')?.value||'').trim();
-      const msg  = ($('#cf-msg').value||'').trim();
-      const phone= hiddenPhone.value;
-      const email= hiddenEmail.value;
-
-      const parts = [
-        "Cześć Igor, chcę umówić bezpłatną konsultację w Zdrofit Wilanów.",
-        name && `Imię: ${name}`,
-        goal && goal!=='Inny' && `Cel: ${goal}`,
-        msg  && `Wiadomość: ${msg}`,
-        phone && `Tel: ${phone}`,
-        email && `Email: ${email}`
-      ].filter(Boolean).join('\n');
-
-      waLink.href = `https://wa.me/48537918161?text=${encodeURIComponent(parts)}`;
-    }
-    buildWhatsApp();
-
-    // Anty-spam: 2.5 s na stronie + honeypot puste
-    const pageReadyTs = Date.now();
-    function passAntiSpam(){
-      const honey = form.querySelector('input[name="_honey"]')?.value||'';
-      const waited = (Date.now()-pageReadyTs) >= 2500;
-      return !honey && waited;
-    }
-
-    // Walidacja
-    function validate(){
-      let ok = true;
-      if(!inpName.value.trim()) ok = false;
-
-      if(chTel.checked){
-        const v = inpPhone.value;
-        const valid = isValidPhone(v);
-        inpPhone.setAttribute('aria-invalid', String(!valid));
-        errContact.hidden = valid;
-        ok = ok && valid;
-        hiddenEmail.value = ''; // czyść drugi kanał
-        replyTo.value     = '';  // brak e-maila do reply-to
-      }else{
-        const v = inpEmail.value.trim();
-        const valid = isValidEmail(v);
-        inpEmail.setAttribute('aria-invalid', String(!valid));
-        errContact.hidden = valid;
-        ok = ok && valid;
-        hiddenPhone.value = ''; // czyść telefon gdy e-mail
-      }
-
-      if(!consent.checked) ok = false;
-      return ok;
-    }
-
-    // Submit
-    async function fetchWithTimeout(resource,options={},timeout=10000){
-      const ctrl=new AbortController();
-      const id=setTimeout(()=>ctrl.abort(), timeout);
-      try{ return await fetch(resource,{...options,signal:ctrl.signal}); }
-      finally{ clearTimeout(id); }
-    }
-
-    form.addEventListener('submit', async (e)=>{
-      e.preventDefault();
-      statusEl.textContent = '';
-      if(!validate()){
-        statusEl.textContent = 'Uzupełnij wymagane pola.';
-        statusEl.style.color = '#c0392b';
-        (chTel.checked ? inpPhone : inpEmail).focus();
-        return;
-      }
-      if(!passAntiSpam()){
-        statusEl.textContent = 'Zbyt szybkie wysłanie — spróbuj ponownie.';
-        statusEl.style.color = '#c0392b';
-        return;
-      }
-
-      // Ustaw pola hidden pod piękną tabelkę w mailu
-      const fd = new FormData(form);
-      if(chTel.checked){
-        fd.set('phone', hiddenPhone.value);
-        fd.delete('email');
-      }else{
-        fd.set('email', hiddenEmail.value);
-        fd.delete('phone');
-      }
-      // reply-to tylko jeśli mamy e-mail
-      replyTo.value = hiddenEmail.value || '';
-
-      // Stan ładowania
-      btnSubmit.disabled = true;
-      btnSubmit.setAttribute('aria-busy','true');
-      const oldText = btnSubmit.textContent;
-      btnSubmit.textContent = 'Wysyłam…';
-      statusEl.textContent = 'Wysyłam…';
-      statusEl.style.color = '#666';
-
-      try{
-        const res = await fetchWithTimeout('https://formsubmit.co/ajax/igorstelmaszczyk@gmail.com',
-          { method:'POST', body:fd, headers:{'Accept':'application/json'} }, 10000);
-        const json = await res.json();
-        if(json.success==='true' || json.message){ location.assign(THANK_YOU_URL); return; }
-        throw new Error('Błąd wysyłki');
-      }catch(err){
-        console.error(err);
-        statusEl.textContent = 'Ups, coś poszło nie tak. Napisz proszę na WhatsApp lub zadzwoń.';
-        statusEl.style.color = '#c0392b';
-      }finally{
-        btnSubmit.disabled = false;
-        btnSubmit.removeAttribute('aria-busy');
-        btnSubmit.textContent = oldText;
-      }
-    });
-  });
-</script>
+  </script>
+</body>
+</html>
