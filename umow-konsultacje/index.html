@@ -23,7 +23,7 @@
   <meta name="twitter:description" content="Najszybciej przez WhatsApp lub formularz — odpowiadam w ciągu dnia.">
   <meta name="twitter:image" content="https://trenerwilanow.pl/og/umow-konsultacje.jpg">
 
-  <!-- Fonty: możesz usunąć i użyć systemowych dla 0 zewn. requestów -->
+  <!-- Fonty (opcjonalne) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
@@ -137,14 +137,13 @@
     #formularz p{margin:0 0 14px;color:#555}
     .field{margin-bottom:16px}
     .field label{display:block;font-weight:700;margin-bottom:6px}
-    .field input,.field select,.field textarea{width:100%;border:1px solid var(--chip-br);border-radius:10px;padding:12px 14px;min-height:48px;font-size:16px}
-    .field textarea{resize:vertical}
-    .field-group{display:flex;gap:12px;flex-wrap:wrap}
-    .field-group .field{flex:1 1 160px}
-    .field-error{color:#c0392b;margin-top:6px;font-size:.9rem}
+    .field input{width:100%;border:1px solid var(--chip-br);border-radius:10px;padding:12px 14px;min-height:48px;font-size:16px}
+    .consent label{display:flex;gap:10px;align-items:flex-start}
+    .consent label>span{min-width:0;overflow-wrap:anywhere;word-break:break-word;line-height:1.4}
+    #cf-consent{width:22px;height:22px;accent-color:var(--green);margin-top:2px}
+
     .cta-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:16px}
     .cta-row .btn{flex:1 1 auto;width:auto}
-    .has-error input,.has-error select,.has-error textarea{border-color:#e59a9a!important}
 
     .contact-aside{display:flex;flex-direction:column;gap:12px}
     .card{background:#fff;border:1px solid #eee;border-radius:16px;padding:16px;box-shadow:0 4px 12px rgba(0,0,0,.05)}
@@ -185,10 +184,9 @@
     #ig-footer .btn{border:2px solid transparent}
     #ig-footer .btn-call{background:#1a1a1a;color:#fff;border-color:#1a1a1a}
     #ig-footer .btn-call:hover{background:#101010}
-    #ig-footer .btn-wa{background:var(--green);color:#fff;border-color:#var(--green)}
-    #ig-footer .btn-wa:hover{background:#1f7e21}
+    #ig-footer .btn-wa{background:var(--green);color:#fff;border-color:var(--green)}
+    #ig-footer .btn-wa:hover{background:var(--green-dark)}
     #ig-footer .bar{border-top:1px solid rgba(255,255,255,.08);margin-top:6px;padding:14px 20px;text-align:center;font-size:.95rem;color:#cfd6dc}
-    @media (max-width:480px){#ig-footer .wrap{padding:24px 16px}#ig-footer .cta-row a{flex:1;text-align:center}}
 
     @media (prefers-reduced-motion:reduce){*{transition:none!important}}
   </style>
@@ -238,7 +236,6 @@
   <a id="whatsapp-fixed" href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87!%20Chc%C4%99%20um%C3%B3wi%C4%87%20bezp%C5%82atn%C4%85%20konsultacj%C4%99%20treningow%C4%85" target="_blank" rel="noopener" title="Napisz na WhatsApp" aria-label="Napisz na WhatsApp">
     <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M19.1 17.4c-.2-.1-1.3-.6-1.5-.7-.2-.1-.4-.1-.6.1-.2.2-.6.7-.7.8-.1.1-.3.2-.6.1-.2-.1-.9-.3-1.7-1-.6-.5-1-1.1-1.1-1.3-.1-.2 0-.4.1-.5s.5-.6.6-.8c.1-.2.1-.4 0-.5s-.6-1.4-.8-1.9-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.2-.9.8-.9 2s1 2.4 1.1 2.6c.1.2 1.9 3 4.5 4.1.6.3 1.1.5 1.5.6.6.2 1.1.2 1.5.1.5-.1 1.3-.5 1.5-1.1.2-.6.2-1.1.1-1.2 0-.1-.2-.1-.4-.2z"/><path d="M16 3C9.9 3 5 7.9 5 14c0 2.5.9 4.8 2.4 6.6L6 29l8.6-1.4c1.4.4 2.9.6 4.4.6 6.1 0 11-4.9 11-11S22.1 3 16 3zm0 20.9c-1.5 0-2.9-.4-4.1-1l-.3-.2-5 .8.9-4.8-.2-.3C6.4 17.1 6 15.6 6 14c0-5.5 4.5-10 10-10s10 4.5 10 10-4.5 9.9-10 9.9z"/></svg>
   </a>
-
   <!-- ===== Contact page ===== -->
   <main id="contact-page">
     <header class="contact-hero">
@@ -252,9 +249,10 @@
     <div class="page-grid">
       <section id="formularz" aria-labelledby="form-title">
         <h2 id="form-title">Formularz kontaktowy</h2>
-        <p>Podaj podstawowe informacje — oddzwonię/odpiszę najszybciej jak to możliwe.</p>
+        <p>Podaj <strong>imię</strong> i <strong>telefon</strong> — oddzwonię najszybciej jak to możliwe.</p>
 
         <form id="contact-form" action="https://formsubmit.co/igorstelmaszczyk@gmail.com" method="POST" novalidate aria-describedby="cf-hint cf-status">
+          <!-- meta / automaty -->
           <input type="hidden" name="_subject" value="Nowa konsultacja – trenerwilanow.pl">
           <input type="hidden" name="_template" value="table">
           <input type="hidden" name="_captcha" value="false">
@@ -262,52 +260,17 @@
           <input type="hidden" name="Źródło" id="cf-source" value="">
           <input type="hidden" name="UTM" id="cf-utm" value="">
           <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
-          <input id="cf-replyto" type="hidden" name="_replyto" value="">
 
           <div class="field">
             <label for="cf-name">Imię*</label>
-            <input id="cf-name" name="name" type="text" required inputmode="text" autocomplete="given-name" aria-required="true" placeholder="np. Kasia">
-          </div>
-
-          <div class="field-group">
-            <div class="field" id="wrap-phone">
-              <label for="cf-phone">Telefon</label>
-              <input id="cf-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" pattern="^[\s()+-]*([0-9][\s()+-]*){6,}$" aria-describedby="err-contact" aria-invalid="false" placeholder="np. 537 918 161">
-            </div>
-            <div class="field" id="wrap-email">
-              <label for="cf-email">E-mail</label>
-              <input id="cf-email" name="email" type="email" inputmode="email" autocomplete="email" aria-describedby="err-contact" aria-invalid="false" placeholder="np. imie@domena.pl">
-            </div>
-          </div>
-
-          <p id="err-contact" class="field-error" role="alert" aria-live="polite" hidden>Podaj telefon lub e-mail (wystarczy jedno).</p>
-
-          <div class="field">
-            <label for="cf-goal">Cel</label>
-            <select id="cf-goal" name="goal">
-              <option value="">Wybierz…</option>
-              <option>Redukcja masy ciała</option>
-              <option>Budowanie siły/masy</option>
-              <option>Powrót po kontuzji</option>
-              <option>Mobilność/stabilizacja</option>
-              <option>„Forma ogólna” i zdrowe plecy</option>
-            </select>
-          </div>
-
-          <div class="field-group">
-            <div class="field">
-              <label for="cf-date">Data</label>
-              <input id="cf-date" name="date" type="date">
-            </div>
-            <div class="field">
-              <label for="cf-time">Godzina</label>
-              <input id="cf-time" name="time" type="time" step="900">
-            </div>
+            <input id="cf-name" name="name" type="text" required inputmode="text" autocomplete="given-name" placeholder="np. Kasia">
           </div>
 
           <div class="field">
-            <label for="cf-msg">Wiadomość</label>
-            <textarea id="cf-msg" name="message" rows="4" placeholder="Napisz kilka słów o sobie i dostępnych terminach"></textarea>
+            <label for="cf-phone">Telefon*</label>
+            <input id="cf-phone" name="phone" type="tel" required inputmode="tel" autocomplete="tel"
+                   pattern="^[\s()+-]*([0-9][\s()+-]*){6,}$"
+                   placeholder="np. 537 918 161">
           </div>
 
           <div class="field consent">
@@ -318,11 +281,14 @@
           </div>
 
           <div class="cta-row">
-            <a id="wa-dynamic" class="btn btn-wa" href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87%20Igor%2C%20chc%C4%99%20um%C3%B3wi%C4%87%20konsultacj%C4%99." target="_blank" rel="noopener" aria-label="Napisz na WhatsApp – otworzy aplikację">WhatsApp</a>
+            <a id="wa-dynamic" class="btn btn-wa"
+               href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87%20Igor%2C%20chc%C4%99%20um%C3%B3wi%C4%87%20konsultacj%C4%99."
+               target="_blank" rel="noopener"
+               aria-label="Napisz na WhatsApp – otworzy aplikację">WhatsApp</a>
             <button type="submit" class="btn btn-primary" aria-label="Wyślij formularz">Wyślij formularz</button>
           </div>
 
-          <p id="cf-hint" class="field-hint">Telefon <strong>lub</strong> e-mail — wystarczy jedno. Odpowiadam tego samego dnia.</p>
+          <p id="cf-hint" class="field-hint">Tylko imię i telefon. Odpowiadam tego samego dnia.</p>
           <div id="cf-status" role="status" aria-live="polite"></div>
         </form>
       </section>
@@ -338,7 +304,9 @@
           </ul>
         </section>
         <section class="card map-card">
-          <iframe title="Zdrofit Wilanów – mapa" src="https://www.google.com/maps?q=al.+Rzeczypospolitej+1,+02-972+Warszawa&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <iframe title="Zdrofit Wilanów – mapa"
+                  src="https://www.google.com/maps?q=al.+Rzeczypospolitej+1,+02-972+Warszawa&output=embed"
+                  loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </section>
       </aside>
     </div>
@@ -386,81 +354,63 @@
     <div class="bar"><p>© 2025 Igor Stelmaszczyk • Wszystkie prawa zastrzeżone</p></div>
   </footer>
 
+  <!-- ===== JS (tylko Imię + Telefon) ===== -->
   <script>
-    // Focus header tylko na tej stronie
+    // Minimalny, szybki nagłówek na tej podstronie
     (function(){
       var contact=document.getElementById('contact-page');
       var header=document.getElementById('site-header');
-      if(contact&&header){
-        document.documentElement.classList.add('focus-header');
-        header.classList.add('header--focus');
-      }
+      if(contact&&header){document.documentElement.classList.add('focus-header');header.classList.add('header--focus');}
     })();
 
-    // Formularz: UTM, min-date, WhatsApp, walidacja tel/email, anty-spam, timeout
     document.addEventListener('DOMContentLoaded',()=> {
       const $=s=>document.querySelector(s);
-      const form=$('#contact-form'), statusEl=$('#cf-status'), btnSend=form.querySelector('button[type="submit"]'),
-            waLink=$('#wa-dynamic'), replyTo=$('#cf-replyto'),
-            wrapPhone=$('#wrap-phone'), wrapEmail=$('#wrap-email'), errContact=$('#err-contact');
+      const form=$('#contact-form');
+      const statusEl=$('#cf-status');
+      const btnSend=form.querySelector('button[type="submit"]');
+      const waLink=$('#wa-dynamic');
+
       const THANK_YOU_URL='https://trenerwilanow.pl/dziekujemy';
 
-      // Źródło i UTM
+      // Meta: źródło + UTM
       (function setMeta(){
-        $('#cf-source').value=location.origin+location.pathname;
-        const p=new URLSearchParams(location.search);
-        const utm=['utm_source','utm_medium','utm_campaign','utm_term','utm_content']
-          .map(k=>p.get(k)?k+'='+p.get(k):null).filter(Boolean).join('&');
-        $('#cf-utm').value=utm;
+        const src=$('#cf-source'), utm=$('#cf-utm');
+        if(src) src.value=location.origin+location.pathname;
+        if(utm){
+          const p=new URLSearchParams(location.search);
+          const str=['utm_source','utm_medium','utm_campaign','utm_term','utm_content']
+            .map(k=>p.get(k)?k+'='+p.get(k):null).filter(Boolean).join('&');
+          utm.value=str;
+        }
       })();
 
-      // Minimalna data = dziś
-      (function setMinDate(){
-        const d=$('#cf-date'); if(!d) return;
-        const t=new Date(), yyyy=t.getFullYear(), mm=String(t.getMonth()+1).padStart(2,'0'), dd=String(t.getDate()).padStart(2,'0');
-        d.min=`${yyyy}-${mm}-${dd}`;
-      })();
-
+      // Debounce helper
       const debounce=(fn,ms=120)=>{let t;return(...a)=>{clearTimeout(t);t=setTimeout(()=>fn(...a),ms);} };
       const val=id=>(document.getElementById(id)?.value||'').trim();
 
-      // Dynamiczny link WhatsApp z wypełnionymi polami
-      const buildWa=debounce(()=> {
-        const parts=[
-          "Cześć Igor, chcę umówić konsultację w Zdrofit Wilanów.",
-          val('cf-name')&&`Imię: ${val('cf-name')}`,
-          val('cf-goal')&&`Cel: ${val('cf-goal')}`,
-          (val('cf-date')||val('cf-time'))&&`Termin: ${val('cf-date')||'--'} ${val('cf-time')||'--'}`,
-          val('cf-phone')&&`Tel: ${val('cf-phone')}`,
-          val('cf-email')&&`Email: ${val('cf-email')}`
+      // Budowa wiadomości WhatsApp: tylko Imię + Telefon
+      const buildWa=debounce(()=>{
+        const lines=[
+          'Cześć Igor, proszę o kontakt w sprawie konsultacji.',
+          val('cf-name') && `Imię: ${val('cf-name')}`,
+          val('cf-phone') && `Tel: ${val('cf-phone')}`
         ].filter(Boolean).join('\n');
-        waLink.href=`https://wa.me/48537918161?text=${encodeURIComponent(parts)}`;
-        replyTo.value=val('cf-email');
+        waLink.href=`https://wa.me/48537918161?text=${encodeURIComponent(lines)}`;
       },120);
 
-      function hasPhoneOrEmail(){ return Boolean(val('cf-phone')||val('cf-email')); }
-      function updateContactError(){
-        const ok=hasPhoneOrEmail();
-        wrapPhone.classList.toggle('has-error',!ok);
-        wrapEmail.classList.toggle('has-error',!ok);
-        document.getElementById('cf-phone').setAttribute('aria-invalid',String(!ok));
-        document.getElementById('cf-email').setAttribute('aria-invalid',String(!ok));
-        errContact.hidden=ok;
-      }
+      ['cf-name','cf-phone'].forEach(id=>{
+        const el=document.getElementById(id); if(!el) return;
+        el.addEventListener('input',buildWa,{passive:true});
+      });
+      buildWa();
 
-      // Prosty anty-spam: honeypot + minimalny czas na stronie
+      // Prosty anty-spam: honeypot + min. 3 s na stronie
       const pageReadyTs=Date.now();
       function passAntiSpam(){
         const honey=form.querySelector('input[name="_honey"]')?.value||'';
         const waited=(Date.now()-pageReadyTs)>=3000;
         return !honey && waited;
       }
-
-      ['cf-name','cf-phone','cf-email','cf-goal','cf-date','cf-time','cf-msg'].forEach(id=>{
-        const el=document.getElementById(id); if(!el) return;
-        el.addEventListener('input',()=>{ if(id==='cf-phone'||id==='cf-email') updateContactError(); buildWa(); });
-      });
-      updateContactError(); buildWa();
 
       // Fetch z timeoutem
       function fetchWithTimeout(resource,options={},timeout=10000){
@@ -469,38 +419,28 @@
         return fetch(resource,{...options,signal:ctrl.signal}).finally(()=>clearTimeout(id));
       }
 
-      // Obsługa submitu
+      // Wysyłka formularza
       form.addEventListener('submit',async e=>{
         e.preventDefault();
-        if(!form.checkValidity()){form.reportValidity();return;}
-        if(!hasPhoneOrEmail()){updateContactError();document.getElementById('cf-phone').focus();return;}
-        if(!passAntiSpam()){
-          statusEl.textContent='Zbyt szybkie wysyłanie. Spróbuj ponownie za chwilę.';
-          statusEl.style.color='#c0392b';
-          return;
-        }
+        if(!form.checkValidity()){ form.reportValidity(); return; }
+        if(!passAntiSpam()){ statusEl.textContent='Zbyt szybkie wysyłanie. Spróbuj ponownie za chwilę.'; statusEl.style.color='#c0392b'; return; }
 
-        btnSend.disabled=true;btnSend.setAttribute('aria-busy','true');btnSend.textContent='Wysyłam…';
-        statusEl.textContent='Wysyłam…';statusEl.style.color='#666';
+        btnSend.disabled=true; btnSend.setAttribute('aria-busy','true'); btnSend.textContent='Wysyłam…';
+        statusEl.textContent='Wysyłam…'; statusEl.style.color='#666';
 
         try{
           const fd=new FormData(form);
-          const res=await fetchWithTimeout(
-            'https://formsubmit.co/ajax/igorstelmaszczyk@gmail.com',
-            {method:'POST',body:fd,headers:{'Accept':'application/json'}},
-            10000
-          );
+          const res=await fetchWithTimeout('https://formsubmit.co/ajax/igorstelmaszczyk@gmail.com',
+            {method:'POST',body:fd,headers:{'Accept':'application/json'}}, 10000);
           const json=await res.json();
-          if(json.success==='true'||json.message){
-            window.location.assign(THANK_YOU_URL);return;
-          }
+          if(json.success==='true'||json.message){ window.location.assign(THANK_YOU_URL); return; }
           throw new Error('Nie udało się wysłać formularza.');
         }catch(err){
           console.error(err);
-          statusEl.textContent='Ups, coś poszło nie tak. Napisz proszę na WhatsApp lub zadzwoń.';
+          statusEl.textContent='Ups, coś poszło nie tak. Zadzwoń lub napisz na WhatsApp.';
           statusEl.style.color='#c0392b';
         }finally{
-          btnSend.disabled=false;btnSend.removeAttribute('aria-busy');btnSend.textContent='Wyślij formularz';
+          btnSend.disabled=false; btnSend.removeAttribute('aria-busy'); btnSend.textContent='Wyślij formularz';
         }
       });
     });
