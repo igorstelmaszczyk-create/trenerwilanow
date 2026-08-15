@@ -1,380 +1,332 @@
 <!doctype html>
 <html lang="pl">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-
-  <title>Usługi — Igor Stelmaszczyk | Trener personalny Wilanów (Zdrofit)</title>
-  <meta name="description" content="Trening personalny 1:1, trening dla par, plan + wdrożenie, mobilność & prehab. Pracuję w Zdrofit Wilanów — plan dopasowany do Ciebie, mierzalna progresja.">
-  <link rel="canonical" href="https://trenerwilanow.pl/uslugi/">
-  <meta name="theme-color" content="#2e9b2f">
-  <meta name="color-scheme" content="light">
-
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Usługi — Trener personalny Wilanów">
-  <meta property="og:description" content="1:1, dla par, plan + wdrożenie, mobilność & prehab. Zdrofit Wilanów.">
-  <meta property="og:url" content="https://trenerwilanow.pl/uslugi/">
-  <meta property="og:image" content="https://trenerwilanow.pl/lib/og-default.webp">
-  <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
-  <meta name="twitter:card" content="summary_large_image">
-
-  <!-- Fonts (spójne z resztą serwisu) -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
-
-  <!-- Krytyczne style nagłówka i podstawy -->
-  <style>
-    :root{
-      --ff-sans:'Open Sans',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
-      --ff-head:'Poppins',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
-      --green:#2e9b2f; --green-700:#1f7e21; --ink:#1a1a1a;
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Trening personalny Wilanów – usługi | Igor Stelmaszczyk</title>
+<meta name="description" content="Trening personalny 1:1, trening dla par, plan z wdrożeniem oraz mobilność i sprawność. Zdrofit Wilanów. Umów konsultację 0 zł.">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<link rel="canonical" href="https://trenerwilanow.pl/uslugi/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Trening personalny Wilanów – usługi | Igor Stelmaszczyk">
+<meta property="og:description" content="Trening 1:1, trening dla par, plan z wdrożeniem oraz praca nad mobilnością i sprawnością w Zdrofit Wilanów.">
+<meta property="og:url" content="https://trenerwilanow.pl/uslugi/">
+<meta property="og:site_name" content="Igor Stelmaszczyk">
+<meta property="og:locale" content="pl_PL">
+<meta property="og:image" content="https://trenerwilanow.pl/lib/IMG_4377-1-mf2g7usc.webp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1f7e21">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebPage",
+      "@id":"https://trenerwilanow.pl/uslugi/#webpage",
+      "url":"https://trenerwilanow.pl/uslugi/",
+      "name":"Trening personalny Wilanów – usługi | Igor Stelmaszczyk",
+      "description":"Formy współpracy treningowej w Zdrofit Wilanów.",
+      "isPartOf":{"@id":"https://trenerwilanow.pl/#website"},
+      "inLanguage":"pl-PL"
+    },
+    {
+      "@type":"ItemList",
+      "@id":"https://trenerwilanow.pl/uslugi/#services",
+      "name":"Usługi treningowe",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"item":{"@type":"Service","name":"Trening personalny 1:1","provider":{"@id":"https://trenerwilanow.pl/#igor-stelmaszczyk"},"areaServed":"Warszawa, Wilanów"}},
+        {"@type":"ListItem","position":2,"item":{"@type":"Service","name":"Trening dla par","provider":{"@id":"https://trenerwilanow.pl/#igor-stelmaszczyk"},"areaServed":"Warszawa, Wilanów"}},
+        {"@type":"ListItem","position":3,"item":{"@type":"Service","name":"Plan treningowy z wdrożeniem","provider":{"@id":"https://trenerwilanow.pl/#igor-stelmaszczyk"},"areaServed":"Warszawa, Wilanów"}},
+        {"@type":"ListItem","position":4,"item":{"@type":"Service","name":"Mobilność i sprawność","provider":{"@id":"https://trenerwilanow.pl/#igor-stelmaszczyk"},"areaServed":"Warszawa, Wilanów"}}
+      ]
+    },
+    {
+      "@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Strona główna","item":"https://trenerwilanow.pl/"},
+        {"@type":"ListItem","position":2,"name":"Usługi","item":"https://trenerwilanow.pl/uslugi/"}
+      ]
     }
-    html{scroll-behavior:smooth}
-    html,body{background:#fff;color:var(--ink)}
-    .vh{position:absolute!important;width:1px;height:1px;margin:-1px;border:0;padding:0;clip-path:inset(50%);clip:rect(0 0 0 0);overflow:hidden}
-    /* ===== Header ===== */
-    #site-header{position:sticky;top:0;z-index:9999;min-height:56px;background:#fff;border-bottom:1px solid rgba(0,0,0,.06);transition:box-shadow .2s,border-color .2s,background .2s;-webkit-font-smoothing:antialiased}
-    @supports(backdrop-filter:blur(4px)){#site-header{background:#ffffffcc;backdrop-filter:saturate(1.2) blur(4px)}}
-    @media (max-width:900px){#site-header{background:#fff;backdrop-filter:none;-webkit-backdrop-filter:none}}
-    #site-header .nav-wrap{max-width:1100px;margin:0 auto;padding:8px 16px;display:flex;align-items:center;gap:14px}
-    #site-header .brand{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink)}
-    #site-header .brand-mark{width:28px;height:28px;border-radius:50%;background:var(--green);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-family:var(--ff-head);font-weight:700;font-size:.85rem}
-    #site-header .brand-text{display:flex;flex-direction:column;line-height:1.05}
-    #site-header .brand-text strong{font-family:var(--ff-head);font-size:.98rem}
-    #site-header .brand-text em{font-style:normal;color:#555;font-size:.78rem}
-    #site-header .nav{margin-left:auto}
-    #site-header .nav ul{display:flex;gap:14px;list-style:none;margin:0;padding:0}
-    #site-header .nav a{text-decoration:none;color:var(--ink);font-weight:700;font-size:.95rem;padding:6px 4px;border-radius:8px;position:relative}
-    #site-header .nav a:hover{color:var(--green)}
-    #site-header .nav a[aria-current="page"]{color:var(--green)}
-    #site-header .nav a[aria-current="page"]::after{content:"";position:absolute;left:6px;right:6px;bottom:0;height:2px;background:var(--green);border-radius:2px}
-    #site-header .hero-button{display:inline-flex;align-items:center;justify-content:center;font-family:var(--ff-sans);font-weight:700;font-size:.95rem;line-height:1;padding:10px 14px;min-height:40px;border-radius:10px;border:2px solid;text-decoration:none;white-space:nowrap;box-sizing:border-box;transition:background-color .25s,border-color .25s,color .25s}
-    #site-header .btn-primary{background:var(--green);color:#fff;border-color:var(--green)}
-    #site-header .btn-primary:hover{background:var(--green-700);border-color:var(--green-700)}
-    #site-header .btn-wa{background:transparent;color:var(--green);border-color:var(--green)}
-    #site-header .btn-wa:hover{background:var(--green);color:#fff}
-    #site-header .wa-ico{display:inline-flex;margin-right:6px}
-    #site-header .cta{display:flex;gap:8px;margin-left:6px}
-    #site-header .cta-desktop{display:inline-flex}
-    #site-header .cta-mobile{display:none}
-    #site-header .nav-toggle{margin-left:6px;padding:6px;border-radius:8px;display:none;cursor:pointer}
-    #site-header .nav-toggle .bar{display:block;width:20px;height:2px;background:var(--ink);margin:3px 0}
-    /* Overlay menu */
-    .mobile-menu{position:fixed;left:12px;right:12px;top:52px;z-index:10000;background:#fff;border:1px solid #eee;border-radius:14px;box-shadow:0 14px 34px rgba(0,0,0,.12);padding:12px;opacity:0;transform:translateY(-6px);pointer-events:none;visibility:hidden;transition:opacity .18s ease,transform .18s ease,visibility 0s linear .18s;contain:layout paint style}
-    .mobile-menu a{display:block;padding:12px;border-radius:10px;text-decoration:none;color:var(--ink);font-weight:700}
-    .mobile-menu a:hover{background:#f6fbf6;color:var(--green)}
-    .mobile-menu .close{text-align:right;font-size:1.1rem;padding:8px 10px}
-    .mobile-menu .wa-link{margin-top:4px;border:2px solid var(--green);color:var(--green);text-align:center}
-    .mobile-menu .wa-link:hover{background:var(--green);color:#fff}
-    .menu-backdrop{position:fixed;inset:0;z-index:9998;display:none;background:transparent}
-    .mobile-menu:target{opacity:1;transform:translateY(0);pointer-events:auto;visibility:visible;transition-delay:0s}
-    #site-menu:target + .menu-backdrop{display:block}
-    html:has(#site-menu:target){overflow:hidden}
-    @media (max-width:900px){
-      #site-header .nav{display:none!important}
-      #site-header .nav-toggle{display:inline-block!important}
-      #site-header .cta-desktop{display:none!important}
-      #site-header .cta-mobile{display:inline-flex!important}
-    }
-    @media (max-width:360px){
-      #site-header .brand-text strong{font-size:.95rem}
-      #site-header .brand-text em{font-size:.76rem}
-      #site-header .hero-button{padding:9px 12px;min-height:38px;font-size:.92rem}
-    }
-    #site-header a:focus-visible,.mobile-menu a:focus-visible{outline:3px solid var(--green);outline-offset:2px}
-    @media (prefers-reduced-motion:reduce){*{transition:none!important}}
-  </style>
-
-  <!-- Ikony (inline sprite) -->
-  <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
-    <symbol id="ico-wa" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
-      <path d="M19.1 17.4c-.2-.1-1.3-.6-1.5-.7-.2-.1-.4-.1-.6.1-.2.2-.6.7-.7.8-.1.1-.3.2-.6.1-.2-.1-.9-.3-1.7-1-.6-.5-1-1.1-1.1-1.3-.1-.2 0-.4.1-.5s.5-.6.6-.8c.1-.2.1-.4 0-.5s-.6-1.4-.8-1.9-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.2-.9.8-.9 2s1 2.4 1.1 2.6c.1.2 1.9 3 4.5 4.1.6.3 1.1.5 1.5.6.6.2 1.1.2 1.5.1.5-.1 1.3-.5 1.5-1.1.2-.6.2-1.1.1-1.2 0-.1-.2-.1-.4-.2z"/>
-      <path d="M16 3C9.9 3 5 7.9 5 14c0 2.5.9 4.8 2.4 6.6L6 29l8.6-1.4c1.4.4 2.9.6 4.4.6 6.1 0 11-4.9 11-11S22.1 3 16 3zm0 20.9c-1.5 0-2.9-.4-4.1-1l-.3-.2-5 .8.9-4.8-.2-.3C6.4 17.1 6 15.6 6 14c0-5.5 4.5-10 10-10s10 4.5 10 10-4.5 9.9-10 9.9z"/>
-    </symbol>
-    <!-- proste piktogramy do kart -->
-    <symbol id="ico-pt" viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h2v3h6V2h2v3h3v17H4V5h3V2zm13 7H4v11h16V9z"/></symbol>
-    <symbol id="ico-duo" viewBox="0 0 24 24" fill="currentColor"><path d="M7 13a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm10 0a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM2 20c0-3.31 2.69-6 6-6h0c3.31 0 6 2.69 6 6H2zm14 0c0-1.86.76-3.55 2-4.77A6.98 6.98 0 0 1 22 20h-6z"/></symbol>
-    <symbol id="ico-plan" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3h14a2 2 0 0 1 2 2v1H3V5a2 2 0 0 1 2-2zm16 6H3v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9zM7 12h5v2H7v-2zm0 3h10v2H7v-2z"/></symbol>
-    <symbol id="ico-mob" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></symbol>
-  </svg>
+  ]
+}
+</script>
+<style>
+:root{--g:#2e9b2f;--gd:#1f7e21;--gdd:#176619;--gs:#eef8ef;--ink:#171a18;--mut:#5f6761;--line:#dfe7e1;--surf:#f7faf7;--max:1120px;--font:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);font-family:var(--font);line-height:1.55;-webkit-font-smoothing:antialiased}a{color:inherit}[id]{scroll-margin-top:84px}
+.container{width:min(var(--max),calc(100% - 32px));margin:auto}.section{padding:72px 0}.soft{background:var(--surf)}.kicker{margin:0 0 8px;color:var(--gd);font-size:.85rem;font-weight:850;letter-spacing:.04em;text-transform:uppercase}.title{margin:0;font-size:clamp(1.75rem,3.4vw,2.45rem);line-height:1.15;letter-spacing:-.025em}.lead{max-width:760px;margin:14px 0 0;color:var(--mut);font-size:1.05rem}
+.skip{position:fixed;left:16px;top:12px;z-index:5000;transform:translateY(-180%);padding:10px 14px;border-radius:10px;background:#111;color:#fff;font-weight:800;text-decoration:none}.skip:focus{transform:none}:focus-visible{outline:3px solid #15731b;outline-offset:3px}
+header{position:sticky;top:0;z-index:1000;background:#ffffffef;border-bottom:1px solid #0000000f;backdrop-filter:blur(10px)}.navwrap{min-height:64px;display:flex;align-items:center;gap:18px}.brand{display:flex;align-items:center;gap:9px;text-decoration:none}.mark{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--gd);color:#fff;font-weight:900;font-size:.82rem}.brandtxt{display:flex;flex-direction:column;line-height:1.1}.brandtxt strong{font-size:.96rem}.brandtxt span{color:var(--mut);font-size:.76rem}
+nav.main{margin-left:auto}nav.main ul{display:flex;gap:18px;list-style:none;margin:0;padding:0}nav.main a{text-decoration:none;font-weight:750;font-size:.94rem;padding:9px 2px;border-bottom:2px solid transparent}nav.main a:hover,nav.main a[aria-current=page]{color:var(--gd);border-bottom-color:var(--g)}
+.hcta,.btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;font-weight:850;border-radius:12px}.hcta{min-height:42px;padding:10px 15px;background:var(--gd);color:#fff}.hcta:hover,.primary:hover{background:var(--gdd)}.btn{min-height:50px;padding:13px 18px;border:2px solid transparent}.primary{background:var(--gd);color:#fff;border-color:var(--gd)}.outline{background:#fff;color:var(--gd);border-color:#98c99c}.outline:hover{background:var(--gs)}
+.menu{display:none;margin-left:auto;width:44px;height:44px;border:0;background:transparent;font-size:1.35rem}.mobile{display:none;position:fixed;top:72px;left:16px;right:16px;z-index:1200;background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px;box-shadow:0 16px 42px #0002}.mobile.open{display:block}.mobile a{display:block;padding:12px;border-radius:10px;text-decoration:none;font-weight:750}.mobile a:hover{background:var(--gs)}.backdrop{display:none;position:fixed;inset:64px 0 0;z-index:1100;background:#0003;border:0}.backdrop.open{display:block}
+.breadcrumb{padding:18px 0 0;color:var(--mut);font-size:.86rem}.breadcrumb ol{display:flex;gap:7px;list-style:none;padding:0;margin:0}.breadcrumb li+li:before{content:"/";margin-right:7px}
+.hero{text-align:center;padding:62px 0 70px;background:radial-gradient(700px 340px at 12% 20%,#2e9b2f18,transparent 65%),#fff}.hero h1{max-width:900px;margin:0 auto;font-size:clamp(2.35rem,5vw,4.1rem);line-height:1.03;letter-spacing:-.045em}.hero p{max-width:760px;margin:18px auto 0;color:#3e4640;font-size:1.1rem}.actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:26px}.chips{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;list-style:none;margin:22px 0 0;padding:0}.chips li{padding:7px 10px;border:1px solid var(--line);border-radius:999px;font-size:.86rem;font-weight:780;background:#fff}
+.quick{margin-top:-28px;position:relative}.quickgrid{display:grid;grid-template-columns:repeat(4,1fr);background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 12px 34px #0001}.quick a{padding:22px;text-align:center;text-decoration:none}.quick a+a{border-left:1px solid var(--line)}.quick a:hover{background:var(--gs)}.quick strong{display:block}.quick span{display:block;color:var(--mut);font-size:.82rem;margin-top:4px}
+.stack{display:grid;gap:24px;margin-top:32px}.service{display:grid;grid-template-columns:1.25fr .75fr;gap:34px;align-items:center;padding:32px;border:1px solid var(--line);border-radius:22px;background:#fff;box-shadow:0 10px 28px #0000000c}.service:nth-child(even){background:#fbfdfb}.label{display:inline-flex;padding:5px 9px;border-radius:999px;background:var(--gs);color:var(--gd);font-size:.78rem;font-weight:850}.service h2{margin:10px 0 0;font-size:clamp(1.55rem,3vw,2.15rem);line-height:1.15}.service .intro{margin:12px 0 0;color:#3a433c}.points{display:grid;gap:9px;list-style:none;margin:20px 0 0;padding:0}.points li{position:relative;padding-left:26px}.points li:before{content:"✓";position:absolute;left:0;color:var(--gd);font-weight:900}.service .actions{justify-content:flex-start}
+.fit{padding:24px;border-radius:17px;background:var(--surf);border:1px solid var(--line)}.fit h3{margin:0;font-size:1.05rem}.fit p{margin:8px 0 0;color:var(--mut);font-size:.94rem}.fit .micro{margin-top:14px;padding-top:14px;border-top:1px solid var(--line);font-size:.86rem}
+.comparewrap{margin-top:30px;overflow:auto;border:1px solid var(--line);border-radius:18px;background:#fff}.compare{width:100%;min-width:760px;border-collapse:collapse}.compare th,.compare td{padding:16px 18px;border-bottom:1px solid var(--line);text-align:left}.compare th{background:#f4f8f4;font-size:.88rem}.compare td{color:#3d463f;font-size:.92rem}.compare td:first-child{font-weight:850;color:var(--ink)}.compare tr:last-child td{border-bottom:0}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:30px 0 0;padding:0;list-style:none;counter-reset:s}.step{counter-increment:s;padding:26px;border:1px solid var(--line);border-radius:18px}.step:before{content:counter(s);width:38px;height:38px;display:grid;place-items:center;border-radius:50%;background:var(--gd);color:#fff;font-weight:900}.step h3{margin:16px 0 0}.step p{margin:8px 0 0;color:var(--mut)}
+.scope{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center;padding:30px;border:1px solid #cfe2d0;border-radius:20px;background:linear-gradient(145deg,#f4fbf4,#fff)}.scope h2{margin:0}.scope p{color:var(--mut)}.scope .side{padding:20px;border:1px solid var(--line);border-radius:15px;background:#fff;font-size:.92rem}
+.faq{max-width:820px;margin:30px auto 0;display:grid;gap:10px}.faq details{border:1px solid var(--line);border-radius:14px;background:#fff}.faq summary{cursor:pointer;padding:17px 18px;font-weight:820}.faq div{padding:0 18px 18px;color:var(--mut)}.faq a{color:var(--gd);font-weight:800}
+.final{padding:40px;border-radius:22px;background:var(--gs);border:1px solid #c8e3ca;text-align:center}.final h2{margin:0;font-size:clamp(1.65rem,3.2vw,2.35rem)}.final p{max-width:660px;margin:12px auto 0;color:var(--mut)}
+footer{background:#0f1410;color:#d9e2db}.footgrid{display:grid;grid-template-columns:1.3fr .8fr .8fr;gap:36px;padding:42px 0 30px}footer h2,footer h3{margin:0;color:#fff}footer p{color:#bfcac1}footer address{font-style:normal;line-height:1.8}footer a{color:#e5f6e7;text-decoration:none}.flinks{list-style:none;padding:0;margin:10px 0 0;display:grid;gap:7px}.bottom{border-top:1px solid #ffffff17;padding:16px 0 22px;color:#aeb9b0;font-size:.88rem}
+@media(max-width:940px){nav.main,.hcta{display:none}.menu{display:block}.quickgrid{grid-template-columns:1fr 1fr}.quick a:nth-child(3){border-left:0;border-top:1px solid var(--line)}.quick a:nth-child(4){border-top:1px solid var(--line)}.service{grid-template-columns:1fr}.steps{grid-template-columns:1fr 1fr}.scope{grid-template-columns:1fr}.footgrid{grid-template-columns:1fr 1fr}.footgrid>:first-child{grid-column:1/-1}}
+@media(max-width:680px){.container{width:min(var(--max),calc(100% - 24px))}.section{padding:56px 0}.hero{padding:42px 0 58px}.hero h1{font-size:2.35rem}.quickgrid{grid-template-columns:1fr}.quick a+a{border-left:0;border-top:1px solid var(--line)}.service{padding:24px}.steps{grid-template-columns:1fr}.scope{padding:24px}.footgrid{grid-template-columns:1fr}.footgrid>:first-child{grid-column:auto}.service .actions{justify-content:center}}
+</style>
 </head>
 <body>
-  <a class="vh" href="#services-page">Przejdź do treści</a>
+<a class="skip" href="#main">Przejdź do treści</a>
 
-  <!-- ============== HEADER ============== -->
-  <header id="site-header" role="banner">
-    <div class="nav-wrap">
-      <a class="brand" href="/" aria-label="Strona główna – Igor Stelmaszczyk">
-        <span class="brand-mark" aria-hidden="true">IS</span>
-        <span class="brand-text"><strong>Igor Stelmaszczyk</strong><em>Trener personalny</em></span>
-      </a>
-
-      <nav class="nav" aria-label="Główne">
-        <ul>
-          <li><a href="/o-mnie">O mnie</a></li>
-          <li><a href="/uslugi" aria-current="page">Usługi</a></li>
-          <li><a href="/cennik">Cennik</a></li>
-          <li><a href="/efekty">Efekty</a></li>
-          <li><a href="/umow-konsultacje">Kontakt</a></li>
-        </ul>
-      </nav>
-
-      <div class="cta">
-        <a class="hero-button btn-primary cta-desktop" href="/umow-konsultacje">Umów konsultację</a>
-        <a class="hero-button btn-wa cta-mobile"
-           href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87%20Igor%2C%20chc%C4%99%20kr%C3%B3tkiej%20konsultacji%20na%20WhatsApp.%20Imi%C4%99%3A%20__%2C%20cel%3A%20__"
-           target="_blank" rel="noopener noreferrer"><span class="wa-ico" aria-hidden="true"><svg width="16" height="16"><use href="#ico-wa"/></svg></span>WhatsApp</a>
-      </div>
-
-      <a href="#site-menu" class="nav-toggle" aria-label="Otwórz menu"><span class="bar"></span><span class="bar"></span><span class="bar"></span></a>
-    </div>
-  </header>
-
-  <!-- Menu mobilne -->
-  <nav id="site-menu" class="mobile-menu" aria-label="Menu mobilne">
-    <a href="#" class="close" aria-label="Zamknij menu">✕</a>
-    <a href="/o-mnie">O mnie</a>
-    <a href="/uslugi" aria-current="page">Usługi</a>
-    <a href="/cennik">Cennik</a>
-    <a href="/efekty">Efekty</a>
-    <a href="/umow-konsultacje">Kontakt</a>
-    <a class="wa-link" href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87%20Igor%2C%20chc%C4%99%20kr%C3%B3tkiej%20konsultacji%20na%20WhatsApp.%20Imi%C4%99%3A%20__%2C%20cel%3A%20__"
-       target="_blank" rel="noopener noreferrer"><svg width="16" height="16" style="margin-right:6px"><use href="#ico-wa"/></svg>Napisz na WhatsApp</a>
-  </nav>
-  <a href="#" class="menu-backdrop" aria-hidden="true"></a>
-
-  <!-- ============== WHATSAPP FAB (mobile) ============== -->
-  <style>
-    @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
-    #whatsapp-fixed{position:fixed;bottom:20px;right:20px;z-index:9999;width:58px;height:58px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 8px 20px rgba(0,0,0,.25);animation:pulse 2s infinite;line-height:0}
-    #whatsapp-fixed svg{width:28px;height:28px;fill:#fff}
-    #whatsapp-fixed:focus-visible{outline:3px solid var(--green-700);outline-offset:2px}
-    @media (min-width:769px){#whatsapp-fixed{display:none}}
-    @media (prefers-reduced-motion:reduce){#whatsapp-fixed{animation:none}}
-  </style>
-  <a id="whatsapp-fixed" href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87!%20Chc%C4%99%20um%C3%B3wi%C4%87%20konsultacj%C4%99%20treningow%C4%85" target="_blank" rel="noopener noreferrer" aria-label="Napisz na WhatsApp">
-    <svg aria-hidden="true"><use href="#ico-wa"/></svg>
-  </a>
-
-  <!-- ============== USŁUGI ============== -->
-  <main id="services-page" style="padding:56px 20px; font-family:var(--ff-sans);">
-    <!-- HERO -->
-    <header class="srv-hero" style="max-width:1100px;margin:0 auto 22px;text-align:center;">
-      <h1 style="margin:0 0 8px;font-family:var(--ff-head);font-size:2.2rem;font-weight:700;line-height:1.2">Usługi treningowe</h1>
-      <p style="margin:0;color:#444;font-size:1.05rem">Pracujemy w <strong>Zdrofit Wilanów</strong> — plan dopasowany do Ciebie, mierzalne postępy co tydzień.</p>
-      <ul class="usp" aria-label="Parametry współpracy" style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:12px 0 0;padding:0;list-style:none">
-        <li style="padding:6px 10px;border-radius:999px;background:#f0f7f0;color:#1c371d;font-weight:700;font-size:.88rem;border:1px solid #d9ead9">Sesja: 50–60 min</li>
-        <li style="padding:6px 10px;border-radius:999px;background:#f0f7f0;color:#1c371d;font-weight:700;font-size:.88rem;border:1px solid #d9ead9">Indywidualny plan</li>
-        <li style="padding:6px 10px;border-radius:999px;background:#f0f7f0;color:#1c371d;font-weight:700;font-size:.88rem;border:1px solid #d9ead9">Wsparcie poza salą</li>
+<header id="site-header">
+  <div class="container navwrap">
+    <a class="brand" href="/" aria-label="Strona główna — Igor Stelmaszczyk">
+      <span class="mark">IS</span>
+      <span class="brandtxt"><strong>Igor Stelmaszczyk</strong><span>Trener personalny</span></span>
+    </a>
+    <nav class="main" aria-label="Główne">
+      <ul>
+        <li><a href="/o-mnie/">O mnie</a></li>
+        <li><a href="/uslugi/" aria-current="page">Usługi</a></li>
+        <li><a href="/cennik/">Cennik</a></li>
+        <li><a href="/efekty/">Efekty</a></li>
+        <li><a href="/umow-konsultacje/">Kontakt</a></li>
       </ul>
+    </nav>
+    <a class="hcta" href="/umow-konsultacje/">Umów konsultację</a>
+    <button class="menu" type="button" aria-expanded="false" aria-controls="mobile-menu">☰</button>
+  </div>
+</header>
 
-      <div class="cta-row" style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:16px">
-        <a class="hero-button btn-primary cta-desktop" href="/umow-konsultacje">Umów konsultację</a>
-        <a class="hero-button btn-wa cta-mobile" href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87%20Igor%2C%20chc%C4%99%20kr%C3%B3tkiej%20konsultacji%20na%20WhatsApp.%20Imi%C4%99%3A%20__%2C%20cel%3A%20__" target="_blank" rel="noopener noreferrer">Napisz na WhatsApp</a>
-        <a class="hero-button btn-outline" href="/cennik">Zobacz cennik</a>
+<nav id="mobile-menu" class="mobile" aria-label="Menu mobilne" aria-hidden="true">
+  <a href="/o-mnie/">O mnie</a>
+  <a href="/uslugi/" aria-current="page">Usługi</a>
+  <a href="/cennik/">Cennik</a>
+  <a href="/efekty/">Efekty</a>
+  <a href="/umow-konsultacje/">Kontakt</a>
+</nav>
+<button class="backdrop" type="button" aria-label="Zamknij menu"></button>
+
+<main id="main">
+  <div class="container breadcrumb">
+    <ol><li><a href="/">Strona główna</a></li><li aria-current="page">Usługi</li></ol>
+  </div>
+
+  <section class="hero">
+    <div class="container">
+      <p class="kicker">Treningi personalne • Zdrofit Wilanów</p>
+      <h1>Wybierz formę treningu dopasowaną do Twojego celu</h1>
+      <p>Możemy pracować regularnie 1:1, trenować we dwoje, przygotować plan do samodzielnej pracy albo skupić się na mobilności i sprawności. Najpierw ustalamy, czego naprawdę potrzebujesz.</p>
+      <div class="actions">
+        <a class="btn primary" href="/umow-konsultacje/">Umów konsultację 0 zł</a>
+        <a class="btn outline" href="#services">Zobacz wszystkie opcje</a>
       </div>
-    </header>
+      <ul class="chips"><li>Zdrofit Wilanów</li><li>50–60 min / trening 1:1</li><li>konsultacja 0 zł</li></ul>
+    </div>
+  </section>
 
-    <!-- GRID KART -->
-    <section class="srv-grid" style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px">
-      <!-- 1: 1:1 -->
-      <article class="srv-card" style="background:#fff;border:1px solid #e6efe6;border-radius:16px;box-shadow:0 8px 20px rgba(0,0,0,.06);padding:18px">
-        <header class="srv-head" style="display:grid;grid-template-columns:46px 1fr;align-items:center;gap:12px;margin-bottom:8px">
-          <span aria-hidden="true" style="display:inline-flex;width:46px;height:46px;border-radius:50%;background:#4CAF50;align-items:center;justify-content:center;color:#fff">
-            <svg width="24" height="24"><use href="#ico-pt"/></svg>
-          </span>
-          <h2 style="margin:0;font-family:var(--ff-head);font-size:1.15rem;font-weight:700">Trening personalny 1:1</h2>
-        </header>
-        <p style="margin:0 0 10px;color:#444;line-height:1.55">Najpopularniejsza opcja. Siła, sylwetka, mobilność — plan szyty pod Ciebie.</p>
-        <ul style="margin:0 0 12px;padding:0 0 0 18px;color:#1a1a1a;line-height:1.55">
-          <li style="margin-bottom:6px">Wywiad i testy → plan</li>
-          <li style="margin-bottom:6px">Technika, progresja, krótkie „zadania domowe”</li>
-          <li>Monitoring i korekty co tydzień</li>
-        </ul>
-        <div class="mini-cta" style="display:flex;gap:10px;flex-wrap:wrap">
-          <a class="mini-btn" href="/umow-konsultacje">Umów konsultację</a>
-          <a class="mini-link" href="/cennik">Cennik</a>
-        </div>
-      </article>
+  <div class="container quick">
+    <div class="quickgrid">
+      <a href="#trening-1-1"><strong>Trening 1:1</strong><span>pełne prowadzenie</span></a>
+      <a href="#trening-pary"><strong>Trening dla par</strong><span>wspólny trening</span></a>
+      <a href="#plan-wdrozenie"><strong>Plan + wdrożenie</strong><span>więcej samodzielności</span></a>
+      <a href="#mobilnosc"><strong>Mobilność i sprawność</strong><span>ruch i kontrola</span></a>
+    </div>
+  </div>
 
-      <!-- 2: dla par -->
-      <article class="srv-card" style="background:#fff;border:1px solid #e6efe6;border-radius:16px;box-shadow:0 8px 20px rgba(0,0,0,.06);padding:18px">
-        <header class="srv-head" style="display:grid;grid-template-columns:46px 1fr;align-items:center;gap:12px;margin-bottom:8px">
-          <span aria-hidden="true" style="display:inline-flex;width:46px;height:46px;border-radius:50%;background:#4CAF50;align-items:center;justify-content:center;color:#fff">
-            <svg width="24" height="24"><use href="#ico-duo"/></svg>
-          </span>
-          <h2 style="margin:0;font-family:var(--ff-head);font-size:1.15rem;font-weight:700">Trening dla par</h2>
-        </header>
-        <p style="margin:0 0 10px;color:#444;line-height:1.55">Wspólna motywacja ×2. Plan dopasowany do Waszego poziomu.</p>
-        <ul style="margin:0 0 12px;padding:0 0 0 18px;color:#1a1a1a;line-height:1.55">
-          <li style="margin-bottom:6px">Ćwiczenia w dwójkach + indywidualne wskazówki</li>
-          <li style="margin-bottom:6px">Bezpieczna technika, progres dla każdego</li>
-          <li>Możliwość łączenia z planem domowym</li>
-        </ul>
-        <div class="mini-cta" style="display:flex;gap:10px;flex-wrap:wrap">
-          <a class="mini-btn" href="/umow-konsultacje">Umów konsultację</a>
-          <a class="mini-link" href="/cennik">Cennik</a>
-        </div>
-      </article>
+  <section id="services" class="section">
+    <div class="container">
+      <p class="kicker">Cztery formy współpracy</p>
+      <h2 class="title">Co dokładnie oferuję?</h2>
+      <p class="lead">Różnią się poziomem prowadzenia i samodzielności. Nie musisz wiedzieć przed kontaktem, którą wybrać — od tego jest konsultacja.</p>
 
-      <!-- 3: plan + wdrożenie -->
-      <article class="srv-card" style="background:#fff;border:1px solid #e6efe6;border-radius:16px;box-shadow:0 8px 20px rgba(0,0,0,.06);padding:18px">
-        <header class="srv-head" style="display:grid;grid-template-columns:46px 1fr;align-items:center;gap:12px;margin-bottom:8px">
-          <span aria-hidden="true" style="display:inline-flex;width:46px;height:46px;border-radius:50%;background:#4CAF50;align-items:center;justify-content:center;color:#fff">
-            <svg width="24" height="24"><use href="#ico-plan"/></svg>
-          </span>
-          <h2 style="margin:0;font-family:var(--ff-head);font-size:1.15rem;font-weight:700">Plan + 1h wdrożenie</h2>
-        </header>
-        <p style="margin:0 0 10px;color:#444;line-height:1.55">Plan na 4–6 tygodni + wspólne przejście przez kluczowe ćwiczenia.</p>
-        <ul style="margin:0 0 12px;padding:0 0 0 18px;color:#1a1a1a;line-height:1.55">
-          <li style="margin-bottom:6px">Ankieta, testy, dobór objętości</li>
-          <li style="margin-bottom:6px">Instrukcje wideo i korekty</li>
-          <li>Check-in po 2 tygodniach</li>
-        </ul>
-        <div class="mini-cta" style="display:flex;gap:10px;flex-wrap:wrap">
-          <a class="mini-btn" href="/umow-konsultacje">Umów konsultację</a>
-          <a class="mini-link" href="/cennik">Cennik</a>
-        </div>
-      </article>
+      <div class="stack">
+        <article id="trening-1-1" class="service">
+          <div>
+            <span class="label">Najpełniejsze prowadzenie</span>
+            <h2>Trening personalny 1:1</h2>
+            <p class="intro">Dla osób, które chcą mieć jasny plan, bieżącą korektę techniki i regularną progresję pod okiem trenera.</p>
+            <ul class="points">
+              <li>ustalenie celu i punktu startowego,</li>
+              <li>dobór ćwiczeń i obciążeń do poziomu,</li>
+              <li>korekta techniki na każdym spotkaniu,</li>
+              <li>monitorowanie progresu i modyfikacja planu,</li>
+              <li>wsparcie między treningami.</li>
+            </ul>
+            <div class="actions">
+              <a class="btn primary" href="/umow-konsultacje/">Umów konsultację</a>
+              <a class="btn outline" href="/cennik/">Cennik treningów 1:1</a>
+            </div>
+          </div>
+          <aside class="fit">
+            <h3>Najlepszy wybór, jeśli…</h3>
+            <p>chcesz trenować regularnie, nie zgadywać co robić i mieć kogoś, kto pilnuje techniki oraz kierunku progresji.</p>
+            <p class="micro"><strong>Miejsce:</strong> Zdrofit Wilanów, al. Rzeczypospolitej 1.<br><strong>Czas:</strong> około 50–60 minut.</p>
+          </aside>
+        </article>
 
-      <!-- 4: mobilność & prehab -->
-      <article class="srv-card" style="background:#fff;border:1px solid #e6efe6;border-radius:16px;box-shadow:0 8px 20px rgba(0,0,0,.06);padding:18px">
-        <header class="srv-head" style="display:grid;grid-template-columns:46px 1fr;align-items:center;gap:12px;margin-bottom:8px">
-          <span aria-hidden="true" style="display:inline-flex;width:46px;height:46px;border-radius:50%;background:#4CAF50;align-items:center;justify-content:center;color:#fff">
-            <svg width="24" height="24"><use href="#ico-mob"/></svg>
-          </span>
-          <h2 style="margin:0;font-family:var(--ff-head);font-size:1.15rem;font-weight:700">Mobilność & prehab</h2>
-        </header>
-        <p style="margin:0 0 10px;color:#444;line-height:1.55">„Zdrowe plecy”, zestawy pod biurko, stabilizacja — bezpiecznie i skutecznie.</p>
-        <ul style="margin:0 0 12px;padding:0 0 0 18px;color:#1a1a1a;line-height:1.55">
-          <li style="margin-bottom:6px">Ocena zakresów i nawyków</li>
-          <li style="margin-bottom:6px">Prosty plan ćwiczeń + progres</li>
-          <li>Technika oddechu i core</li>
-        </ul>
-        <div class="mini-cta" style="display:flex;gap:10px;flex-wrap:wrap">
-          <a class="mini-btn" href="/umow-konsultacje">Umów konsultację</a>
-          <a class="mini-link" href="/cennik">Cennik</a>
-        </div>
-      </article>
-    </section>
+        <article id="trening-pary" class="service">
+          <div>
+            <span class="label">Wspólna motywacja</span>
+            <h2>Trening dla par</h2>
+            <p class="intro">Dla dwóch osób, które chcą trenować razem, ale nadal potrzebują indywidualnych wskazówek i dopasowania trudności.</p>
+            <ul class="points">
+              <li>wspólny przebieg treningu,</li>
+              <li>osobne wskazówki techniczne,</li>
+              <li>dobór wariantów ćwiczeń do poziomu,</li>
+              <li>progres dostosowany do każdej osoby,</li>
+              <li>możliwość połączenia z pracą samodzielną.</li>
+            </ul>
+            <div class="actions"><a class="btn primary" href="/umow-konsultacje/">Zapytaj o trening dla par</a></div>
+          </div>
+          <aside class="fit">
+            <h3>Najlepszy wybór, jeśli…</h3>
+            <p>chcesz trenować z partnerem, partnerką lub znajomą osobą, ale zależy Ci na czymś więcej niż wykonywaniu identycznych ćwiczeń obok siebie.</p>
+            <p class="micro">Cena i organizacja treningów dla par są ustalane osobno od standardowego cennika treningów 1:1.</p>
+          </aside>
+        </article>
 
-    <!-- Style pomocnicze (scoped) -->
-    <style>
-      /* przyciski spójne z resztą */
-      .hero-button{display:inline-flex;align-items:center;justify-content:center;font-family:var(--ff-sans);font-weight:700;font-size:1rem;line-height:1;padding:14px 20px;min-height:48px;border-radius:10px;border:2px solid;text-decoration:none;box-sizing:border-box;white-space:normal;text-align:center;transition:background-color .25s,border-color .25s,color .25s}
-      .btn-primary{background:var(--green);color:#fff;border-color:var(--green)} .btn-primary:hover{background:var(--green-700);border-color:var(--green-700)}
-      .btn-wa,.btn-outline{background:transparent;color:var(--green);border-color:var(--green)} .btn-wa:hover,.btn-outline:hover{background:var(--green);color:#fff}
-      /* mini przyciski w kartach */
-      .mini-btn{display:inline-block;background:var(--green);color:#fff;text-decoration:none;padding:10px 14px;border-radius:10px;font-weight:700;border:2px solid var(--green)}
-      .mini-btn:hover{background:var(--green-700);border-color:var(--green-700)}
-      .mini-link{display:inline-block;padding:10px 0;font-weight:700;color:var(--green);text-decoration:none}
-      .mini-link:hover{text-decoration:underline}
-      /* responsywność */
-      @media (max-width:900px){
-        .srv-grid{grid-template-columns:1fr !important}
-        .srv-card .srv-head{grid-template-columns:38px 1fr;gap:10px}
-      }
-      @media (max-width:768px){
-        .cta-desktop{display:none !important}
-        .cta-mobile{display:inline-flex !important}
-      }
-    </style>
-  </main>
+        <article id="plan-wdrozenie" class="service">
+          <div>
+            <span class="label">Więcej samodzielności</span>
+            <h2>Plan treningowy + 1 godzina wdrożenia</h2>
+            <p class="intro">Dla osób, które potrafią trenować samodzielnie, ale chcą przestać układać ćwiczenia przypadkowo i dostać konkretną strukturę pracy.</p>
+            <ul class="points">
+              <li>plan na około 4–6 tygodni,</li>
+              <li>dobór objętości i ćwiczeń do celu,</li>
+              <li>wspólne przejście przez kluczowe ćwiczenia,</li>
+              <li>wskazówki dotyczące techniki i progresji,</li>
+              <li>check-in po około 2 tygodniach.</li>
+            </ul>
+            <div class="actions"><a class="btn primary" href="/umow-konsultacje/">Zapytaj o plan</a></div>
+          </div>
+          <aside class="fit">
+            <h3>Najlepszy wybór, jeśli…</h3>
+            <p>nie potrzebujesz trenera na każdym spotkaniu, ale chcesz wiedzieć dokładnie co robić, w jakiej kolejności i jak zwiększać trudność.</p>
+          </aside>
+        </article>
 
-  <!-- ============== STOPKA ============== -->
-  <footer id="ig-footer" role="contentinfo" aria-label="Stopka strony">
-    <div class="wrap">
-      <div class="col about">
-        <h3>Igor Stelmaszczyk</h3>
-        <p>Trener personalny w Wilanowie. Bez zadęcia, bez stresu — z planem, który działa.</p>
-        <div class="cta-row">
-          <a class="btn btn-call" href="tel:+48537918161">Zadzwoń</a>
-          <a class="btn btn-wa" href="https://wa.me/48537918161?text=Cze%C5%9B%C4%87%2C%20chc%C4%99%20um%C3%B3wi%C4%87%20bezp%C5%82atn%C4%85%20konsultacj%C4%99.%20Termin%3A%20__%2C%20godz.%3A%20__" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-        </div>
-      </div>
-
-      <div class="col contact">
-        <h4>Kontakt</h4>
-        <address>
-          <a href="mailto:treningi.wilanow@gmail.com">treningi.wilanow@gmail.com</a><br>
-          <a href="tel:+48537918161">+48&nbsp;537&nbsp;918&nbsp;161</a>
-        </address>
-        <h4>Lokalizacja</h4>
-        <p>Trenuję w: <strong>Zdrofit Wilanów</strong><br>
-          <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Zdrofit%20Wilan%C3%B3w%20Warszawa" target="_blank" rel="noopener noreferrer">Pokaż na mapie →</a>
-        </p>
-      </div>
-
-      <nav class="col links" aria-label="Szybkie linki">
-        <h4>Na skróty</h4>
-        <ul class="list">
-          <li><a href="/cennik">Cennik</a></li>
-          <li><a href="/o-mnie">O mnie</a></li>
-          <li><a href="/#coop-sec">Jak wygląda współpraca</a></li>
-          <li><a href="/umow-konsultacje">Kontakt</a></li>
-        </ul>
-      </nav>
-
-      <div class="col policies">
-        <h4>Informacje</h4>
-        <ul class="list">
-          <li><a href="/polityka-prywatnosci">Polityka prywatności</a></li>
-          <li><a href="/regulamin">Regulamin</a></li>
-        </ul>
-        <p class="note">Odpowiadam tego samego dnia.</p>
+        <article id="mobilnosc" class="service">
+          <div>
+            <span class="label">Ruch, kontrola i stabilizacja</span>
+            <h2>Mobilność i sprawność</h2>
+            <p class="intro">Trening ukierunkowany na zakres ruchu, kontrolę, stabilizację i swobodniejsze wykonywanie codziennych oraz treningowych ruchów.</p>
+            <ul class="points">
+              <li>ocena podstawowych zakresów ruchu,</li>
+              <li>ćwiczenia mobilności i stabilizacji,</li>
+              <li>praca nad kontrolą tułowia i oddechem,</li>
+              <li>prosty zestaw do wykonywania poza treningiem,</li>
+              <li>stopniowe zwiększanie trudności.</li>
+            </ul>
+            <div class="actions"><a class="btn primary" href="/umow-konsultacje/">Umów konsultację</a></div>
+          </div>
+          <aside class="fit">
+            <h3>Najlepszy wybór, jeśli…</h3>
+            <p>chcesz poprawić jakość ruchu, kontrolę i sprawność albo uzupełnić regularny trening siłowy o pracę nad ograniczeniami ruchowymi.</p>
+            <p class="micro">Trening nie zastępuje diagnostyki, fizjoterapii ani leczenia urazu.</p>
+          </aside>
+        </article>
       </div>
     </div>
-    <div class="bar"><p>© 2025 Igor Stelmaszczyk • Wszystkie prawa zastrzeżone</p></div>
+  </section>
 
-    <style>
-      #ig-footer{background:#0f1111;color:#e9ecef;font-family:var(--ff-sans)}
-      #ig-footer .wrap{max-width:1100px;margin:0 auto;padding:32px 20px;display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
-      #ig-footer h3,#ig-footer h4{font-family:var(--ff-head);margin:0 0 10px;line-height:1.2;color:#fff}
-      #ig-footer h3{font-size:1.22rem} #ig-footer h4{font-size:1rem}
-      #ig-footer p{margin:0 0 10px;color:#cfd6dc}
-      #ig-footer address{font-style:normal;color:#cfd6dc;line-height:1.7;margin-bottom:6px}
-      #ig-footer .note{font-size:.9rem;opacity:.9}
-      #ig-footer .list{list-style:none;margin:0;padding:0}
-      #ig-footer .list li+li{margin-top:6px}
-      #ig-footer a{color:#d9fff0;text-decoration:none}
-      #ig-footer a:hover{text-decoration:underline}
-      #ig-footer .map-link{color:#b9f6ca}
-      #ig-footer .cta-row{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
-      #ig-footer .btn{display:inline-block;padding:10px 14px;border-radius:10px;font-weight:700;text-decoration:none;border:2px solid transparent}
-      #ig-footer .btn-call{background:#1a1a1a;color:#fff;border-color:#1a1a1a}
-      #ig-footer .btn-call:hover{background:#101010}
-      #ig-footer .btn-wa{background:var(--green);color:#fff;border-color:var(--green)}
-      #ig-footer .btn-wa:hover{background:var(--green-700)}
-      #ig-footer .bar{border-top:1px solid rgba(255,255,255,.08);padding:14px 20px;text-align:center;font-size:.95rem;color:#cfd6dc}
-      @media (max-width:480px){#ig-footer .wrap{padding:24px 16px}#ig-footer .cta-row a{flex:1;text-align:center}}
-    </style>
-  </footer>
+  <section class="section soft">
+    <div class="container">
+      <p class="kicker">Szybkie porównanie</p>
+      <h2 class="title">Która opcja jest dla Ciebie?</h2>
+      <div class="comparewrap" tabindex="0">
+        <table class="compare">
+          <thead><tr><th>Usługa</th><th>Stałe prowadzenie</th><th>Praca samodzielna</th><th>Dla 2 osób</th><th>Najlepsza do</th></tr></thead>
+          <tbody>
+            <tr><td>Trening 1:1</td><td>Tak</td><td>opcjonalnie</td><td>nie</td><td>regularnej progresji</td></tr>
+            <tr><td>Trening dla par</td><td>Tak</td><td>opcjonalnie</td><td>Tak</td><td>wspólnego treningu</td></tr>
+            <tr><td>Plan + wdrożenie</td><td>punktowo</td><td>Tak</td><td>nie</td><td>samodzielnej pracy</td></tr>
+            <tr><td>Mobilność i sprawność</td><td>zależnie od potrzeb</td><td>częściowo</td><td>nie</td><td>jakości ruchu</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
 
-  <!-- ============== JSON-LD (Service + Breadcrumb) ============== -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@graph":[
-      {
-        "@type":"Service",
-        "name":"Trening personalny 1:1 (Wilanów)",
-        "provider":{"@type":"Person","name":"Igor Stelmaszczyk"},
-        "areaServed":"Warszawa, Wilanów",
-        "serviceType":"PersonalTraining",
-        "url":"https://trenerwilanow.pl/uslugi/"
-      },
-      {
-        "@type":"BreadcrumbList",
-        "itemListElement":[
-          {"@type":"ListItem","position":1,"name":"Strona główna","item":"https://trenerwilanow.pl/"},
-          {"@type":"ListItem","position":2,"name":"Usługi","item":"https://trenerwilanow.pl/uslugi/"}
-        ]
-      }
-    ]
-  }
-  </script>
+  <section class="section">
+    <div class="container">
+      <p class="kicker">Nie musisz wybierać w ciemno</p>
+      <h2 class="title">Jak dobieramy formę współpracy?</h2>
+      <ol class="steps">
+        <li class="step"><h3>Opisujesz cel</h3><p>Mówisz, czego chcesz osiągnąć, jakie masz doświadczenie i ile czasu możesz przeznaczyć na trening.</p></li>
+        <li class="step"><h3>Dobieramy sposób pracy</h3><p>Ustalamy, czy lepsze będzie 1:1, trening we dwoje, plan do samodzielnej pracy czy praca nad sprawnością.</p></li>
+        <li class="step"><h3>Ustalamy start</h3><p>Jeśli współpraca ma sens, wybieramy termin pierwszego spotkania i konkretny zakres działania.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section soft">
+    <div class="container">
+      <div class="scope">
+        <div>
+          <h2>Trening ma być dopasowany do sytuacji, nie odwrotnie</h2>
+          <p>Cel może być ten sam, ale sposób dojścia do niego będzie inny dla osoby początkującej, wracającej po przerwie i trenującej regularnie od kilku lat.</p>
+        </div>
+        <div class="side"><strong>Ważne:</strong> przy świeżym urazie, nasilającym się bólu albo w trakcie leczenia konsultacja treningowa nie zastępuje lekarza lub fizjoterapeuty.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="kicker" style="text-align:center">Najczęstsze pytania</p>
+      <h2 class="title" style="text-align:center">Usługi — FAQ</h2>
+      <div class="faq">
+        <details><summary>Nie wiem, którą usługę wybrać. Co zrobić?</summary><div>Umów bezpłatną konsultację. Na podstawie celu, doświadczenia i dostępnego czasu dobierzemy najbardziej sensowną formę współpracy.</div></details>
+        <details><summary>Czy mogę zacząć od pojedynczego treningu 1:1?</summary><div>Tak. Aktualne warianty i ceny znajdziesz w <a href="/cennik/">cenniku</a>.</div></details>
+        <details><summary>Czy trening dla par oznacza identyczne ćwiczenia dla obu osób?</summary><div>Nie musi. Przebieg może być wspólny, ale wariant ćwiczenia, obciążenie lub zakres pracy można dopasować osobno.</div></details>
+        <details><summary>Dla kogo jest plan treningowy z wdrożeniem?</summary><div>Dla osoby gotowej trenować samodzielnie, która potrzebuje uporządkowanego planu, omówienia techniki i sposobu progresji.</div></details>
+        <details><summary>Czy trening mobilności zastępuje fizjoterapię?</summary><div>Nie. Trening może rozwijać mobilność, kontrolę i sprawność, ale nie jest diagnostyką ani leczeniem urazu.</div></details>
+        <details><summary>Gdzie odbywają się treningi?</summary><div>W Zdrofit Wilanów przy al. Rzeczypospolitej 1. Szczegóły są na stronie <a href="/lokalizacja/">Lokalizacja</a>.</div></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section soft">
+    <div class="container">
+      <div class="final">
+        <h2>Powiedz mi, jaki masz cel — dobierzemy resztę</h2>
+        <p>Nie musisz przed kontaktem wiedzieć, który wariant jest idealny. Zacznij od bezpłatnej konsultacji i ustalimy najprostszy sensowny sposób działania.</p>
+        <div class="actions">
+          <a class="btn primary" href="/umow-konsultacje/">Umów konsultację 0 zł</a>
+          <a class="btn outline" href="/cennik/">Zobacz cennik 1:1</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footgrid">
+    <div>
+      <h2>Igor Stelmaszczyk</h2>
+      <p>Treningi personalne w Zdrofit Wilanów — od regularnej pracy 1:1 po plan do samodzielnego treningu.</p>
+      <address><a href="mailto:treningi.wilanow@gmail.com">treningi.wilanow@gmail.com</a><br><a href="tel:+48537918161">+48 537 918 161</a></address>
+    </div>
+    <nav aria-label="Najważniejsze strony">
+      <h3>Na skróty</h3>
+      <ul class="flinks"><li><a href="/trener-personalny-wilanow/">Trener personalny Wilanów</a></li><li><a href="/trener-zdrofit-wilanow/">Trener Zdrofit Wilanów</a></li><li><a href="/cennik/">Cennik</a></li><li><a href="/efekty/">Efekty</a></li></ul>
+    </nav>
+    <nav aria-label="Informacje">
+      <h3>Informacje</h3>
+      <ul class="flinks"><li><a href="/o-mnie/">O mnie</a></li><li><a href="/lokalizacja/">Lokalizacja</a></li><li><a href="/faq/">FAQ</a></li><li><a href="/umow-konsultacje/">Kontakt</a></li></ul>
+    </nav>
+  </div>
+  <div class="container bottom">© 2026 Igor Stelmaszczyk • Wszystkie prawa zastrzeżone</div>
+</footer>
+
+<script>
+const menuBtn=document.querySelector('.menu'),mobile=document.getElementById('mobile-menu'),backdrop=document.querySelector('.backdrop');
+function setMenu(open){menuBtn.setAttribute('aria-expanded',String(open));mobile.setAttribute('aria-hidden',String(!open));mobile.classList.toggle('open',open);backdrop.classList.toggle('open',open);document.body.style.overflow=open?'hidden':'';menuBtn.textContent=open?'✕':'☰'}
+menuBtn.addEventListener('click',()=>setMenu(menuBtn.getAttribute('aria-expanded')!=='true'));backdrop.addEventListener('click',()=>setMenu(false));mobile.addEventListener('click',e=>{if(e.target.closest('a'))setMenu(false)});document.addEventListener('keydown',e=>{if(e.key==='Escape')setMenu(false)});
+window.addEventListener('load',function(){window.dataLayer=window.dataLayer||[];window.gtag=window.gtag||function(){dataLayer.push(arguments)};const s=document.createElement('script');s.src='https://www.googletagmanager.com/gtag/js?id=G-FBX8CDNETZ';s.async=true;s.onload=function(){gtag('js',new Date());gtag('config','G-FBX8CDNETZ',{anonymize_ip:true});gtag('config','AW-10989654613')};document.head.appendChild(s)});
+</script>
 </body>
 </html>
