@@ -1,20 +1,4 @@
-# --- Google Ads: pozwól na wszystko (niezależnie od parametrów) ---
-User-agent: AdsBot-Google
-Allow: /
-User-agent: AdsBot-Google-Mobile
-Allow: /
-
-# --- Pozostałe boty (SEO): blokuj duplikaty z parametrami śledzącymi ---
 User-agent: *
-Disallow: /*?*utm_source=
-Disallow: /*?*utm_medium=
-Disallow: /*?*utm_campaign=
-Disallow: /*?*utm_term=
-Disallow: /*?*utm_content=
-Disallow: /*?*utm_id=
-Disallow: /*?*gclid=
-Disallow: /*?*fbclid=
-Disallow: /*?*msclkid=
 Allow: /
 
 Sitemap: https://trenerwilanow.pl/sitemap.xml
