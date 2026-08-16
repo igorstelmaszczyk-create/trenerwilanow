@@ -73,6 +73,7 @@ footer{background:#0f1410;color:#d9e2db}.footgrid{display:grid;grid-template-col
 @media(max-width:940px){nav.main,.hcta{display:none}.menu{display:block}.quickgrid{grid-template-columns:1fr 1fr}.quickitem:nth-child(3){border-left:0;border-top:1px solid var(--line)}.quickitem:nth-child(4){border-top:1px solid var(--line)}.locgrid,.clarify{grid-template-columns:1fr}.transport,.steps{grid-template-columns:1fr 1fr}.transport .card:last-child,.steps .step:last-child{grid-column:1/-1}.club{grid-template-columns:1fr 1fr}.footgrid{grid-template-columns:1fr 1fr}.footgrid>:first-child{grid-column:1/-1}}
 @media(max-width:680px){.container{width:min(var(--max),calc(100% - 24px))}.section{padding:56px 0}.hero{padding:42px 0 58px}.hero h1{font-size:2.3rem}.address{border-radius:14px}.quickgrid,.transport,.steps,.club{grid-template-columns:1fr}.quickitem+.quickitem{border-left:0;border-top:1px solid var(--line)}.transport .card:last-child,.steps .step:last-child{grid-column:auto}.footgrid{grid-template-columns:1fr}.footgrid>:first-child{grid-column:auto}}
 </style>
+  <script src="/consent.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Przejdź do treści</a>
@@ -218,7 +219,7 @@ footer{background:#0f1410;color:#d9e2db}.footgrid{display:grid;grid-template-col
 const b=document.querySelector('.menu'),m=document.getElementById('mobile-menu'),d=document.querySelector('.backdrop');
 function setMenu(o){b.setAttribute('aria-expanded',String(o));m.setAttribute('aria-hidden',String(!o));m.classList.toggle('open',o);d.classList.toggle('open',o);document.body.style.overflow=o?'hidden':''}
 b.addEventListener('click',()=>setMenu(b.getAttribute('aria-expanded')!=='true'));d.addEventListener('click',()=>setMenu(false));m.addEventListener('click',e=>{if(e.target.closest('a'))setMenu(false)});document.addEventListener('keydown',e=>{if(e.key==='Escape')setMenu(false)});
-window.addEventListener('load',function(){window.dataLayer=window.dataLayer||[];window.gtag=window.gtag||function(){dataLayer.push(arguments)};const s=document.createElement('script');s.src='https://www.googletagmanager.com/gtag/js?id=G-FBX8CDNETZ';s.async=true;s.onload=function(){gtag('js',new Date());gtag('config','G-FBX8CDNETZ',{anonymize_ip:true});gtag('config','AW-10989654613')};document.head.appendChild(s)});
+
 </script>
 </body>
 </html>
