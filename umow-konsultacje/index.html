@@ -548,6 +548,7 @@
       *,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}
     }
   </style>
+  <script src="/consent.js" defer></script>
 </head>
 
 <body>
@@ -911,12 +912,12 @@
             throw new Error(data.message || 'FormSubmit nie potwierdził wysyłki.');
           }
 
-          window.dataLayer = window.dataLayer || [];
-          window.dataLayer.push({
-            event:'lead_form_submit',
-            form_name:'konsultacja',
-            page_location:window.location.href
-          });
+          if(window.__twConsent && window.__twConsent.analytics === true && typeof window.gtag === 'function'){
+            window.gtag('event','lead_form_submit',{
+              form_name:'konsultacja',
+              page_location:window.location.href
+            });
+          }
 
           showSuccess();
         }catch(error){
