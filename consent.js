@@ -1,19 +1,27 @@
 /*
   trenerwilanow.pl — Consent Mode v2
   Wariant: BASIC (tagi Google nie są ładowane przed zgodą).
-  Kategorie:
-    - analytics: Google Analytics 4
-    - ads: pomiar Google Ads
-  Personalizacja reklam pozostaje wyłączona.
 */
 (function () {
   'use strict';
 
   var VERSION = '2026-08-16-v1';
   var COOKIE_NAME = 'tw_consent_v2';
+
   var GA_ID = 'G-FBX8CDNETZ';
   var ADS_ID = 'AW-10989654613';
-  var GOOGLE_TAG_URL = 'https://www.googletagmanager.com/gtag/js?id=';
+
+  var PHONE_CONVERSION_ID =
+    'AW-10989654613/uN0TCOmv4-IcENWko_go';
+
+  var PHONE_DISPLAY_NUMBER =
+    '+48 537 918 161';
+
+  var WHATSAPP_CONVERSION_ID =
+    'AW-10989654613/JgaTCMmnx-IcENWko_go';
+
+  var GOOGLE_TAG_URL =
+    'https://www.googletagmanager.com/gtag/js?id=';
 
   var state = {
     analytics: false,
@@ -27,17 +35,29 @@
   function readChoice() {
     try {
       var prefix = COOKIE_NAME + '=';
-      var parts = document.cookie ? document.cookie.split('; ') : [];
+      var parts =
+        document.cookie
+          ? document.cookie.split('; ')
+          : [];
 
       for (var i = 0; i < parts.length; i++) {
         if (parts[i].indexOf(prefix) === 0) {
           var parsed = JSON.parse(
-            decodeURIComponent(parts[i].slice(prefix.length))
+            decodeURIComponent(
+              parts[i].slice(prefix.length)
+            )
           );
 
-          if (parsed && parsed.version === VERSION) {
-            state.analytics = parsed.analytics === true;
-            state.ads = parsed.ads === true;
+          if (
+            parsed &&
+            parsed.version === VERSION
+          ) {
+            state.analytics =
+              parsed.analytics === true;
+
+            state.ads =
+              parsed.ads === true;
+
             state.decided = true;
           }
 
@@ -50,14 +70,19 @@
   }
 
   function saveChoice() {
-    var payload = encodeURIComponent(JSON.stringify({
-      analytics: state.analytics,
-      ads: state.ads,
-      version: VERSION
-    }));
+    var payload =
+      encodeURIComponent(
+        JSON.stringify({
+          analytics: state.analytics,
+          ads: state.ads,
+          version: VERSION
+        })
+      );
 
     document.cookie =
-      COOKIE_NAME + '=' + payload +
+      COOKIE_NAME +
+      '=' +
+      payload +
       '; Max-Age=31536000; Path=/; SameSite=Lax; Secure';
   }
 
@@ -84,48 +109,112 @@
 
   function consentObject() {
     return {
-      analytics_storage: state.analytics ? 'granted' : 'denied',
-      ad_storage: state.ads ? 'granted' : 'denied',
-      ad_user_data: state.ads ? 'granted' : 'denied',
-      ad_personalization: 'denied'
+      analytics_storage:
+        state.analytics
+          ? 'granted'
+          : 'denied',
+
+      ad_storage:
+        state.ads
+          ? 'granted'
+          : 'denied',
+
+      ad_user_data:
+        state.ads
+          ? 'granted'
+          : 'denied',
+
+      ad_personalization:
+        'denied'
     };
   }
 
+  function configurePhoneConversion() {
+    if (
+      !state.ads ||
+      typeof window.gtag !== 'function'
+    ) {
+      return;
+    }
+
+    window.gtag(
+      'config',
+      PHONE_CONVERSION_ID,
+      {
+        phone_conversion_number:
+          PHONE_DISPLAY_NUMBER
+      }
+    );
+  }
+
   function loadGoogleTag() {
-    if (tagLoaded || (!state.analytics && !state.ads)) {
+    if (
+      tagLoaded ||
+      (!state.analytics && !state.ads)
+    ) {
       return;
     }
 
     ensureGtag();
 
-    window.gtag('consent', 'default', {
-      analytics_storage: 'denied',
-      ad_storage: 'denied',
-      ad_user_data: 'denied',
-      ad_personalization: 'denied'
-    });
+    window.gtag(
+      'consent',
+      'default',
+      {
+        analytics_storage: 'denied',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied'
+      }
+    );
 
-    window.gtag('consent', 'update', consentObject());
+    window.gtag(
+      'consent',
+      'update',
+      consentObject()
+    );
 
-    window.gtag('set', 'ads_data_redaction', true);
-    window.gtag('js', new Date());
+    window.gtag(
+      'set',
+      'ads_data_redaction',
+      true
+    );
+
+    window.gtag(
+      'js',
+      new Date()
+    );
 
     if (state.analytics) {
-      window.gtag('config', GA_ID, {
-        anonymize_ip: true
-      });
+      window.gtag(
+        'config',
+        GA_ID,
+        {
+          anonymize_ip: true
+        }
+      );
     }
 
     if (state.ads) {
-      window.gtag('config', ADS_ID);
+      window.gtag(
+        'config',
+        ADS_ID
+      );
+
+      configurePhoneConversion();
     }
 
-    var script = document.createElement('script');
+    var script =
+      document.createElement('script');
+
     script.async = true;
+
     script.src =
       GOOGLE_TAG_URL +
       encodeURIComponent(
-        state.analytics ? GA_ID : ADS_ID
+        state.analytics
+          ? GA_ID
+          : ADS_ID
       );
 
     script.onload = function () {
@@ -141,7 +230,9 @@
   }
 
   function updateLoadedTag() {
-    if (typeof window.gtag === 'function') {
+    if (
+      typeof window.gtag === 'function'
+    ) {
       window.gtag(
         'consent',
         'update',
@@ -149,34 +240,57 @@
       );
 
       if (state.analytics) {
-        window.gtag('config', GA_ID, {
-          anonymize_ip: true
-        });
+        window.gtag(
+          'config',
+          GA_ID,
+          {
+            anonymize_ip: true
+          }
+        );
       }
 
       if (state.ads) {
-        window.gtag('config', ADS_ID);
+        window.gtag(
+          'config',
+          ADS_ID
+        );
+
+        configurePhoneConversion();
       }
     }
 
-    if (!tagLoaded && (state.analytics || state.ads)) {
+    if (
+      !tagLoaded &&
+      (state.analytics || state.ads)
+    ) {
       loadGoogleTag();
     }
   }
 
   function deleteCookie(name) {
     var hostname =
-      location.hostname.replace(/^www\./, '');
+      location.hostname.replace(
+        /^www\./,
+        ''
+      );
 
     var expiries = [
       '; Path=/; Max-Age=0; SameSite=Lax',
-      '; Path=/; Max-Age=0; SameSite=Lax; Domain=' + hostname,
-      '; Path=/; Max-Age=0; SameSite=Lax; Domain=.' + hostname
+      '; Path=/; Max-Age=0; SameSite=Lax; Domain=' +
+        hostname,
+      '; Path=/; Max-Age=0; SameSite=Lax; Domain=.' +
+        hostname
     ];
 
-    for (var i = 0; i < expiries.length; i++) {
+    for (
+      var i = 0;
+      i < expiries.length;
+      i++
+    ) {
       document.cookie =
-        name + '=;' + expiries[i];
+        name +
+        '=;' +
+        expiries[i];
     }
   }
 
@@ -187,8 +301,13 @@
           ? document.cookie.split('; ')
           : [];
 
-      for (var i = 0; i < cookies.length; i++) {
-        var name = cookies[i].split('=')[0];
+      for (
+        var i = 0;
+        i < cookies.length;
+        i++
+      ) {
+        var name =
+          cookies[i].split('=')[0];
 
         if (
           name === '_ga' ||
@@ -210,7 +329,8 @@
     reloadIfRevoked
   ) {
     var hadAny =
-      state.analytics || state.ads;
+      state.analytics ||
+      state.ads;
 
     state.analytics =
       analytics === true;
@@ -223,22 +343,34 @@
     saveChoice();
     syncPublicState();
 
-    if (!state.analytics && !state.ads) {
-      if (typeof window.gtag === 'function') {
+    if (
+      !state.analytics &&
+      !state.ads
+    ) {
+      if (
+        typeof window.gtag ===
+        'function'
+      ) {
         window.gtag(
           'consent',
           'update',
           {
-            analytics_storage: 'denied',
-            ad_storage: 'denied',
-            ad_user_data: 'denied',
-            ad_personalization: 'denied'
+            analytics_storage:
+              'denied',
+
+            ad_storage:
+              'denied',
+
+            ad_user_data:
+              'denied',
+
+            ad_personalization:
+              'denied'
           }
         );
       }
 
       clearGoogleCookies();
-
     } else {
       updateLoadedTag();
     }
@@ -252,9 +384,12 @@
       !state.analytics &&
       !state.ads
     ) {
-      window.setTimeout(function () {
-        location.reload();
-      }, 120);
+      window.setTimeout(
+        function () {
+          location.reload();
+        },
+        120
+      );
     }
   }
 
@@ -268,193 +403,65 @@
     }
 
     var style =
-      document.createElement('style');
+      document.createElement(
+        'style'
+      );
 
-    style.id = 'tw-consent-style';
+    style.id =
+      'tw-consent-style';
 
     style.textContent =
-      '#tw-consent{' +
-        'position:fixed;' +
-        'left:16px;' +
-        'right:16px;' +
-        'bottom:16px;' +
-        'z-index:2147483000;' +
-        'max-width:760px;' +
-        'margin:auto;' +
-        'background:#fff;' +
-        'color:#171a18;' +
-        'border:1px solid #dfe7e1;' +
-        'border-radius:18px;' +
-        'box-shadow:0 20px 60px rgba(0,0,0,.22);' +
-        'font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;' +
-        'padding:20px' +
-      '}' +
+      '#tw-consent{position:fixed;left:16px;right:16px;bottom:16px;z-index:2147483000;max-width:760px;margin:auto;background:#fff;color:#171a18;border:1px solid #dfe7e1;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.22);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;padding:20px}' +
 
-      '#tw-consent[hidden]{' +
-        'display:none!important' +
-      '}' +
+      '#tw-consent[hidden]{display:none!important}' +
 
-      '#tw-consent h2{' +
-        'margin:0;' +
-        'font-size:1.15rem;' +
-        'line-height:1.25' +
-      '}' +
+      '#tw-consent h2{margin:0;font-size:1.15rem;line-height:1.25}' +
 
-      '#tw-consent p{' +
-        'margin:8px 0 0;' +
-        'color:#555f57;' +
-        'font-size:.92rem;' +
-        'line-height:1.5' +
-      '}' +
+      '#tw-consent p{margin:8px 0 0;color:#555f57;font-size:.92rem;line-height:1.5}' +
 
-      '#tw-consent a{' +
-        'color:#1f7e21;' +
-        'font-weight:750;' +
-        'text-underline-offset:3px' +
-      '}' +
+      '#tw-consent a{color:#1f7e21;font-weight:750;text-underline-offset:3px}' +
 
-      '#tw-consent-actions{' +
-        'display:flex;' +
-        'flex-wrap:wrap;' +
-        'gap:9px;' +
-        'margin-top:16px' +
-      '}' +
+      '#tw-consent-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}' +
 
-      '#tw-consent button{' +
-        'min-height:44px;' +
-        'border-radius:10px;' +
-        'padding:10px 14px;' +
-        'font:inherit;' +
-        'font-weight:820;' +
-        'cursor:pointer' +
-      '}' +
+      '#tw-consent button{min-height:44px;border-radius:10px;padding:10px 14px;font:inherit;font-weight:820;cursor:pointer}' +
 
-      '#tw-consent .tw-primary{' +
-        'border:2px solid #1f7e21;' +
-        'background:#1f7e21;' +
-        'color:#fff' +
-      '}' +
+      '#tw-consent .tw-primary{border:2px solid #1f7e21;background:#1f7e21;color:#fff}' +
 
-      '#tw-consent .tw-primary:hover{' +
-        'background:#176619;' +
-        'border-color:#176619' +
-      '}' +
+      '#tw-consent .tw-primary:hover{background:#176619;border-color:#176619}' +
 
-      '#tw-consent .tw-secondary{' +
-        'border:2px solid #9fc7a2;' +
-        'background:#fff;' +
-        'color:#1f7e21' +
-      '}' +
+      '#tw-consent .tw-secondary{border:2px solid #9fc7a2;background:#fff;color:#1f7e21}' +
 
-      '#tw-consent .tw-secondary:hover{' +
-        'background:#eef8ef' +
-      '}' +
+      '#tw-consent .tw-secondary:hover{background:#eef8ef}' +
 
-      '#tw-consent .tw-text{' +
-        'border:0;' +
-        'background:transparent;' +
-        'color:#384139;' +
-        'text-decoration:underline;' +
-        'text-underline-offset:3px' +
-      '}' +
+      '#tw-consent .tw-text{border:0;background:transparent;color:#384139;text-decoration:underline;text-underline-offset:3px}' +
 
-      '#tw-settings{' +
-        'display:none;' +
-        'margin-top:16px;' +
-        'padding-top:16px;' +
-        'border-top:1px solid #dfe7e1' +
-      '}' +
+      '#tw-settings{display:none;margin-top:16px;padding-top:16px;border-top:1px solid #dfe7e1}' +
 
-      '#tw-settings.tw-open{' +
-        'display:block' +
-      '}' +
+      '#tw-settings.tw-open{display:block}' +
 
-      '.tw-choice{' +
-        'display:flex;' +
-        'gap:12px;' +
-        'align-items:flex-start;' +
-        'padding:11px 0' +
-      '}' +
+      '.tw-choice{display:flex;gap:12px;align-items:flex-start;padding:11px 0}' +
 
-      '.tw-choice+.tw-choice{' +
-        'border-top:1px solid #edf1ee' +
-      '}' +
+      '.tw-choice+.tw-choice{border-top:1px solid #edf1ee}' +
 
-      '.tw-choice input{' +
-        'width:20px;' +
-        'height:20px;' +
-        'margin:2px 0 0;' +
-        'accent-color:#1f7e21;' +
-        'flex:0 0 auto' +
-      '}' +
+      '.tw-choice input{width:20px;height:20px;margin:2px 0 0;accent-color:#1f7e21;flex:0 0 auto}' +
 
-      '.tw-choice strong{' +
-        'display:block;' +
-        'font-size:.93rem' +
-      '}' +
+      '.tw-choice strong{display:block;font-size:.93rem}' +
 
-      '.tw-choice span{' +
-        'display:block;' +
-        'margin-top:3px;' +
-        'color:#626a64;' +
-        'font-size:.82rem;' +
-        'line-height:1.4' +
-      '}' +
+      '.tw-choice span{display:block;margin-top:3px;color:#626a64;font-size:.82rem;line-height:1.4}' +
 
-      '#tw-manage{' +
-        'position:fixed;' +
-        'left:12px;' +
-        'bottom:12px;' +
-        'z-index:2147482000;' +
-        'border:1px solid #cad7cc;' +
-        'border-radius:999px;' +
-        'background:#fff;' +
-        'color:#364139;' +
-        'padding:8px 11px;' +
-        'font:700 .78rem system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;' +
-        'box-shadow:0 6px 18px rgba(0,0,0,.12);' +
-        'cursor:pointer' +
-      '}' +
+      '#tw-manage{position:fixed;left:12px;bottom:12px;z-index:2147482000;border:1px solid #cad7cc;border-radius:999px;background:#fff;color:#364139;padding:8px 11px;font:700 .78rem system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;box-shadow:0 6px 18px rgba(0,0,0,.12);cursor:pointer}' +
 
-      '#tw-manage[hidden]{' +
-        'display:none!important' +
-      '}' +
+      '#tw-manage[hidden]{display:none!important}' +
 
-      '#tw-manage:hover{' +
-        'background:#eef8ef;' +
-        'color:#1f7e21' +
-      '}' +
+      '#tw-manage:hover{background:#eef8ef;color:#1f7e21}' +
 
-      '@media(max-width:620px){' +
-        '#tw-consent{' +
-          'left:10px;' +
-          'right:10px;' +
-          'bottom:10px;' +
-          'padding:17px' +
-        '}' +
+      '@media(max-width:620px){#tw-consent{left:10px;right:10px;bottom:10px;padding:17px}#tw-consent-actions{display:grid}#tw-consent button{width:100%}#tw-manage{bottom:10px;left:10px}}' +
 
-        '#tw-consent-actions{' +
-          'display:grid' +
-        '}' +
+      '@media(prefers-reduced-motion:reduce){#tw-consent *,#tw-manage{transition:none!important}}';
 
-        '#tw-consent button{' +
-          'width:100%' +
-        '}' +
-
-        '#tw-manage{' +
-          'bottom:10px;' +
-          'left:10px' +
-        '}' +
-      '}' +
-
-      '@media(prefers-reduced-motion:reduce){' +
-        '#tw-consent *,' +
-        '#tw-manage{' +
-          'transition:none!important' +
-        '}' +
-      '}';
-
-    document.head.appendChild(style);
+    document.head.appendChild(
+      style
+    );
   }
 
   function createUi() {
@@ -469,9 +476,12 @@
     injectStyles();
 
     var box =
-      document.createElement('section');
+      document.createElement(
+        'section'
+      );
 
-    box.id = 'tw-consent';
+    box.id =
+      'tw-consent';
 
     box.setAttribute(
       'role',
@@ -484,69 +494,57 @@
     );
 
     box.innerHTML =
-      '<h2 id="tw-consent-title">' +
-        'Twoja prywatność' +
-      '</h2>' +
+      '<h2 id="tw-consent-title">Twoja prywatność</h2>' +
 
-      '<p>' +
-        'Używam technologii niezbędnych do działania strony. ' +
-        'Za Twoją zgodą mogę też używać Google Analytics do statystyk ' +
-        'oraz Google Ads do pomiaru skuteczności reklam. ' +
-        'Personalizacja reklam pozostaje wyłączona. ' +
-        '<a href="/polityka-prywatnosci/">' +
-          'Polityka prywatności' +
-        '</a>.' +
-      '</p>' +
+      '<p>Używam technologii niezbędnych do działania strony. Za Twoją zgodą mogę też używać Google Analytics do statystyk oraz Google Ads do pomiaru skuteczności reklam. Personalizacja reklam pozostaje wyłączona. <a href="/polityka-prywatnosci/">Polityka prywatności</a>.</p>' +
 
       '<div id="tw-consent-actions">' +
-        '<button type="button" class="tw-primary" id="tw-accept-all">' +
-          'Akceptuję wszystkie' +
-        '</button>' +
 
-        '<button type="button" class="tw-secondary" id="tw-reject">' +
-          'Tylko niezbędne' +
-        '</button>' +
+        '<button type="button" class="tw-primary" id="tw-accept-all">Akceptuję wszystkie</button>' +
 
-        '<button type="button" class="tw-text" id="tw-open-settings" aria-expanded="false">' +
-          'Ustawienia' +
-        '</button>' +
+        '<button type="button" class="tw-secondary" id="tw-reject">Tylko niezbędne</button>' +
+
+        '<button type="button" class="tw-text" id="tw-open-settings" aria-expanded="false">Ustawienia</button>' +
+
       '</div>' +
 
       '<div id="tw-settings">' +
 
         '<label class="tw-choice">' +
+
           '<input type="checkbox" id="tw-analytics">' +
-          '<span>' +
-            '<strong>Analityka</strong>' +
-            '<span>' +
-              'Google Analytics 4 — pomaga zrozumieć, które strony są użyteczne i skąd trafiają użytkownicy.' +
-            '</span>' +
-          '</span>' +
+
+          '<span><strong>Analityka</strong><span>Google Analytics 4 — pomaga zrozumieć, które strony są użyteczne i skąd trafiają użytkownicy.</span></span>' +
+
         '</label>' +
 
         '<label class="tw-choice">' +
+
           '<input type="checkbox" id="tw-ads">' +
-          '<span>' +
-            '<strong>Pomiar reklam</strong>' +
-            '<span>' +
-              'Google Ads — pomiar skuteczności kampanii i konwersji. Bez personalizacji reklam.' +
-            '</span>' +
-          '</span>' +
+
+          '<span><strong>Pomiar reklam</strong><span>Google Ads — pomiar skuteczności kampanii i konwersji. Bez personalizacji reklam.</span></span>' +
+
         '</label>' +
 
         '<div id="tw-consent-actions">' +
-          '<button type="button" class="tw-primary" id="tw-save">' +
-            'Zapisz wybór' +
-          '</button>' +
+
+          '<button type="button" class="tw-primary" id="tw-save">Zapisz wybór</button>' +
+
         '</div>' +
 
       '</div>';
 
     var manage =
-      document.createElement('button');
+      document.createElement(
+        'button'
+      );
 
-    manage.id = 'tw-manage';
-    manage.type = 'button';
+    manage.id =
+      'tw-manage';
+
+    manage.type =
+      'button';
+
     manage.textContent =
       'Ustawienia prywatności';
 
@@ -557,8 +555,13 @@
 
     manage.hidden = true;
 
-    document.body.appendChild(box);
-    document.body.appendChild(manage);
+    document.body.appendChild(
+      box
+    );
+
+    document.body.appendChild(
+      manage
+    );
 
     var settings =
       document.getElementById(
@@ -588,7 +591,9 @@
         state.ads;
     }
 
-    function toggleSettings(open) {
+    function toggleSettings(
+      open
+    ) {
       settings.classList.toggle(
         'tw-open',
         open
@@ -634,16 +639,17 @@
         }
       );
 
-    openSettings.addEventListener(
-      'click',
-      function () {
-        toggleSettings(
-          !settings.classList.contains(
-            'tw-open'
-          )
-        );
-      }
-    );
+    openSettings
+      .addEventListener(
+        'click',
+        function () {
+          toggleSettings(
+            !settings.classList.contains(
+              'tw-open'
+            )
+          );
+        }
+      );
 
     document
       .getElementById(
@@ -675,7 +681,6 @@
     if (state.decided) {
       box.hidden = true;
       manage.hidden = false;
-
     } else {
       box.hidden = false;
       manage.hidden = true;
@@ -714,30 +719,32 @@
   }
 
   if (
-    document.readyState === 'loading'
+    document.readyState ===
+    'loading'
   ) {
     document.addEventListener(
       'DOMContentLoaded',
       createUi,
-      { once: true }
+      {
+        once: true
+      }
     );
-
   } else {
     createUi();
   }
 
   /*
-    Google Ads — Lead – WhatsApp
-    Konwersja typu KLIKNIĘCIE.
+    GOOGLE ADS — WHATSAPP
   */
   document.addEventListener(
     'click',
     function (event) {
-
       var link =
         event.target &&
         event.target.closest
-          ? event.target.closest('a[href]')
+          ? event.target.closest(
+              'a[href]'
+            )
           : null;
 
       if (!link) {
@@ -745,12 +752,22 @@
       }
 
       var href =
-        link.getAttribute('href') || '';
+        link.getAttribute(
+          'href'
+        ) || '';
 
       var isWhatsApp =
-        href.indexOf('https://wa.me/') === 0 ||
-        href.indexOf('https://api.whatsapp.com/') === 0 ||
-        href.indexOf('https://www.whatsapp.com/') === 0;
+        href.indexOf(
+          'https://wa.me/'
+        ) === 0 ||
+
+        href.indexOf(
+          'https://api.whatsapp.com/'
+        ) === 0 ||
+
+        href.indexOf(
+          'https://www.whatsapp.com/'
+        ) === 0;
 
       if (!isWhatsApp) {
         return;
@@ -758,7 +775,8 @@
 
       if (
         !state.ads ||
-        typeof window.gtag !== 'function'
+        typeof window.gtag !==
+          'function'
       ) {
         return;
       }
@@ -774,13 +792,12 @@
         event.button === 1;
 
       if (opensNewContext) {
-
         window.gtag(
           'event',
           'conversion',
           {
             send_to:
-              'AW-10989654613/JgaTCMmnx-IcENWko_go'
+              WHATSAPP_CONVERSION_ID
           }
         );
 
@@ -791,24 +808,24 @@
 
       var navigated = false;
 
-      var callback = function () {
+      var callback =
+        function () {
+          if (navigated) {
+            return;
+          }
 
-        if (navigated) {
-          return;
-        }
+          navigated = true;
 
-        navigated = true;
-
-        window.location =
-          destination;
-      };
+          window.location =
+            destination;
+        };
 
       window.gtag(
         'event',
         'conversion',
         {
           send_to:
-            'AW-10989654613/JgaTCMmnx-IcENWko_go',
+            WHATSAPP_CONVERSION_ID,
 
           event_callback:
             callback
@@ -824,13 +841,19 @@
   );
 
   window.TrenerWilanowConsent = {
-
     get: function () {
       return {
-        analytics: state.analytics,
-        ads: state.ads,
-        decided: state.decided,
-        version: VERSION
+        analytics:
+          state.analytics,
+
+        ads:
+          state.ads,
+
+        decided:
+          state.decided,
+
+        version:
+          VERSION
       };
     },
 
