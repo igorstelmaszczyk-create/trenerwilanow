@@ -1,27 +1,21 @@
 /*
   trenerwilanow.pl — Consent Mode v2
   Wariant: BASIC (tagi Google nie są ładowane przed zgodą).
+  Kategorie:
+    - analytics: Google Analytics 4
+    - ads: pomiar Google Ads
+  Personalizacja reklam pozostaje wyłączona.
 */
 (function () {
   'use strict';
 
   var VERSION = '2026-08-16-v1';
   var COOKIE_NAME = 'tw_consent_v2';
-
   var GA_ID = 'G-FBX8CDNETZ';
   var ADS_ID = 'AW-10989654613';
-
-  var PHONE_CONVERSION_ID =
-    'AW-10989654613/uN0TCOmv4-IcENWko_go';
-
-  var PHONE_DISPLAY_NUMBER =
-    '+48 537 918 161';
-
-  var WHATSAPP_CONVERSION_ID =
-    'AW-10989654613/JgaTCMmnx-IcENWko_go';
-
-  var GOOGLE_TAG_URL =
-    'https://www.googletagmanager.com/gtag/js?id=';
+  var PHONE_CONVERSION_ID = 'AW-10989654613/uN0TCOmv4-IcENWko_go';
+  var PHONE_DISPLAY_NUMBER = '+48 537 918 161';
+  var GOOGLE_TAG_URL = 'https://www.googletagmanager.com/gtag/js?id=';
 
   var state = {
     analytics: false,
@@ -35,10 +29,7 @@
   function readChoice() {
     try {
       var prefix = COOKIE_NAME + '=';
-      var parts =
-        document.cookie
-          ? document.cookie.split('; ')
-          : [];
+      var parts = document.cookie ? document.cookie.split('; ') : [];
 
       for (var i = 0; i < parts.length; i++) {
         if (parts[i].indexOf(prefix) === 0) {
@@ -70,14 +61,13 @@
   }
 
   function saveChoice() {
-    var payload =
-      encodeURIComponent(
-        JSON.stringify({
-          analytics: state.analytics,
-          ads: state.ads,
-          version: VERSION
-        })
-      );
+    var payload = encodeURIComponent(
+      JSON.stringify({
+        analytics: state.analytics,
+        ads: state.ads,
+        version: VERSION
+      })
+    );
 
     document.cookie =
       COOKIE_NAME +
@@ -100,9 +90,14 @@
       window.dataLayer = [];
     }
 
-    if (typeof window.gtag !== 'function') {
+    if (
+      typeof window.gtag !==
+      'function'
+    ) {
       window.gtag = function () {
-        window.dataLayer.push(arguments);
+        window.dataLayer.push(
+          arguments
+        );
       };
     }
   }
@@ -129,10 +124,190 @@
     };
   }
 
+  /*
+    Google Forwarding Number callback.
+
+    Gdy Google zwróci numer przekierowujący:
+    - podmieniamy href="tel:..."
+    - podmieniamy widoczny numer telefonu
+    - CTA typu "Zadzwoń" pozostaje tekstowo bez zmian
+  */
+  function replacePhoneNumbers(
+    formattedNumber,
+    mobileNumber
+  ) {
+    if (
+      !formattedNumber ||
+      !mobileNumber
+    ) {
+      return;
+    }
+
+    var originalDigits =
+      PHONE_DISPLAY_NUMBER.replace(
+        /\D/g,
+        ''
+      );
+
+    var localDigits =
+      originalDigits.slice(-9);
+
+    var phoneLinks =
+      document.querySelectorAll(
+        'a[href^="tel:"]'
+      );
+
+    for (
+      var i = 0;
+      i < phoneLinks.length;
+      i++
+    ) {
+      var link =
+        phoneLinks[i];
+
+      var hrefDigits =
+        (
+          link.getAttribute('href') ||
+          ''
+        ).replace(
+          /\D/g,
+          ''
+        );
+
+      if (
+        hrefDigits === originalDigits ||
+        hrefDigits.slice(-9) ===
+          localDigits
+      ) {
+        link.setAttribute(
+          'href',
+          'tel:' + mobileNumber
+        );
+
+        var visibleDigits =
+          (
+            link.textContent || ''
+          ).replace(
+            /\D/g,
+            ''
+          );
+
+        /*
+          Jeżeli link pokazuje numer,
+          zmieniamy także jego tekst.
+          Jeśli pokazuje "Zadzwoń",
+          tekst pozostaje bez zmian.
+        */
+        if (
+          visibleDigits ===
+            originalDigits ||
+          visibleDigits.slice(-9) ===
+            localDigits
+        ) {
+          link.textContent =
+            formattedNumber;
+        }
+      }
+    }
+
+    /*
+      Podmiana zwykłego tekstu numeru,
+      jeśli numer występuje poza linkiem.
+    */
+    if (
+      document.body &&
+      document.createTreeWalker
+    ) {
+      var walker =
+        document.createTreeWalker(
+          document.body,
+          NodeFilter.SHOW_TEXT,
+          {
+            acceptNode:
+              function (node) {
+                var parent =
+                  node.parentNode;
+
+                if (
+                  !parent ||
+                  !parent.tagName
+                ) {
+                  return NodeFilter
+                    .FILTER_REJECT;
+                }
+
+                var tag =
+                  parent.tagName
+                    .toUpperCase();
+
+                if (
+                  tag === 'SCRIPT' ||
+                  tag === 'STYLE' ||
+                  tag === 'NOSCRIPT' ||
+                  tag === 'TEXTAREA'
+                ) {
+                  return NodeFilter
+                    .FILTER_REJECT;
+                }
+
+                return (
+                  node.nodeValue &&
+                  node.nodeValue
+                    .indexOf(
+                      PHONE_DISPLAY_NUMBER
+                    ) !== -1
+                )
+                  ? NodeFilter
+                      .FILTER_ACCEPT
+                  : NodeFilter
+                      .FILTER_REJECT;
+              }
+          }
+        );
+
+      var textNodes = [];
+      var current;
+
+      while (
+        (
+          current =
+            walker.nextNode()
+        )
+      ) {
+        textNodes.push(
+          current
+        );
+      }
+
+      for (
+        var j = 0;
+        j < textNodes.length;
+        j++
+      ) {
+        textNodes[j].nodeValue =
+          textNodes[j].nodeValue
+            .split(
+              PHONE_DISPLAY_NUMBER
+            )
+            .join(
+              formattedNumber
+            );
+      }
+    }
+  }
+
+  /*
+    Konwersja:
+    Lead – telefon z witryny
+
+    Google Ads:
+    AW-10989654613/uN0TCOmv4-IcENWko_go
+  */
   function configurePhoneConversion() {
     if (
       !state.ads ||
-      typeof window.gtag !== 'function'
+      typeof window.gtag !==
+        'function'
     ) {
       return;
     }
@@ -142,7 +317,10 @@
       PHONE_CONVERSION_ID,
       {
         phone_conversion_number:
-          PHONE_DISPLAY_NUMBER
+          PHONE_DISPLAY_NUMBER,
+
+        phone_conversion_callback:
+          replacePhoneNumbers
       }
     );
   }
@@ -150,21 +328,35 @@
   function loadGoogleTag() {
     if (
       tagLoaded ||
-      (!state.analytics && !state.ads)
+      (
+        !state.analytics &&
+        !state.ads
+      )
     ) {
       return;
     }
 
     ensureGtag();
 
+    /*
+      Stan domyślny przed
+      config/event.
+    */
     window.gtag(
       'consent',
       'default',
       {
-        analytics_storage: 'denied',
-        ad_storage: 'denied',
-        ad_user_data: 'denied',
-        ad_personalization: 'denied'
+        analytics_storage:
+          'denied',
+
+        ad_storage:
+          'denied',
+
+        ad_user_data:
+          'denied',
+
+        ad_personalization:
+          'denied'
       }
     );
 
@@ -190,7 +382,8 @@
         'config',
         GA_ID,
         {
-          anonymize_ip: true
+          anonymize_ip:
+            true
         }
       );
     }
@@ -205,7 +398,9 @@
     }
 
     var script =
-      document.createElement('script');
+      document.createElement(
+        'script'
+      );
 
     script.async = true;
 
@@ -217,21 +412,28 @@
           : ADS_ID
       );
 
-    script.onload = function () {
-      document.documentElement.setAttribute(
-        'data-google-consent',
-        'active'
-      );
-    };
+    script.onload =
+      function () {
+        document
+          .documentElement
+          .setAttribute(
+            'data-google-consent',
+            'active'
+          );
+      };
 
-    document.head.appendChild(script);
+    document.head
+      .appendChild(
+        script
+      );
 
     tagLoaded = true;
   }
 
   function updateLoadedTag() {
     if (
-      typeof window.gtag === 'function'
+      typeof window.gtag ===
+      'function'
     ) {
       window.gtag(
         'consent',
@@ -244,7 +446,8 @@
           'config',
           GA_ID,
           {
-            anonymize_ip: true
+            anonymize_ip:
+              true
           }
         );
       }
@@ -261,7 +464,10 @@
 
     if (
       !tagLoaded &&
-      (state.analytics || state.ads)
+      (
+        state.analytics ||
+        state.ads
+      )
     ) {
       loadGoogleTag();
     }
@@ -276,8 +482,10 @@
 
     var expiries = [
       '; Path=/; Max-Age=0; SameSite=Lax',
+
       '; Path=/; Max-Age=0; SameSite=Lax; Domain=' +
         hostname,
+
       '; Path=/; Max-Age=0; SameSite=Lax; Domain=.' +
         hostname
     ];
@@ -298,7 +506,8 @@
     try {
       var cookies =
         document.cookie
-          ? document.cookie.split('; ')
+          ? document.cookie
+              .split('; ')
           : [];
 
       for (
@@ -307,17 +516,24 @@
         i++
       ) {
         var name =
-          cookies[i].split('=')[0];
+          cookies[i]
+            .split('=')[0];
 
         if (
           name === '_ga' ||
-          name.indexOf('_ga_') === 0 ||
+          name.indexOf(
+            '_ga_'
+          ) === 0 ||
           name === '_gid' ||
           name === '_gat' ||
           name === '_gcl_au' ||
-          name.indexOf('_gcl_') === 0
+          name.indexOf(
+            '_gcl_'
+          ) === 0
         ) {
-          deleteCookie(name);
+          deleteCookie(
+            name
+          );
         }
       }
     } catch (e) {}
@@ -338,7 +554,8 @@
     state.ads =
       ads === true;
 
-    state.decided = true;
+    state.decided =
+      true;
 
     saveChoice();
     syncPublicState();
@@ -378,6 +595,10 @@
     hideBanner();
     showManageButton();
 
+    /*
+      Po pełnym cofnięciu zgody
+      przeładuj stronę.
+    */
     if (
       reloadIfRevoked &&
       hadAny &&
@@ -514,7 +735,13 @@
 
           '<input type="checkbox" id="tw-analytics">' +
 
-          '<span><strong>Analityka</strong><span>Google Analytics 4 — pomaga zrozumieć, które strony są użyteczne i skąd trafiają użytkownicy.</span></span>' +
+          '<span>' +
+
+            '<strong>Analityka</strong>' +
+
+            '<span>Google Analytics 4 — pomaga zrozumieć, które strony są użyteczne i skąd trafiają użytkownicy.</span>' +
+
+          '</span>' +
 
         '</label>' +
 
@@ -522,7 +749,13 @@
 
           '<input type="checkbox" id="tw-ads">' +
 
-          '<span><strong>Pomiar reklam</strong><span>Google Ads — pomiar skuteczności kampanii i konwersji. Bez personalizacji reklam.</span></span>' +
+          '<span>' +
+
+            '<strong>Pomiar reklam</strong>' +
+
+            '<span>Google Ads — pomiar skuteczności kampanii i konwersji. Bez personalizacji reklam.</span>' +
+
+          '</span>' +
 
         '</label>' +
 
@@ -553,7 +786,8 @@
       'Zmień ustawienia prywatności'
     );
 
-    manage.hidden = true;
+    manage.hidden =
+      true;
 
     document.body.appendChild(
       box
@@ -644,9 +878,10 @@
         'click',
         function () {
           toggleSettings(
-            !settings.classList.contains(
-              'tw-open'
-            )
+            !settings.classList
+              .contains(
+                'tw-open'
+              )
           );
         }
       );
@@ -671,19 +906,30 @@
       function () {
         fillSettings();
 
-        box.hidden = false;
-        manage.hidden = true;
+        box.hidden =
+          false;
 
-        toggleSettings(true);
+        manage.hidden =
+          true;
+
+        toggleSettings(
+          true
+        );
       }
     );
 
     if (state.decided) {
-      box.hidden = true;
-      manage.hidden = false;
+      box.hidden =
+        true;
+
+      manage.hidden =
+        false;
     } else {
-      box.hidden = false;
-      manage.hidden = true;
+      box.hidden =
+        false;
+
+      manage.hidden =
+        true;
     }
   }
 
@@ -694,7 +940,8 @@
       );
 
     if (box) {
-      box.hidden = true;
+      box.hidden =
+        true;
     }
   }
 
@@ -705,15 +952,23 @@
       );
 
     if (manage) {
-      manage.hidden = false;
+      manage.hidden =
+        false;
     }
   }
 
   readChoice();
 
+  /*
+    BASIC Consent Mode v2:
+    tag Google dopiero po zgodzie.
+  */
   if (
     state.decided &&
-    (state.analytics || state.ads)
+    (
+      state.analytics ||
+      state.ads
+    )
   ) {
     loadGoogleTag();
   }
@@ -734,7 +989,10 @@
   }
 
   /*
-    GOOGLE ADS — WHATSAPP
+    GOOGLE ADS — LEAD WHATSAPP
+
+    Conversion ID:
+    AW-10989654613/JgaTCMmnx-IcENWko_go
   */
   document.addEventListener(
     'click',
@@ -773,6 +1031,11 @@
         return;
       }
 
+      /*
+        Brak zgody Ads:
+        zwykłe przejście,
+        bez trackingu.
+      */
       if (
         !state.ads ||
         typeof window.gtag !==
@@ -785,10 +1048,15 @@
         link.href;
 
       var opensNewContext =
-        link.target === '_blank' ||
+        link.target ===
+          '_blank' ||
+
         event.ctrlKey ||
+
         event.metaKey ||
+
         event.shiftKey ||
+
         event.button === 1;
 
       if (opensNewContext) {
@@ -797,7 +1065,7 @@
           'conversion',
           {
             send_to:
-              WHATSAPP_CONVERSION_ID
+              'AW-10989654613/JgaTCMmnx-IcENWko_go'
           }
         );
 
@@ -806,7 +1074,8 @@
 
       event.preventDefault();
 
-      var navigated = false;
+      var navigated =
+        false;
 
       var callback =
         function () {
@@ -814,7 +1083,8 @@
             return;
           }
 
-          navigated = true;
+          navigated =
+            true;
 
           window.location =
             destination;
@@ -825,13 +1095,18 @@
         'conversion',
         {
           send_to:
-            WHATSAPP_CONVERSION_ID,
+            'AW-10989654613/JgaTCMmnx-IcENWko_go',
 
           event_callback:
             callback
         }
       );
 
+      /*
+        Fallback:
+        tracking nie może
+        blokować kontaktu.
+      */
       window.setTimeout(
         callback,
         700
