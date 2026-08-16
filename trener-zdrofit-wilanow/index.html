@@ -509,6 +509,7 @@
       *,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}
     }
   </style>
+  <script src="/consent.js" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Przejdź do treści</a>
@@ -836,17 +837,5 @@
       window.addEventListener('scroll', syncHeaderShadow, {passive:true});
     })();
   </script>
-<script>window.addEventListener('load', function(){
-  window.dataLayer = window.dataLayer || [];
-  window.gtag = window.gtag || function(){ window.dataLayer.push(arguments); };
-  var s = document.createElement('script');
-  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-FBX8CDNETZ';
-  s.async = true;
-  s.onload = function(){
-    window.gtag('js', new Date());
-    window.gtag('config','G-FBX8CDNETZ', {anonymize_ip:true});
-    window.gtag('config','AW-10989654613');
-  };
-  document.head.appendChild(s);
-});</script></body>
+</body>
 </html>
