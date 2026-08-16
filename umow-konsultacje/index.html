@@ -831,9 +831,31 @@
         successBox.focus();
       }
 
+      function trackConfirmedLead(){
+        /* GA4 — tylko po zgodzie na analitykę */
+        if(window.__twConsent &&
+           window.__twConsent.analytics === true &&
+           typeof window.gtag === 'function'){
+          window.gtag('event','lead_form_submit',{
+            form_name:'konsultacja',
+            page_location:window.location.href
+          });
+        }
+
+        /* Google Ads — tylko po zgodzie na pomiar reklam */
+        if(window.__twConsent &&
+           window.__twConsent.ads === true &&
+           typeof window.gtag === 'function'){
+          window.gtag('event','conversion',{
+            send_to:'AW-10989654613/WhKoCLrE0-IcENWko_go'
+          });
+        }
+      }
+
       /* Fallback po klasycznym POST -> _next */
       const params = new URLSearchParams(window.location.search);
       if(params.get('sent') === '1'){
+        trackConfirmedLead();
         showSuccess();
         history.replaceState({}, '', '/umow-konsultacje/#formularz');
       }
@@ -912,13 +934,7 @@
             throw new Error(data.message || 'FormSubmit nie potwierdził wysyłki.');
           }
 
-          if(window.__twConsent && window.__twConsent.analytics === true && typeof window.gtag === 'function'){
-            window.gtag('event','lead_form_submit',{
-              form_name:'konsultacja',
-              page_location:window.location.href
-            });
-          }
-
+          trackConfirmedLead();
           showSuccess();
         }catch(error){
           console.error(error);
