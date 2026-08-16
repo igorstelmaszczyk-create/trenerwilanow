@@ -340,6 +340,7 @@
       *,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}
     }
   </style>
+  <script src="/consent.js" defer></script>
 </head>
 
 <body>
@@ -629,19 +630,7 @@
       shadow();window.addEventListener('scroll',shadow,{passive:true});
     })();
 
-    window.addEventListener('load',function(){
-      window.dataLayer=window.dataLayer||[];
-      window.gtag=window.gtag||function(){window.dataLayer.push(arguments)};
-      const s=document.createElement('script');
-      s.src='https://www.googletagmanager.com/gtag/js?id=G-FBX8CDNETZ';
-      s.async=true;
-      s.onload=function(){
-        gtag('js',new Date());
-        gtag('config','G-FBX8CDNETZ',{anonymize_ip:true});
-        gtag('config','AW-10989654613');
-      };
-      document.head.appendChild(s);
-    });
+    
   </script>
 </body>
 </html>
