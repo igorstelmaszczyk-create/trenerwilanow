@@ -1,4 +1,4 @@
-/* trenerwilanow.pl — wspólne zachowanie UI v2 */
+/* trenerwilanow.pl — wspólne zachowanie UI v3 */
 (function () {
   'use strict';
 
@@ -11,6 +11,10 @@
     } else {
       fn();
     }
+  }
+
+  function currentPath() {
+    return location.pathname.replace(/\/+$/, '') || '/';
   }
 
   function updateThemeMeta() {
@@ -36,8 +40,41 @@
     }
   }
 
+  function applySeoHygiene() {
+    var path = currentPath();
+
+    /*
+      Strona prawna ma być dostępna dla użytkowników i linków,
+      ale nie powinna konkurować o ruch organiczny.
+    */
+    if (path === '/polityka-prywatnosci') {
+      var robots = document.querySelector('meta[name="robots"]');
+      if (!robots) {
+        robots = document.createElement('meta');
+        robots.name = 'robots';
+        document.head.appendChild(robots);
+      }
+      robots.setAttribute('content', 'noindex,follow');
+    }
+
+    /*
+      GSC pokazuje potencjał frazy "trening personalny Wilanów".
+      Wzmacniamy istniejący link wewnętrzny bez dodawania sztucznej treści.
+    */
+    if (path === '/') {
+      var links = document.querySelectorAll('a[href="/trener-personalny-wilanow/"]');
+      for (var i = 0; i < links.length; i++) {
+        var text = (links[i].textContent || '').trim();
+        if (text.indexOf('Treningi personalne w Wilanowie') !== -1) {
+          links[i].textContent = 'Trening personalny Wilanów →';
+          break;
+        }
+      }
+    }
+  }
+
   function makeGlobalCta() {
-    var path = location.pathname.replace(/\/+$/, '') || '/';
+    var path = currentPath();
     var excluded = path === '/umow-konsultacje' || path === '/polityka-prywatnosci';
     if (excluded) return null;
 
@@ -125,6 +162,7 @@
     document.documentElement.classList.add('tw-theme-v2');
     updateThemeMeta();
     cleanOldPromiseMeta();
+    applySeoHygiene();
     setupMobileCta(makeGlobalCta());
   });
 })();
