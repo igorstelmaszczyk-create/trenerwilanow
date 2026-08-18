@@ -1,0 +1,186 @@
+/* trenerwilanow.pl — wspólny system wizualny v2 */
+:root{
+  --green:#2e9b2f !important;
+  --green-dark:#145f2a !important;
+  --green-deep:#0f4b20 !important;
+  --green-soft:#edf7ef !important;
+  --ink:#151917 !important;
+  --muted:#606963 !important;
+  --line:#dde5df !important;
+  --surface:#f5f8f5 !important;
+  --white:#fff !important;
+  --dark:#102017 !important;
+  --shadow:0 18px 48px rgba(15,43,23,.11) !important;
+  --radius:20px !important;
+  --max:1120px;
+}
+
+html{background:#fff}
+body{color:var(--ink);background:#fff}
+::selection{background:#d9f0de;color:#0f321b}
+
+/* wspólny nagłówek */
+#site-header{
+  background:rgba(255,255,255,.95) !important;
+  border-bottom:1px solid rgba(15,43,23,.08) !important;
+  -webkit-backdrop-filter:saturate(1.15) blur(12px);
+  backdrop-filter:saturate(1.15) blur(12px);
+}
+#site-header.is-scrolled{box-shadow:0 10px 30px rgba(0,0,0,.07) !important}
+.brand{gap:10px !important}
+.brand-mark{
+  width:34px !important;
+  height:34px !important;
+  border-radius:10px !important;
+  background:var(--green-dark) !important;
+  color:#fff !important;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);
+}
+.brand-text strong{color:var(--ink)}
+.brand-text span{color:var(--muted) !important}
+.desktop-nav a{font-weight:760 !important}
+.desktop-nav a:hover,
+.desktop-nav a[aria-current="page"]{color:var(--green-dark) !important;border-bottom-color:var(--green) !important}
+
+/* przyciski */
+.btn,.header-cta{
+  border-radius:12px !important;
+  font-weight:850 !important;
+}
+.btn-primary,.header-cta,
+button.tw-primary{
+  background:var(--green-dark) !important;
+  border-color:var(--green-dark) !important;
+  color:#fff !important;
+}
+.btn-primary:hover,.header-cta:hover,
+button.tw-primary:hover{
+  background:var(--green-deep) !important;
+  border-color:var(--green-deep) !important;
+}
+.btn-outline{
+  background:#fff !important;
+  color:var(--green-dark) !important;
+  border-color:#9cc9a6 !important;
+}
+.btn-outline:hover{background:var(--green-soft) !important;border-color:var(--green-dark) !important}
+.btn-text,.card-link{color:var(--green-dark) !important}
+
+/* typografia i sekcje */
+.section-soft{background:var(--surface) !important}
+.section-kicker,.kicker,.eyebrow-label,.overline{
+  color:var(--green-dark) !important;
+  font-weight:900 !important;
+  letter-spacing:.065em !important;
+}
+.section-title,.title,.page-title{
+  color:var(--ink);
+  letter-spacing:-.035em !important;
+}
+.section-lead,.lead,.page-lead{color:var(--muted) !important}
+
+/* wspólny język kart */
+.card,.step,.review,.faq-item,.price-card,.service-card,.result-card,.contact-card,.info-card,.feature-card,.proof-card,.stat-card,.process-card{
+  border-color:var(--line) !important;
+  border-radius:var(--radius) !important;
+  background:#fff;
+}
+.card,.service-card,.result-card,.contact-card,.info-card,.feature-card,.proof-card,.stat-card,.process-card{
+  box-shadow:0 8px 24px rgba(15,35,18,.045);
+}
+
+/* delikatne ujednolicenie hero podstron */
+.page-hero,.subpage-hero,.hero-section,.hero-soft{
+  background:radial-gradient(760px 340px at 8% 15%,rgba(46,155,47,.10),transparent 62%),linear-gradient(180deg,#fff 0%,#f8fbf8 100%) !important;
+}
+
+/* formularze */
+input,textarea,select{
+  border-color:var(--line);
+  border-radius:12px;
+}
+input:focus,textarea:focus,select:focus{
+  border-color:#6fa77c !important;
+  box-shadow:0 0 0 3px rgba(20,95,42,.10) !important;
+  outline:none;
+}
+
+/* stopka */
+#site-footer,footer.site-footer{
+  background:#0f1410 !important;
+  color:#d9e2db !important;
+}
+#site-footer a,footer.site-footer a{color:#e5f6e7}
+
+/* menu mobilne */
+.mobile-menu{
+  border-color:var(--line) !important;
+  border-radius:16px !important;
+  box-shadow:var(--shadow) !important;
+}
+.mobile-menu a:hover{background:var(--green-soft) !important;color:var(--green-dark) !important}
+.mobile-menu .mobile-wa{color:var(--green-dark) !important;border-color:#b9dcbc !important}
+
+/* Consent Mode w tej samej palecie */
+#tw-consent{
+  border-color:var(--line) !important;
+  border-radius:18px !important;
+  color:var(--ink) !important;
+}
+#tw-consent p{color:var(--muted) !important}
+#tw-consent a{color:var(--green-dark) !important}
+#tw-consent .tw-primary{background:var(--green-dark) !important;border-color:var(--green-dark) !important}
+#tw-consent .tw-primary:hover{background:var(--green-deep) !important;border-color:var(--green-deep) !important}
+#tw-consent .tw-secondary{color:var(--green-dark) !important;border-color:#9cc9a6 !important}
+#tw-consent .tw-secondary:hover{background:var(--green-soft) !important}
+.tw-choice input{accent-color:var(--green-dark) !important}
+#tw-manage{
+  border-color:#c9d7cc !important;
+  color:#38413b !important;
+  background:rgba(255,255,255,.97) !important;
+  -webkit-backdrop-filter:blur(10px);
+  backdrop-filter:blur(10px);
+}
+#tw-manage:hover{background:var(--green-soft) !important;color:var(--green-dark) !important}
+
+/* Globalny pasek CTA na telefonie — niewidoczny w hero, pojawia się dopiero niżej */
+.mobile-cta-bar{
+  border-color:rgba(14,34,19,.12) !important;
+  background:rgba(255,255,255,.97) !important;
+  border-radius:16px !important;
+  box-shadow:0 12px 34px rgba(0,0,0,.18) !important;
+  -webkit-backdrop-filter:blur(12px);
+  backdrop-filter:blur(12px);
+}
+.mobile-cta-primary{background:var(--green-dark) !important;color:#fff !important}
+.mobile-cta-wa{color:var(--green-dark) !important;background:#f3faf4 !important;border-color:#c5dec9 !important}
+
+@media (max-width:680px){
+  .container{width:min(var(--max),calc(100% - 24px))}
+  .brand-mark{width:34px !important;height:34px !important}
+  .mobile-cta-bar{
+    display:flex !important;
+    gap:8px;
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+    transform:translateY(calc(100% + 24px));
+    transition:opacity .2s ease,transform .2s ease,visibility .2s ease;
+  }
+  .mobile-cta-bar.tw-visible{
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+    transform:translateY(0);
+  }
+  body.tw-has-mobile-cta{padding-bottom:82px}
+  body.tw-mobile-cta-visible #tw-manage{bottom:88px !important}
+}
+
+@media (min-width:681px){
+  .tw-global-cta{display:none !important}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .mobile-cta-bar{transition:none !important}
+}
