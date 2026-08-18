@@ -2,7 +2,7 @@
 (function () {
   'use strict';
 
-  var VERSION = '2026-08-19-v2';
+  var VERSION = '2026-08-19-v3';
 
   function addTheme() {
     if (document.querySelector('link[data-tw-theme]')) return;
