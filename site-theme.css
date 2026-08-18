@@ -1,4 +1,4 @@
-/* trenerwilanow.pl — wspólny system wizualny v2 */
+/* trenerwilanow.pl — wspólny system wizualny v2.1 */
 :root{
   --green:#2e9b2f !important;
   --green-dark:#145f2a !important;
@@ -13,6 +13,13 @@
   --shadow:0 18px 48px rgba(15,43,23,.11) !important;
   --radius:20px !important;
   --max:1120px;
+  /* aliasy używane na starszych podstronach */
+  --g:#2e9b2f !important;
+  --gd:#145f2a !important;
+  --gdd:#0f4b20 !important;
+  --gs:#edf7ef !important;
+  --mut:#606963 !important;
+  --surf:#f5f8f5 !important;
 }
 
 html{background:#fff}
@@ -20,7 +27,8 @@ body{color:var(--ink);background:#fff}
 ::selection{background:#d9f0de;color:#0f321b}
 
 /* wspólny nagłówek */
-#site-header{
+#site-header,
+body>header{
   background:rgba(255,255,255,.95) !important;
   border-bottom:1px solid rgba(15,43,23,.08) !important;
   -webkit-backdrop-filter:saturate(1.15) blur(12px);
@@ -28,75 +36,83 @@ body{color:var(--ink);background:#fff}
 }
 #site-header.is-scrolled{box-shadow:0 10px 30px rgba(0,0,0,.07) !important}
 .brand{gap:10px !important}
-.brand-mark{
+.brand-mark,.mark{
   width:34px !important;
   height:34px !important;
   border-radius:10px !important;
-  background:var(--green-dark) !important;
+  background:#145f2a !important;
   color:#fff !important;
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);
 }
-.brand-text strong{color:var(--ink)}
-.brand-text span{color:var(--muted) !important}
-.desktop-nav a{font-weight:760 !important}
-.desktop-nav a:hover,
-.desktop-nav a[aria-current="page"]{color:var(--green-dark) !important;border-bottom-color:var(--green) !important}
+.brand-text strong,.brandtxt strong{color:var(--ink)}
+.brand-text span,.brandtxt span{color:#606963 !important}
+.desktop-nav a,nav.main a{font-weight:760 !important}
+.desktop-nav a:hover,.desktop-nav a[aria-current="page"],nav.main a:hover,nav.main a[aria-current="page"]{
+  color:#145f2a !important;
+  border-bottom-color:#2e9b2f !important;
+}
 
 /* przyciski */
-.btn,.header-cta{
+.btn,.header-cta,.hcta{
   border-radius:12px !important;
   font-weight:850 !important;
 }
-.btn-primary,.header-cta,
-button.tw-primary{
-  background:var(--green-dark) !important;
-  border-color:var(--green-dark) !important;
+.btn-primary,.header-cta,.hcta,.primary,button.tw-primary{
+  background:#145f2a !important;
+  border-color:#145f2a !important;
   color:#fff !important;
 }
-.btn-primary:hover,.header-cta:hover,
-button.tw-primary:hover{
-  background:var(--green-deep) !important;
-  border-color:var(--green-deep) !important;
+.btn-primary:hover,.header-cta:hover,.hcta:hover,.primary:hover,button.tw-primary:hover{
+  background:#0f4b20 !important;
+  border-color:#0f4b20 !important;
 }
-.btn-outline{
+.btn-outline,.outline{
   background:#fff !important;
-  color:var(--green-dark) !important;
+  color:#145f2a !important;
   border-color:#9cc9a6 !important;
 }
-.btn-outline:hover{background:var(--green-soft) !important;border-color:var(--green-dark) !important}
-.btn-text,.card-link{color:var(--green-dark) !important}
+.btn-outline:hover,.outline:hover{background:#edf7ef !important;border-color:#145f2a !important}
+.btn-text,.card-link{color:#145f2a !important}
 
 /* typografia i sekcje */
-.section-soft{background:var(--surface) !important}
+.section-soft,.soft{background:#f5f8f5 !important}
 .section-kicker,.kicker,.eyebrow-label,.overline{
-  color:var(--green-dark) !important;
+  color:#145f2a !important;
   font-weight:900 !important;
   letter-spacing:.065em !important;
 }
 .section-title,.title,.page-title{
-  color:var(--ink);
+  color:#151917;
   letter-spacing:-.035em !important;
 }
-.section-lead,.lead,.page-lead{color:var(--muted) !important}
+.section-lead,.lead,.page-lead{color:#606963 !important}
+
+/* hero — ten sam subtelny gradient na podstronach */
+#hero,.hero,.page-hero,.subpage-hero,.hero-section,.hero-soft{
+  background:radial-gradient(820px 390px at 8% 16%,rgba(46,155,47,.10),transparent 62%),linear-gradient(180deg,#fff 0%,#f8fbf8 100%) !important;
+}
+.hero h1,.page-hero h1,.subpage-hero h1{letter-spacing:-.05em !important}
 
 /* wspólny język kart */
-.card,.step,.review,.faq-item,.price-card,.service-card,.result-card,.contact-card,.info-card,.feature-card,.proof-card,.stat-card,.process-card{
-  border-color:var(--line) !important;
-  border-radius:var(--radius) !important;
-  background:#fff;
+.card,.step,.review,.faq-item,.price-card,.service-card,.result-card,.contact-card,.info-card,.feature-card,.proof-card,.stat-card,.process-card,
+.service,.fit,.scope,.quickgrid,.faq details,.final{
+  border-color:#dde5df !important;
+  border-radius:20px !important;
 }
-.card,.service-card,.result-card,.contact-card,.info-card,.feature-card,.proof-card,.stat-card,.process-card{
-  box-shadow:0 8px 24px rgba(15,35,18,.045);
+.card,.service-card,.result-card,.contact-card,.info-card,.feature-card,.proof-card,.stat-card,.process-card,
+.service,.fit,.scope,.quickgrid{
+  box-shadow:0 8px 24px rgba(15,35,18,.045) !important;
 }
+.label,.chip,.badge{background:#edf7ef !important;color:#145f2a !important}
+.points li:before{color:#145f2a !important}
 
-/* delikatne ujednolicenie hero podstron */
-.page-hero,.subpage-hero,.hero-section,.hero-soft{
-  background:radial-gradient(760px 340px at 8% 15%,rgba(46,155,47,.10),transparent 62%),linear-gradient(180deg,#fff 0%,#f8fbf8 100%) !important;
-}
+/* tabele / boxy */
+.comparewrap{border-color:#dde5df !important;border-radius:20px !important}
+.compare th{background:#f5f8f5 !important}
 
 /* formularze */
 input,textarea,select{
-  border-color:var(--line);
+  border-color:#dde5df;
   border-radius:12px;
 }
 input:focus,textarea:focus,select:focus{
@@ -106,34 +122,34 @@ input:focus,textarea:focus,select:focus{
 }
 
 /* stopka */
-#site-footer,footer.site-footer{
+#site-footer,footer,footer.site-footer{
   background:#0f1410 !important;
   color:#d9e2db !important;
 }
-#site-footer a,footer.site-footer a{color:#e5f6e7}
+#site-footer a,footer a,footer.site-footer a{color:#e5f6e7}
 
 /* menu mobilne */
-.mobile-menu{
-  border-color:var(--line) !important;
+.mobile-menu,.mobile{
+  border-color:#dde5df !important;
   border-radius:16px !important;
-  box-shadow:var(--shadow) !important;
+  box-shadow:0 18px 48px rgba(15,43,23,.11) !important;
 }
-.mobile-menu a:hover{background:var(--green-soft) !important;color:var(--green-dark) !important}
-.mobile-menu .mobile-wa{color:var(--green-dark) !important;border-color:#b9dcbc !important}
+.mobile-menu a:hover,.mobile a:hover{background:#edf7ef !important;color:#145f2a !important}
+.mobile-menu .mobile-wa{color:#145f2a !important;border-color:#b9dcbc !important}
 
 /* Consent Mode w tej samej palecie */
 #tw-consent{
-  border-color:var(--line) !important;
+  border-color:#dde5df !important;
   border-radius:18px !important;
-  color:var(--ink) !important;
+  color:#151917 !important;
 }
-#tw-consent p{color:var(--muted) !important}
-#tw-consent a{color:var(--green-dark) !important}
-#tw-consent .tw-primary{background:var(--green-dark) !important;border-color:var(--green-dark) !important}
-#tw-consent .tw-primary:hover{background:var(--green-deep) !important;border-color:var(--green-deep) !important}
-#tw-consent .tw-secondary{color:var(--green-dark) !important;border-color:#9cc9a6 !important}
-#tw-consent .tw-secondary:hover{background:var(--green-soft) !important}
-.tw-choice input{accent-color:var(--green-dark) !important}
+#tw-consent p{color:#606963 !important}
+#tw-consent a{color:#145f2a !important}
+#tw-consent .tw-primary{background:#145f2a !important;border-color:#145f2a !important}
+#tw-consent .tw-primary:hover{background:#0f4b20 !important;border-color:#0f4b20 !important}
+#tw-consent .tw-secondary{color:#145f2a !important;border-color:#9cc9a6 !important}
+#tw-consent .tw-secondary:hover{background:#edf7ef !important}
+.tw-choice input{accent-color:#145f2a !important}
 #tw-manage{
   border-color:#c9d7cc !important;
   color:#38413b !important;
@@ -141,7 +157,7 @@ input:focus,textarea:focus,select:focus{
   -webkit-backdrop-filter:blur(10px);
   backdrop-filter:blur(10px);
 }
-#tw-manage:hover{background:var(--green-soft) !important;color:var(--green-dark) !important}
+#tw-manage:hover{background:#edf7ef !important;color:#145f2a !important}
 
 /* Globalny pasek CTA na telefonie — niewidoczny w hero, pojawia się dopiero niżej */
 .mobile-cta-bar{
@@ -152,12 +168,12 @@ input:focus,textarea:focus,select:focus{
   -webkit-backdrop-filter:blur(12px);
   backdrop-filter:blur(12px);
 }
-.mobile-cta-primary{background:var(--green-dark) !important;color:#fff !important}
-.mobile-cta-wa{color:var(--green-dark) !important;background:#f3faf4 !important;border-color:#c5dec9 !important}
+.mobile-cta-primary{background:#145f2a !important;color:#fff !important}
+.mobile-cta-wa{color:#145f2a !important;background:#f3faf4 !important;border-color:#c5dec9 !important}
 
 @media (max-width:680px){
   .container{width:min(var(--max),calc(100% - 24px))}
-  .brand-mark{width:34px !important;height:34px !important}
+  .brand-mark,.mark{width:34px !important;height:34px !important}
   .mobile-cta-bar{
     display:flex !important;
     gap:8px;
@@ -177,10 +193,5 @@ input:focus,textarea:focus,select:focus{
   body.tw-mobile-cta-visible #tw-manage{bottom:88px !important}
 }
 
-@media (min-width:681px){
-  .tw-global-cta{display:none !important}
-}
-
-@media (prefers-reduced-motion:reduce){
-  .mobile-cta-bar{transition:none !important}
-}
+@media (min-width:681px){.tw-global-cta{display:none !important}}
+@media (prefers-reduced-motion:reduce){.mobile-cta-bar{transition:none !important}}
