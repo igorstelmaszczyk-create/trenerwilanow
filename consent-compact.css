@@ -1,0 +1,95 @@
+/* Mobile CRO polish for consent UI.
+   Keeps all consent choices available while reducing first-screen obstruction. */
+
+@media (max-width: 620px) {
+  #tw-consent {
+    left: 10px !important;
+    right: 10px !important;
+    bottom: calc(10px + env(safe-area-inset-bottom)) !important;
+    max-height: calc(100dvh - 20px - env(safe-area-inset-bottom)) !important;
+    overflow: auto !important;
+    padding: 13px 14px 12px !important;
+    border-radius: 15px !important;
+    box-shadow: 0 14px 38px rgba(0,0,0,.20) !important;
+  }
+
+  #tw-consent h2 {
+    font-size: 1.03rem !important;
+    line-height: 1.2 !important;
+  }
+
+  #tw-consent p {
+    margin-top: 5px !important;
+    font-size: .79rem !important;
+    line-height: 1.35 !important;
+  }
+
+  #tw-consent-actions {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 7px !important;
+    margin-top: 10px !important;
+  }
+
+  #tw-consent button {
+    width: 100% !important;
+    min-height: 40px !important;
+    padding: 7px 9px !important;
+    border-radius: 9px !important;
+    font-size: .86rem !important;
+    line-height: 1.15 !important;
+  }
+
+  #tw-consent .tw-text {
+    grid-column: 1 / -1 !important;
+    min-height: 34px !important;
+    padding: 4px 8px !important;
+  }
+
+  #tw-settings {
+    margin-top: 10px !important;
+    padding-top: 10px !important;
+  }
+
+  #tw-settings .tw-choice {
+    gap: 9px !important;
+    padding: 8px 0 !important;
+  }
+
+  #tw-settings .tw-choice input {
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  #tw-settings .tw-choice strong {
+    font-size: .86rem !important;
+  }
+
+  #tw-settings .tw-choice span {
+    font-size: .76rem !important;
+    line-height: 1.32 !important;
+  }
+
+  #tw-settings #tw-consent-actions {
+    grid-template-columns: 1fr !important;
+    margin-top: 8px !important;
+  }
+
+  /* Keep the privacy settings pill clear of the fixed mobile CTA. */
+  #tw-manage {
+    left: 10px !important;
+    bottom: calc(76px + env(safe-area-inset-bottom)) !important;
+    padding: 7px 10px !important;
+    font-size: .72rem !important;
+  }
+}
+
+@media (max-width: 360px) {
+  #tw-consent-actions {
+    grid-template-columns: 1fr !important;
+  }
+
+  #tw-consent .tw-text {
+    grid-column: auto !important;
+  }
+}
