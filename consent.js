@@ -2,14 +2,14 @@
 (function () {
   'use strict';
 
-  var VERSION = '2026-08-19-v3';
+  var VERSION = '2026-08-19-v4';
 
-  function addTheme() {
-    if (document.querySelector('link[data-tw-theme]')) return;
+  function addStylesheet(href, attrName) {
+    if (document.querySelector('link[' + attrName + ']')) return;
     var link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = '/site-theme.css?v=' + VERSION;
-    link.setAttribute('data-tw-theme', VERSION);
+    link.href = href + '?v=' + VERSION;
+    link.setAttribute(attrName, VERSION);
     document.head.appendChild(link);
   }
 
@@ -22,7 +22,8 @@
     document.head.appendChild(script);
   }
 
-  addTheme();
+  addStylesheet('/site-theme.css', 'data-tw-theme');
+  addStylesheet('/consent-compact.css', 'data-tw-consent-compact');
   addScript('/site-ui.js', 'tw-site-ui');
   addScript('/consent-core.js', 'tw-consent-core');
 })();
