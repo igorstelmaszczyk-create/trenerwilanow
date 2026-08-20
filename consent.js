@@ -2,7 +2,7 @@
 (function () {
   'use strict';
 
-  var VERSION = '2026-08-19-v4';
+  var VERSION = '2026-08-20-v5';
 
   function addStylesheet(href, attrName) {
     if (document.querySelector('link[' + attrName + ']')) return;
@@ -24,6 +24,7 @@
 
   addStylesheet('/site-theme.css', 'data-tw-theme');
   addStylesheet('/consent-compact.css', 'data-tw-consent-compact');
+  addStylesheet('/paid-landing-cro.css', 'data-tw-paid-cro');
   addScript('/site-ui.js', 'tw-site-ui');
   addScript('/consent-core.js', 'tw-consent-core');
 })();
