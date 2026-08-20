@@ -50,6 +50,11 @@
     line-height:1.4 !important;
   }
 
+  body.tw-paid-trainer .hero-location > span[aria-hidden="true"],
+  body.tw-paid-zdrofit .hero-location > span[aria-hidden="true"]{
+    display:none !important;
+  }
+
   body.tw-paid-trainer .hero-actions,
   body.tw-paid-zdrofit .hero-actions{
     margin-top:17px !important;
