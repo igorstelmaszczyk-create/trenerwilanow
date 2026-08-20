@@ -2,7 +2,7 @@
 (function () {
   'use strict';
 
-  var VERSION = '2026-08-20-v5';
+  var VERSION = '2026-08-20-v6';
 
   function addStylesheet(href, attrName) {
     if (document.querySelector('link[' + attrName + ']')) return;
