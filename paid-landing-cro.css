@@ -1,0 +1,222 @@
+/* trenerwilanow.pl — paid landing CRO v1
+   Scope: paid-entry pages only. No SEO metadata or campaign settings are changed. */
+
+.tw-price-snapshot,
+.tw-price-snapshot-cta{
+  display:none;
+}
+
+@media (max-width:700px){
+  /* Paid trainer pages: message + CTA before the portrait on mobile. */
+  body.tw-paid-trainer .hero-grid,
+  body.tw-paid-zdrofit .hero-grid{
+    padding:24px 0 40px !important;
+    gap:18px !important;
+    text-align:left !important;
+  }
+
+  body.tw-paid-trainer .hero-copy,
+  body.tw-paid-zdrofit .hero-copy{
+    margin-inline:0 !important;
+  }
+
+  body.tw-paid-trainer .hero-copy h1,
+  body.tw-paid-zdrofit .hero-copy h1{
+    max-width:15ch !important;
+    margin-inline:0 !important;
+    font-size:clamp(2.15rem,10.2vw,2.85rem) !important;
+    line-height:1.01 !important;
+  }
+
+  body.tw-paid-trainer .eyebrow,
+  body.tw-paid-zdrofit .eyebrow{
+    margin-bottom:10px !important;
+    padding:6px 9px !important;
+    font-size:.78rem !important;
+  }
+
+  body.tw-paid-trainer .hero-sub,
+  body.tw-paid-zdrofit .hero-sub{
+    margin:12px 0 0 !important;
+    font-size:1rem !important;
+    line-height:1.48 !important;
+  }
+
+  body.tw-paid-trainer .hero-location,
+  body.tw-paid-zdrofit .hero-location{
+    justify-content:flex-start !important;
+    margin-top:11px !important;
+    font-size:.86rem !important;
+    line-height:1.4 !important;
+  }
+
+  body.tw-paid-trainer .hero-actions,
+  body.tw-paid-zdrofit .hero-actions{
+    margin-top:17px !important;
+  }
+
+  body.tw-paid-trainer .hero-actions .btn-row,
+  body.tw-paid-zdrofit .hero-actions .btn-row{
+    display:grid !important;
+    grid-template-columns:1fr !important;
+    gap:8px !important;
+    justify-content:stretch !important;
+  }
+
+  body.tw-paid-trainer .hero-actions .btn,
+  body.tw-paid-zdrofit .hero-actions .btn{
+    width:100% !important;
+    min-height:48px !important;
+  }
+
+  body.tw-paid-trainer .hero-note,
+  body.tw-paid-zdrofit .hero-note{
+    margin-top:7px !important;
+    font-size:.79rem !important;
+    line-height:1.4 !important;
+  }
+
+  body.tw-paid-trainer .trust-chips,
+  body.tw-paid-zdrofit .trust-chips{
+    justify-content:flex-start !important;
+    gap:6px !important;
+    margin-top:14px !important;
+  }
+
+  body.tw-paid-trainer .trust-chips li,
+  body.tw-paid-zdrofit .trust-chips li{
+    padding:5px 8px !important;
+    font-size:.76rem !important;
+  }
+
+  body.tw-paid-trainer .hero-media,
+  body.tw-paid-zdrofit .hero-media{
+    order:initial !important;
+    justify-self:start !important;
+    width:132px !important;
+    margin-top:2px !important;
+  }
+
+  body.tw-paid-trainer .hero-media img,
+  body.tw-paid-zdrofit .hero-media img{
+    width:132px !important;
+    height:132px !important;
+    aspect-ratio:1/1 !important;
+    object-fit:cover !important;
+    object-position:center 18% !important;
+    border-radius:18px !important;
+    box-shadow:0 14px 34px rgba(20,50,25,.14) !important;
+  }
+
+  body.tw-paid-trainer .quick-answer,
+  body.tw-paid-zdrofit .quick-answer{
+    margin-top:-12px !important;
+  }
+
+  /* Price page: all three prices and one conversion CTA in the first mobile screen. */
+  body.tw-paid-pricing .hero{
+    padding:26px 0 24px !important;
+  }
+
+  body.tw-paid-pricing .hero h1{
+    font-size:clamp(2.05rem,9.7vw,2.65rem) !important;
+    line-height:1.02 !important;
+  }
+
+  body.tw-paid-pricing .hero-sub{
+    margin-top:11px !important;
+    font-size:.96rem !important;
+    line-height:1.45 !important;
+  }
+
+  body.tw-paid-pricing .hero-facts{
+    margin-top:13px !important;
+    gap:6px !important;
+  }
+
+  body.tw-paid-pricing .hero-facts li{
+    padding:5px 8px !important;
+    font-size:.76rem !important;
+  }
+
+  body.tw-paid-pricing .tw-price-snapshot{
+    display:grid !important;
+    grid-template-columns:repeat(3,1fr);
+    gap:7px;
+    margin-top:15px;
+  }
+
+  body.tw-paid-pricing .tw-price-snapshot-item{
+    display:grid;
+    gap:2px;
+    min-width:0;
+    padding:9px 6px;
+    border:1px solid #d7e3d9;
+    border-radius:12px;
+    background:#fff;
+    text-align:center;
+  }
+
+  body.tw-paid-pricing .tw-price-snapshot-item span{
+    overflow:hidden;
+    color:#606963;
+    font-size:.69rem;
+    font-weight:760;
+    line-height:1.2;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
+
+  body.tw-paid-pricing .tw-price-snapshot-item strong{
+    color:#151917;
+    font-size:1rem;
+    line-height:1.2;
+    letter-spacing:-.02em;
+  }
+
+  body.tw-paid-pricing .tw-price-snapshot-cta{
+    display:flex !important;
+    align-items:center;
+    justify-content:center;
+    width:100%;
+    min-height:48px;
+    margin-top:9px;
+    border-radius:12px;
+    background:#145f2a;
+    color:#fff;
+    font-weight:880;
+    text-decoration:none;
+  }
+
+  body.tw-paid-pricing #pricing.section{
+    padding-top:36px !important;
+  }
+
+  body.tw-paid-pricing #pricing .section-lead{
+    margin-top:8px !important;
+    font-size:.92rem !important;
+  }
+
+  body.tw-paid-pricing .pricing-grid{
+    margin-top:20px !important;
+  }
+
+  body.tw-paid-pricing .price-card{
+    padding:22px !important;
+  }
+}
+
+@media (max-width:380px){
+  body.tw-paid-trainer .hero-copy h1,
+  body.tw-paid-zdrofit .hero-copy h1{
+    font-size:2rem !important;
+  }
+
+  body.tw-paid-pricing .tw-price-snapshot-item{
+    padding-inline:4px;
+  }
+
+  body.tw-paid-pricing .tw-price-snapshot-item strong{
+    font-size:.94rem;
+  }
+}
